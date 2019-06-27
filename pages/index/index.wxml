@@ -53,4 +53,41 @@
   </view>
   <!-- 分割线 -->
   <view class="partitionLine"></view>
+  <!-- 推荐歌单 -->
+  <view class="songSheet_title_wrap">
+    <view class="songSheet_title">
+      <text>推荐歌单</text>
+    </view>
+    <view class="songSheet_square">
+      <text>歌单广场</text>
+    </view>
+  </view>
+  <view class="video_wrap">
+    <navigator url="../detail/detail?id={{item.id}}" class="video_item" wx:for="{{personalized}}" wx:key="{{index}}">
+      <!-- 图片容器 -->
+      <view class="video_img">
+        <!-- 图片 -->
+        <image mode="widthFix" src="{{item.picUrl}}" />
+        <!-- 播放量。。。 -->
+        <view class="video_info">
+          <!-- 播放量 -->
+          <view class="play_count_wrap">
+            <!-- 图标 -->
+            <text class="fa fa-play-circle-o"></text>
+            <!-- 数值 -->
+            <text class="play_count">{{item.playCount}}</text>
+          </view>
+          <!-- 评论量 -->
+          <view class="comment_count_row">
+            <!-- 图标 -->
+            <text class="fa fa-commenting-o"></text>
+            <!-- 数值 -->
+            <text class="comment_count">{{item.trackCount}}</text>
+          </view>
+        </view>
+      </view>
+      <!-- 标题 -->
+      <view class="video_title">{{item.name}}</view>
+    </navigator>
+  </view>
 </view>
