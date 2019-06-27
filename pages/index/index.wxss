@@ -1,21 +1,107 @@
-/**index.wxss**/
-.userinfo {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
+page {
+  color: #666;
+  padding: 10rpx;
 }
 
-.userinfo-avatar {
-  width: 128rpx;
-  height: 128rpx;
-  margin: 20rpx;
+/* 导航 */
+
+.nav {
+  white-space: nowrap;
+  padding: 5rpx 0;
+  text-align: center;
+}
+
+.nav_item {
+  padding: 20rpx 45rpx;
+  font-size: 30rpx;
+  display: inline-block;
+}
+
+/* 轮播图 */
+
+.slides {
+  width: 100%;
+  height: 100%;
+  margin-top: 20rpx;
+}
+
+.slides swiper {
+  height: 280rpx;
+}
+
+.slides swiper swiper-item {
+  border-radius: 15rpx;
+  /* width: 60%; */
+}
+
+.slides navigator {
+  width: 100%;
+  height: 100%;
+}
+
+.slides image {
+  width: 100%;
+  height: 100%;
+}
+
+/* 菜单栏 */
+
+.menu_wrap {
+  display: flex;
+  flex-wrap: wrap;
+  padding: 5rpx;
+  justify-content: space-between;
+  text-align: center;
+}
+
+.menu_item {
+  width: 20%;
+}
+
+.menu_icon {
+  width: 100rpx;
+  height: 100rpx;
+  background-color: #3c9;
+  border-radius: 50%;
+  line-height: 100rpx;
+}
+
+.menu_item text {
+  font-size: 16rpx;
+}
+
+.menu_icon navigator {
+  color: white;
+}
+
+/* .menu {
+  white-space: nowrap;
+  padding: 5rpx 0;
+  text-align: center;
+}
+
+.menu_item {
+  padding: 20rpx 45rpx;
+  font-size: 20rpx;
+  display: inline-block;
+}
+
+.menu_icon {
+  width: 100rpx;
+  height: 100rpx;
+  line-height: 100rpx;
+  background-color: #3c9;
   border-radius: 50%;
 }
 
-.userinfo-nickname {
-  color: #aaa;
-}
+.menu_icon navigator {
+  color: white;
+} */
 
-.usermotto {
-  margin-top: 200px;
+/* 分割线 */
+
+.partitionLine {
+  width: 100%;
+  height: 1rpx;
+  border-top: #ccc solid 1rpx;
 }

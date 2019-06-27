@@ -1,13 +1,56 @@
-<!--index.wxml-->
-<view class="container">
-  <view class="userinfo">
-    <button wx:if="{{!hasUserInfo && canIUse}}" open-type="getUserInfo" bindgetuserinfo="getUserInfo"> 获取头像昵称 </button>
-    <block wx:else>
-      <image bindtap="bindViewTap" class="userinfo-avatar" src="{{userInfo.avatarUrl}}" mode="cover"></image>
-      <text class="userinfo-nickname">{{userInfo.nickName}}</text>
-    </block>
+<view class="main">
+  <!-- 头部 -->
+  <view class="nav_wrap">
+    <scroll-view class="nav" scroll-x="{{true}}">
+      <view class="nav_item">我的</view>
+      <view class="nav_item">发现</view>
+      <view class="nav_item">朋友</view>
+      <view class="nav_item">视频</view>
+    </scroll-view>
   </view>
-  <view class="usermotto">
-    <text class="user-motto">{{motto}}</text>
+  <!-- 轮播图 -->
+  <view class="slides">
+    <swiper autoplay="{{true}}" indicator-dots="{{true}}" circular="{{true}}" indicator-active-color="red">
+      <swiper-item wx:for="{{banner}}" wx:key="{{index}}">
+        <navigator>
+          <image mode="widthFix" src="{{item.imageUrl}}" />
+        </navigator>
+      </swiper-item>
+    </swiper>
   </view>
+  <!-- 菜单栏 -->
+  <view class="menu_wrap">
+    <view class="menu_item">
+      <view class="menu_icon">
+        <navigator class="iconfont icon-meirituijian-"></navigator>
+      </view>
+      <text>每日推荐</text>
+    </view>
+    <view class="menu_item">
+      <view class="menu_icon">
+        <navigator class="iconfont icon-gedan"></navigator>
+      </view>
+      <text>歌单</text>
+    </view>
+    <view class="menu_item">
+      <view class="menu_icon">
+        <navigator class="iconfont icon-paixingbang"></navigator>
+      </view>
+      <text>排行榜</text>
+    </view>
+    <view class="menu_item">
+      <view class="menu_icon">
+        <navigator class="iconfont icon-diantai"></navigator>
+      </view>
+      <text>电台</text>
+    </view>
+    <view class="menu_item">
+      <view class="menu_icon">
+        <navigator class="iconfont icon-zhibo"></navigator>
+      </view>
+      <text>直播</text>
+    </view>
+  </view>
+  <!-- 分割线 -->
+  <view class="partitionLine"></view>
 </view>
