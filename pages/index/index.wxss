@@ -1,78 +1,84 @@
 page {
-  color: #666;
-  padding: 10rpx;
+    color: #666;
+    padding: 10rpx;
 }
+
 
 /* 导航 */
 
 .nav {
-  white-space: nowrap;
-  padding: 5rpx 0;
-  text-align: center;
+    white-space: nowrap;
+    padding: 5rpx 0;
+    text-align: center;
 }
 
 .nav_item {
-  padding: 20rpx 45rpx;
-  font-size: 30rpx;
-  display: inline-block;
+    padding: 20rpx 45rpx;
+    font-size: 30rpx;
+    display: inline-block;
 }
+
 
 /* 轮播图 */
 
 .slides {
-  width: 100%;
-  height: 100%;
-  margin-top: 20rpx;
+    width: 100%;
+    height: 100%;
+    margin-top: 20rpx;
 }
 
 .slides swiper {
-  height: 280rpx;
+    height: 280rpx;
 }
 
 .slides swiper swiper-item {
-  border-radius: 15rpx;
-  /* width: 60%; */
+    border-radius: 15rpx;
+    /* width: 60%; */
 }
 
 .slides navigator {
-  width: 100%;
-  height: 100%;
+    width: 100%;
+    height: 100%;
 }
 
 .slides image {
-  width: 100%;
-  height: 100%;
+    width: 100%;
+    height: 100%;
 }
+
 
 /* 菜单栏 */
 
 .menu_wrap {
-  display: flex;
-  flex-wrap: wrap;
-  padding: 5rpx;
-  justify-content: space-between;
-  text-align: center;
+    display: flex;
+    padding: 5rpx;
+    justify-content: space-around;
+    text-align: center;
+    padding-top: 30rpx;
+    padding-bottom: 30rpx;
 }
 
 .menu_item {
-  width: 20%;
+    width: 100rpx;
+    /* padding: 10rpx; */
 }
 
 .menu_icon {
-  width: 100rpx;
-  height: 100rpx;
-  background-color: #3c9;
-  border-radius: 50%;
-  line-height: 100rpx;
+    width: 100rpx;
+    height: 100rpx;
+    background-color: #3c9;
+    border-radius: 50%;
+    line-height: 100rpx;
 }
 
 .menu_item text {
-  font-size: 16rpx;
+    font-size: 20rpx;
 }
 
 .menu_icon navigator {
-  color: white;
+    color: white;
 }
+
 
 /* .menu {
   white-space: nowrap;
@@ -98,10 +104,11 @@ page {
   color: white;
 } */
 
+
 /* 分割线 */
 
 .partitionLine {
-  width: 100%;
-  height: 1rpx;
-  border-top: #ccc solid 1rpx;
+    width: 100%;
+    height: 1rpx;
+    border-top: #ccc solid 1rpx;
 }
