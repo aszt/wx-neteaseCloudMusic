@@ -7,6 +7,8 @@ Page({
     data: {
         // 歌单详情数据
         playInfo: [],
+        // 歌单中SQ音质数据
+        privileges: [],
     },
 
     /**
@@ -32,7 +34,8 @@ Page({
             success: function(res) {
                 if (res.data.code === 200) {
                     that.setData({
-                        playInfo: res.data.playlist
+                        playInfo: res.data.playlist,
+                        privileges: res.data.privileges
                     })
                 }
             }

@@ -59,9 +59,13 @@
                     <!-- undefined处理 -->
                     <text class="content_2">{{item.tns==null?"":'('+item.tns+')'}}</text>
                 </view>
-                <view class="content_3">{{item.ar[0].name}}-{{item.al.name}}</view>
+                <view class="content_3">
+                    <!-- SQ音质图标处理 -->
+                    <text wx:if="{{privileges[index].maxbr === 999000}}" class="iconfont icon-sq" style="color:red;" />
+                    {{item.ar[0].name}}-{{item.al.name}}
+                </view>
             </view>
-            <!-- MV图标处理（貌似判断错了= =、） -->
+            <!-- MV图标处理 -->
             <view wx:if="{{item.mv!==0}}">
                 <view id="songArray_mv" class="iconfont icon-Youtube"></view>
             </view>
