@@ -10,7 +10,8 @@
     transform: scale(1.5);
 }
 
-.play-list-bg, .play-list-bg::after {
+.play-list-bg,
+.play-list-bg::after {
     position: absolute;
     left: 0;
     top: 0;
@@ -25,6 +26,7 @@
     content: '';
     background-color: rgba(0, 0, 0, 0.25);
 }
+
 
 /* 内容 */
 
@@ -113,13 +115,14 @@
     /* padding-right: 0rpx; */
 }
 
+
 /* 列表 */
 
 .songList_wrap {
     overflow: hidden;
     background-color: white;
     border-radius: 20rpx;
-    height: 1000rpx;
+    /* height: 100%; */
 }
 
 .songList_wrap_title {
@@ -140,7 +143,8 @@
 .paly2 {
     margin-right: 50rpx;
 }
-.songCount{
+
+.songCount {
     font-size: 30rpx;
     color: #CCCCCC;
 }
@@ -159,4 +163,58 @@
     color: white;
     font-size: 30rpx;
     line-height: 80rpx;
+}
+
+
+/* 歌曲内容 */
+
+.songArray_wrap {
+    display: flex;
+    justify-content: space-between;
+    padding: 20rpx 0;
+}
+
+.songArray_inex {
+    margin-left: 40rpx;
+    color: #CCCCCC;
+    line-height: 70rpx;
+    width: 10%;
+}
+
+.songArray_content {
+    width: 60%;
+}
+
+.content_1 {
+    font-size: 35rpx;
+    /* 超过省略号 */
+    text-overflow: -o-ellipsis-lastline;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 1;
+    line-clamp: 1;
+    -webkit-box-orient: vertical;
+}
+
+.songArray_content .content_2 {
+    font-size: 35rpx;
+    color: #CCCCCC;
+}
+
+.songArray_content .content_3 {
+    font-size: 25rpx;
+    color: #CCCCCC;
+    margin-top: 10rpx;
+}
+
+#songArray_mv {
+    width: 10%;
+    line-height: 70rpx;
+}
+
+.songArray_other {
+    color: #CCCCCC;
+    width: 10%;
+    line-height: 70rpx;
 }

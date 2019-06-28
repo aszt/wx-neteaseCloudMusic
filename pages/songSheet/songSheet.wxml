@@ -51,5 +51,24 @@
                 <view class="paly3">+ 收藏({{playInfo.subscribedCount}})</view>
             </view>
         </view>
+        <view class="songArray_wrap" wx:for="{{playInfo.tracks}}" wx:key="{{index}}">
+            <view class="songArray_inex">{{index+1}}</view>
+            <view class="songArray_content">
+                <view class="content_1">
+                    {{item.name}}
+                    <!-- undefined处理 -->
+                    <text class="content_2">{{item.tns==null?"":'('+item.tns+')'}}</text>
+                </view>
+                <view class="content_3">{{item.ar[0].name}}-{{item.al.name}}</view>
+            </view>
+            <!-- MV图标处理（貌似判断错了= =、） -->
+            <view wx:if="{{item.mv!==0}}">
+                <view id="songArray_mv" class="iconfont icon-Youtube"></view>
+            </view>
+            <view wx:else>
+                <view id="songArray_mv" class="iconfont icon-Youtube" style="color:white;"></view>
+            </view>
+            <view class="songArray_other">：</view>
+        </view>
     </view>
 </view>
