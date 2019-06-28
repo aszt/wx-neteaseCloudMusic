@@ -3,7 +3,6 @@ page {
     /* padding: 10rpx; */
 }
 
-
 /* 导航 */
 
 .nav {
@@ -18,22 +17,33 @@ page {
     display: inline-block;
 }
 
+.nav_item_active {
+    padding: 20rpx 45rpx;
+    font-size: 40rpx;
+    font-weight: 600;
+    color: black;
+    display: inline-block;
+}
 
 /* 轮播图 */
 
+.slides_wrap {
+    display: flex;
+    justify-content: center;
+}
+
 .slides {
-    width: 100%;
+    width: 90%;
     height: 100%;
     margin-top: 20rpx;
 }
 
 .slides swiper {
-    height: 280rpx;
+    height: 250rpx;
 }
 
 .slides swiper swiper-item {
-    border-radius: 15rpx;
-    /* width: 60%; */
+    border-radius: 12rpx;
 }
 
 .slides navigator {
@@ -45,7 +55,6 @@ page {
     width: 100%;
     height: 100%;
 }
-
 
 /* 菜单栏 */
 
@@ -60,7 +69,6 @@ page {
 
 .menu_item {
     width: 100rpx;
-    /* padding: 10rpx; */
 }
 
 .menu_icon {
@@ -71,43 +79,14 @@ page {
     line-height: 100rpx;
 }
 
-.menu_icon navigator {
-    /* width: 100rpx; */
-    /* height: 100rpx; */
+.menu_icon view {
     color: white;
-    /* text-align: center; */
-    /* background-color: yellow; */
 }
 
 .menu_item text {
-    font-size: 20rpx;
+    font-size: 24rpx;
+    color: black;
 }
-
-
-/* .menu {
-  white-space: nowrap;
-  padding: 5rpx 0;
-  text-align: center;
-}
-
-.menu_item {
-  padding: 20rpx 45rpx;
-  font-size: 20rpx;
-  display: inline-block;
-}
-
-.menu_icon {
-  width: 100rpx;
-  height: 100rpx;
-  line-height: 100rpx;
-  background-color: #3c9;
-  border-radius: 50%;
-}
-
-.menu_icon navigator {
-  color: white;
-} */
-
 
 /* 分割线 */
 
@@ -117,16 +96,15 @@ page {
     border-top: #F5F5F5 solid 1rpx;
 }
 
-
 /* 推荐歌单 */
 
 .songSheet_title_wrap {
     display: flex;
     flex-wrap: wrap;
-    padding: 5rpx;
-    width: 90%;
+    padding-top: 20rpx;
+    width: 94%;
     justify-content: space-between;
-    margin-left: 5%;
+    margin-left: 3%;
 }
 
 .songSheet_title {
@@ -141,51 +119,51 @@ page {
 
 .songSheet_square {
     margin: 20rpx 0;
-    width: 180rpx;
-    height: 50rpx;
-    line-height: 50rpx;
+    width: 130rpx;
+    height: 40rpx;
+    line-height: 31rpx;
     border: 1px solid #666;
-    border-radius: 45%;
+    border-radius: 20rpx;
     text-align: center;
 }
 
 .songSheet_square text {
-    font-size: 30rpx;
+    font-size: 23rpx;
 }
 
-.video_wrap {
+.songSheet_wrap {
     display: flex;
     flex-wrap: wrap;
     padding: 5rpx;
     justify-content: space-around;
 }
 
-.video_item {
+.songSheet_item {
     width: 30%;
     margin-bottom: 20rpx;
 }
 
-.video_img {
+.songSheet_img {
     position: relative;
 }
 
-.video_img image {
+.songSheet_img image {
     width: 100%;
     border-radius: 15rpx;
 }
 
-.video_img .video_info {
+.songSheet_img .songSheet_info {
     position: absolute;
-    bottom: 10rpx;
-    left: 0;
+    top: 5rpx;
+    right: 5rpx;
     width: 100%;
     display: flex;
-    justify-content: space-around;
+    justify-content: flex-end;
     color: #fff;
     font-size: 24rpx;
 }
 
-.video_title {
+.songSheet_titles {
     font-size: 28rpx;
     display: -webkit-box;
     overflow: hidden;
@@ -194,4 +172,15 @@ page {
     word-wrap: break-word;
     -webkit-line-clamp: 2;
     -webkit-box-orient: vertical;
+}
+/* 新碟 */
+.choose {
+    font-size: 40rpx;
+    font-weight: 800;
+    color: black;
+}
+
+.notchoose{
+    font-size: 10003rps;
+    color: #3c9;
 }

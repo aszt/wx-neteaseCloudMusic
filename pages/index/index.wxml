@@ -3,50 +3,52 @@
   <view class="nav_wrap">
     <scroll-view class="nav" scroll-x="{{true}}">
       <view class="nav_item">我的</view>
-      <view class="nav_item">发现</view>
+      <view class="nav_item_active">发现</view>
       <view class="nav_item">朋友</view>
       <view class="nav_item">视频</view>
     </scroll-view>
   </view>
   <!-- 轮播图 -->
-  <view class="slides">
-    <swiper autoplay="{{true}}" indicator-dots="{{true}}" circular="{{true}}" indicator-active-color="red">
-      <swiper-item wx:for="{{banner}}" wx:key="{{index}}">
-        <navigator>
-          <image mode="widthFix" src="{{item.imageUrl}}" />
-        </navigator>
-      </swiper-item>
-    </swiper>
+  <view class="slides_wrap">
+    <view class="slides">
+      <swiper autoplay="{{true}}" indicator-dots="{{true}}" circular="{{true}}" indicator-active-color="red">
+        <swiper-item wx:for="{{banner}}" wx:key="{{index}}">
+          <navigator>
+            <image mode="scaleToFill" src="{{item.imageUrl}}" />
+          </navigator>
+        </swiper-item>
+      </swiper>
+    </view>
   </view>
   <!-- 菜单栏 -->
   <view class="menu_wrap">
     <view class="menu_item">
       <view class="menu_icon">
-        <navigator class="iconfont icon-meirituijian-"></navigator>
+        <view bindtap="openNewView" data-id="0" class="iconfont icon-meirituijian-" style="font-size:50rpx;"></view>
       </view>
       <text>每日推荐</text>
     </view>
     <view class="menu_item">
       <view class="menu_icon">
-        <navigator class="iconfont icon-gedan"></navigator>
+        <view bindtap="openNewView" data-id="1" class="iconfont icon-gedan" style="font-size:50rpx;"></view>
       </view>
       <text>歌单</text>
     </view>
     <view class="menu_item">
       <view class="menu_icon">
-        <navigator class="iconfont icon-paixingbang"></navigator>
+        <view bindtap="openNewView" data-id="2" class="iconfont icon-paixingbang" style="font-size:50rpx;"></view>
       </view>
       <text>排行榜</text>
     </view>
     <view class="menu_item">
       <view class="menu_icon">
-        <navigator class="iconfont icon-diantai"></navigator>
+        <view bindtap="openNewView" data-id="3" class="iconfont icon-diantai" style="font-size:50rpx;"></view>
       </view>
       <text>电台</text>
     </view>
     <view class="menu_item">
       <view class="menu_icon">
-        <navigator class="iconfont icon-zhibo"></navigator>
+        <view bindtap="openNewView" data-id="4" class="iconfont icon-zhibo" style="font-size:50rpx;"></view>
       </view>
       <text>直播</text>
     </view>
@@ -62,32 +64,49 @@
       <text>歌单广场</text>
     </view>
   </view>
-  <view class="video_wrap">
-    <navigator url="../detail/detail?id={{item.id}}" class="video_item" wx:for="{{personalized}}" wx:key="{{index}}">
+  <view class="songSheet_wrap">
+    <!-- 控制遍历数量6个 -->
+    <view class="songSheet_item" wx:for="{{personalized}}" wx:key wx:if="{{index<6}}">
       <!-- 图片容器 -->
-      <view class="video_img">
+      <view class="songSheet_img">
         <!-- 图片 -->
-        <image mode="widthFix" src="{{item.picUrl}}" />
+        <image mode="widthFix" bindtap="openSongSheet" data-id="{{item.id}}" src="{{item.picUrl}}" />
         <!-- 播放量。。。 -->
-        <view class="video_info">
+        <view class="songSheet_info">
           <!-- 播放量 -->
           <view class="play_count_wrap">
             <!-- 图标 -->
-            <text class="fa fa-play-circle-o"></text>
+            <text class="iconfont icon-play" style="font-size:30rpx;"></text>
             <!-- 数值 -->
-            <text class="play_count">{{item.playCount}}</text>
-          </view>
-          <!-- 评论量 -->
-          <view class="comment_count_row">
-            <!-- 图标 -->
-            <text class="fa fa-commenting-o"></text>
-            <!-- 数值 -->
-            <text class="comment_count">{{item.trackCount}}</text>
+            <text class="play_count">{{item.playCount}}万</text>
           </view>
         </view>
       </view>
       <!-- 标题 -->
-      <view class="video_title">{{item.name}}</view>
-    </navigator>
+      <view class="songSheet_titles">{{item.name}}</view>
+    </view>
+  </view>
+  <!-- 新碟 -->
+  <view class="songSheet_title_wrap">
+    <view class="newest_title">
+      <text class="choose">新碟 </text>
+      <!-- <text class="notchoose">| 新歌</text> -->
+    </view>
+    <view class="songSheet_square">
+      <text>更多新碟</text>
+    </view>
+  </view>
+  <view class="songSheet_wrap">
+    <!-- 控制遍历数量3个 -->
+    <view url="../detail/detail?id={{item.id}}" class="songSheet_item" wx:for="{{newest}}" wx:key wx:if="{{index<3}}">
+      <!-- 图片容器 -->
+      <view class="songSheet_img">
+        <!-- 图片 -->
+        <image mode="widthFix" bindtap="openSongSheet" data-id="{{item.id}}" src="{{item.blurPicUrl}}" />
+      </view>
+      <!-- 标题 -->
+      <view class="songSheet_titles">{{item.name}}</view>
+      <view class="songSheet_titles">{{item.artist.name}}</view>
+    </view>
   </view>
 </view>

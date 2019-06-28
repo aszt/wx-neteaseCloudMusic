@@ -1,0 +1,55 @@
+<!-- 背景设置 -->
+<view class='play-list-bg' style='background-image: url({{playInfo.coverImgUrl}})' />
+<view class="main">
+    <!-- 头部 -->
+    <view class="title_wrap">
+        <!-- 图片 -->
+        <view class="photo">
+            <image mode="widthFix" src="{{playInfo.coverImgUrl}}" />
+        </view>
+        <!-- 内容 -->
+        <view class="content">
+            <view class="content_title">{{playInfo.name}}</view>
+            <!-- 头像及个人信息 -->
+            <view class="content_info">
+                <view class="content_headPortrait">
+                    <image src='{{playInfo.creator.avatarUrl}}'></image>
+                </view>
+                <view class="content_nickname">{{playInfo.creator.nickname+" > "}}</view>
+            </view>
+            <view class="content_description">{{playInfo.description}}</view>
+        </view>
+    </view>
+    <!-- 图标菜单 -->
+    <view class="iconMenu_wrap">
+        <view class="menu_item">
+            <view class="iconfont icon-pinglun" style="font-size:60rpx;color:white"></view>
+            <view class="menu_title">{{playInfo.commentCount}}</view>
+        </view>
+        <view class="menu_item">
+            <view class="iconfont icon-fenxiang" style="font-size:60rpx;color:white"></view>
+            <view class="menu_title">{{playInfo.shareCount}}</view>
+        </view>
+        <view class="menu_item">
+            <view class="iconfont icon-xiazai" style="font-size:60rpx;color:white"></view>
+            <view class="menu_title">下载</view>
+        </view>
+        <view class="menu_item">
+            <view class="iconfont icon-duoxuan" style="font-size:60rpx;color:white"></view>
+            <view class="menu_title">多选</view>
+        </view>
+    </view>
+    <!-- 歌曲列表 -->
+    <view class="songList_wrap">
+        <view class="songList_wrap_title">
+            <view id="play" class="iconfont icon-zhibo" style="font-size:50rpx;color:#333333"></view>
+            <view class="paly2">
+                播放全部
+                <text class="songCount">(共{{playInfo.trackCount}}首)</text>
+            </view>
+            <view class="play3_border">
+                <view class="paly3">+ 收藏({{playInfo.subscribedCount}})</view>
+            </view>
+        </view>
+    </view>
+</view>
