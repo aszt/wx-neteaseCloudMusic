@@ -15,7 +15,7 @@
                 <view class="content_headPortrait">
                     <image src='{{playInfo.creator.avatarUrl}}'></image>
                 </view>
-                <view class="content_nickname">{{playInfo.creator.nickname+" > "}}</view>
+                <view class="content_nickname">{{playInfo.creator.nickname}} > </view>
             </view>
             <view class="content_description">{{playInfo.description}}</view>
         </view>
@@ -53,7 +53,7 @@
         </view>
         <view class="songArray_wrap" wx:for="{{playInfo.tracks}}" wx:key="{{index}}">
             <view class="songArray_inex">{{index+1}}</view>
-            <view class="songArray_content">
+            <view class="songArray_content" bindtap="playMusic" data-id="{{item.id}}" data-index="{{index}}">
                 <view class="content_1">
                     {{item.name}}
                     <!-- undefined处理 -->

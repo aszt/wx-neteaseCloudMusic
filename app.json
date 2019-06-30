@@ -1,14 +1,18 @@
 {
-  "pages": [
-    "pages/index/index",
-    "pages/songSheet/songSheet",
-    "pages/logs/logs"
-  ],
-  "window": {
-    "backgroundTextStyle": "light",
-    "navigationBarBackgroundColor": "#33CC99",
-    "navigationBarTitleText": "网易云音乐",
-    "navigationBarTextStyle": "white"
-  },
-  "sitemapLocation": "sitemap.json"
+    "pages": [
+        "pages/index/index",
+        "pages/songSheet/songSheet",
+        "pages/player/player",
+        "pages/logs/logs"
+    ],
+    "requiredBackgroundModes": [
+        "audio"
+    ],
+    "window": {
+        "backgroundTextStyle": "light",
+        "navigationBarBackgroundColor": "#33CC99",
+        "navigationBarTitleText": "网易云音乐",
+        "navigationBarTextStyle": "white"
+    },
+    "sitemapLocation": "sitemap.json"
 }

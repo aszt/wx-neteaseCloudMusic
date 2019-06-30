@@ -1,4 +1,5 @@
 var baseUrl = require('../../utils/api.js');
+const app = getApp();
 Page({
 
     /**
@@ -17,7 +18,7 @@ Page({
     onLoad: function(options) {
         let id = options.id;
         // let id = 2853229030
-        console.log("歌单id:" + id);
+        // console.log("歌单id:" + id);
         this.getPlaylistDetail(id);
     },
 
@@ -39,6 +40,24 @@ Page({
                     })
                 }
             }
+        })
+    },
+
+    /**
+     * 播放音乐
+     */
+    playMusic: function(e) {
+        var that = this;
+        // 获取音乐id 108245（爱笑的眼睛）
+        var audioId = e.currentTarget.dataset.id;
+        const index = e.currentTarget.dataset.index;
+        // console.log("音乐id:" + audioId + ",下标：" + index)
+        let playlist = this.data.playInfo.tracks;
+        // 全局属性设置
+        app.globalData.list_song = playlist;
+        app.globalData.index_song = index;
+        wx.navigateTo({
+            url: '../player/player?id=' + audioId
         })
     },
 
