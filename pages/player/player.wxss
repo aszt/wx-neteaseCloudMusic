@@ -1,7 +1,23 @@
 /* 背景处理 */
 
 .song-bg {
-    filter: blur(30px) brightness(0.8);
+    background-position: 50%;
+    background-repeat: no-repeat;
+    background-size: auto 100%;
+    -webkit-transform: scale(1.5);
+    transform: scale(1.5);
+    -webkit-transform-origin: center top;
+    transform-origin: center top;
+    position: fixed;
+    left: 0;
+    right: 0;
+    top: 0;
+    height: 100%;
+    overflow: hidden;
+    z-index: -1;
+    -webkit-transition: opacity 0.3s linear;
+    transition: opacity 0.3s linear;
+    /* filter: blur(30px) brightness(0.8);
     background-size: cover;
     background-position: center center;
     background-repeat: no-repeat;
@@ -12,7 +28,7 @@
     left: 0;
     top: 0;
     transform: scale(1.2);
-    background-color: transparent;
+    background-color: transparent; */
 }
 
 .song-bg::after {
@@ -24,7 +40,6 @@
     top: 0;
     background-color: rgba(0, 0, 0, 0.5);
 }
-
 
 /* ===播放器处理=== */
 
@@ -77,10 +92,15 @@
     top: 0;
     bottom: 0;
     z-index: 2;
+    text-align: center;
 }
 
-.song-cover,
-.song-cover image {
+.song-disc image {
+    width: 588rpx;
+    height: 588rpx;
+}
+
+.song-cover, .song-cover image {
     position: absolute;
     left: 50%;
     top: 50%;
@@ -97,7 +117,13 @@
     top: 0;
     bottom: 0;
     z-index: 3;
+    text-align: center;
     /* transform: translateY(-50%) */
+}
+
+.song-light image {
+    width: 588rpx;
+    height: 588rpx;
 }
 
 .circling {
@@ -121,7 +147,6 @@
         transform: rotate(1turn);
     }
 }
-
 
 /* 菜单栏 */
 
@@ -160,7 +185,6 @@
     color: #fff;
 }
 
-
 /* slider */
 
 .song-progress {
@@ -169,8 +193,7 @@
     padding: 0 20rpx;
 }
 
-.song-progress .cur-time,
-.song-progress .total-time {
+.song-progress .cur-time, .song-progress .total-time {
     font-size: 20rpx;
     font-weight: 300;
 }
@@ -182,7 +205,6 @@
 .song-progress .total-time {
     color: rgba(255, 255, 255, 0.8);
 }
-
 
 /* 按钮 */
 

@@ -1,6 +1,6 @@
 <view class="main">
     <!-- 背景处理 -->
-    <view class='song-bg' style='background-image: url("{//music.163.com/api/img/blur/{{music.al.pic_str || music.al.pic}}}"); opacity: 1'></view>
+    <view class='song-bg' style='background-image: url("//music.163.com/api/img/blur/{{music.al.pic_str || music.al.pic}}"); opacity: 1'></view>
     <!-- 播放器 -->
     <view bindtap="playerChange">
         <view class='player' hidden='{{showLyric}}'>
