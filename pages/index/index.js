@@ -5,12 +5,50 @@ Page({
      * 页面的初始数据
      */
     data: {
+        // tab切换
+        currentTab: 1,
         // 轮播图数据
         banner: [],
         // 推荐歌单数据
         personalized: [],
         // 新碟数据
         newest: [],
+    },
+
+    // tab切换处理
+    swichNav: function (e) {
+
+        console.log(e);
+
+        var that = this;
+
+        if (this.data.currentTab === e.target.dataset.current) {
+
+            return false;
+
+        } else {
+
+            that.setData({
+
+                currentTab: e.target.dataset.current,
+
+            })
+
+        }
+
+    },
+
+    swiperChange: function (e) {
+
+        console.log(e);
+
+        this.setData({
+
+            currentTab: e.detail.current,
+
+        })
+
+
     },
 
     // 打开菜单新页面
@@ -138,13 +176,15 @@ Page({
         this.getPersonalized();
         // 3、获取新碟数据
         this.getNewest();
+
+        
     },
 
     /**
      * 生命周期函数--监听页面初次渲染完成
      */
     onReady: function () {
-
+        
     },
 
     /**

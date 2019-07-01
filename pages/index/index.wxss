@@ -1,6 +1,5 @@
 page {
     color: #666;
-    /* padding: 10rpx; */
 }
 
 /* 导航 */
@@ -23,6 +22,22 @@ page {
     font-weight: 600;
     color: black;
     display: inline-block;
+}
+
+/* swiper高度问题解决 */
+
+.swiper {
+    width: 100%;
+    height: calc(100vh - 100rpx);
+    padding: 0;
+}
+
+.swiper-item {
+    overflow: auto;
+}
+
+.swiper-item::-webkit-scrollbar {
+    display: none;
 }
 
 /* 轮播图 */
@@ -173,14 +188,16 @@ page {
     -webkit-line-clamp: 2;
     -webkit-box-orient: vertical;
 }
+
 /* 新碟 */
+
 .choose {
     font-size: 40rpx;
     font-weight: 800;
     color: black;
 }
 
-.notchoose{
+.notchoose {
     font-size: 10003rps;
     color: #3c9;
 }
