@@ -1,69 +1,90 @@
 @font-face {
   font-family: 'iconfont';  /* project id 1265040 */
-  src: url('//at.alicdn.com/t/font_1265040_1b5g8fgjiq6.eot');
-  src: url('//at.alicdn.com/t/font_1265040_1b5g8fgjiq6.eot?#iefix') format('embedded-opentype'),
-  url('//at.alicdn.com/t/font_1265040_1b5g8fgjiq6.woff2') format('woff2'),
-  url('//at.alicdn.com/t/font_1265040_1b5g8fgjiq6.woff') format('woff'),
-  url('//at.alicdn.com/t/font_1265040_1b5g8fgjiq6.ttf') format('truetype'),
-  url('//at.alicdn.com/t/font_1265040_1b5g8fgjiq6.svg#iconfont') format('svg');
+  src: url('//at.alicdn.com/t/font_1265040_rttw43cajl.eot');
+  src: url('//at.alicdn.com/t/font_1265040_rttw43cajl.eot?#iefix') format('embedded-opentype'),
+  url('//at.alicdn.com/t/font_1265040_rttw43cajl.woff2') format('woff2'),
+  url('//at.alicdn.com/t/font_1265040_rttw43cajl.woff') format('woff'),
+  url('//at.alicdn.com/t/font_1265040_rttw43cajl.ttf') format('truetype'),
+  url('//at.alicdn.com/t/font_1265040_rttw43cajl.svg#iconfont') format('svg');
 }
 
 .iconfont {
-    font-family: "iconfont" !important;
-    font-size: 16px;
-    font-style: normal;
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
+  font-family: "iconfont" !important;
+  font-size: 16px;
+  font-style: normal;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
 .icon-diantai:before {
-    content: "\e6f4";
+  content: "\e6f4";
 }
 
 .icon-fenxiang:before {
-    content: "\e61c";
+  content: "\e61c";
 }
 
 .icon-paixingbang:before {
-    content: "\e61b";
+  content: "\e61b";
+}
+
+.icon-bofang:before {
+  content: "\e680";
 }
 
 .icon-xiazai:before {
-    content: "\e63b";
+  content: "\e63b";
 }
 
 .icon-duoxuan:before {
-    content: "\e6b6";
+  content: "\e6b6";
 }
 
 .icon-sq:before {
-    content: "\e602";
+  content: "\e602";
+}
+
+.icon-caidan:before {
+  content: "\e62a";
+}
+
+.icon-iconset0194-copy-copy:before {
+  content: "\e603";
 }
 
 .icon-play:before {
-    content: "\e600";
+  content: "\e600";
 }
 
 .icon-meirituijian-:before {
-    content: "\e652";
+  content: "\e652";
 }
 
 .icon-Group-:before {
-    content: "\e697";
+  content: "\e697";
 }
 
 .icon-Youtube:before {
-    content: "\e880";
+  content: "\e880";
 }
 
 .icon-gedan:before {
-    content: "\e64b";
+  content: "\e64b";
+}
+
+.icon-zanting:before {
+  content: "\e6bd";
 }
 
 .icon-pinglun:before {
-    content: "\e6ba";
+  content: "\e6ba";
+}
+
+.icon-caidan1:before {
+  content: "\e604";
 }
 
 .icon-zhibo:before {
-    content: "\e601";
+  content: "\e601";
 }
+

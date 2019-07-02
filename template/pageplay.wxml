@@ -1,0 +1,22 @@
+<template name="pp">
+  <view id="pageplay" wx:if="{{music.id}}">
+    <!-- 图片 -->
+    <view class='pageplay_img'>
+      <image mode="aspectFill" src="{{music.al.picUrl||music.album.picUrl}}?param=600y600" />
+    </view>
+    <!-- 标题 -->
+    <view class='pageplay_title' bindtap="toplayview" data-id='{{music.id}}'>
+      <view>{{music.name||'暂无播放'}}</view>
+      <view>{{music.ar[0].name||music.artists[0].name}} -《{{music.al.name||music.album.name}}》</view>
+    </view>
+    <!-- 图标 -->
+    <view class='pageplay_icon' bindtap="toggleplay">
+      <view wx:if="{{!playing}}" class="iconfont icon-bofang" style="font-size:65rpx;color:black"></view>
+      <view wx:if="{{playing}}" class="iconfont icon-zanting" style="font-size:65rpx;color:black"></view>
+    </view>
+    <!-- 菜单 -->
+    <view class='pageplay_menu'>
+      <view class="iconfont icon-caidan1" style="font-size:65rpx;color:black"></view>
+    </view>
+  </view>
+</template>

@@ -1,0 +1,42 @@
+#pageplay {
+  position: fixed;
+  width: 100%;
+  height: 120rpx;
+  display: flex;
+  justify-content: flex-start;
+  bottom: 0;
+  background: white;
+  -webkit-backdrop-filter: blur(15px);
+  backdrop-filter: blur(15px);
+  z-index: 100;
+  align-items: center;
+}
+
+.pageplay_img {
+  margin-left: 10rpx;
+  width: 15%;
+}
+
+.pageplay_img image {
+  width: 100rpx;
+  height: 100rpx;
+  border-radius: 50%;
+}
+
+.pageplay_title {
+  width: 50%;
+  /* margin-left: -20rpx; */
+}
+
+.pageplay_title view {
+  font-size: 25rpx;
+  color: black;
+}
+
+.pageplay_icon {
+  margin-left: 80rpx;
+}
+
+.pageplay_menu {
+  margin-left: 30rpx;
+}

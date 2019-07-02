@@ -53,7 +53,7 @@ Page({
         const index = e.currentTarget.dataset.index;
         // console.log("音乐id:" + audioId + ",下标：" + index)
         let playlist = this.data.playInfo.tracks;
-        // 全局属性设置
+        // 全局属性设置(所有歌曲，及当前播放歌曲下标)
         app.globalData.list_song = playlist;
         app.globalData.index_song = index;
         wx.navigateTo({
