@@ -1,6 +1,7 @@
 const util = require('utils/util.js');
 const audio = require('utils/backgroundAudio.js');
 const WxNotificationCenter = require('utils/WxNotificationCenter.js')
+var app = getApp()
 App({
   onLaunch: function() {
     // 展示本地存储能力
@@ -36,20 +37,21 @@ App({
     });
     var that = this;
     // 监听音乐暂停事件，保存播放进度广播暂停状态
-    wx.onBackgroundAudioPause(function() {
-      // WxNotificationCenter.postNotificationName("music", {
-      //   playing: false,
-      //   curPlaying: that.globalData.curPlaying || {},
-      //   list_song: that.globalData.list_song || [],
-      // });
-      // that.globalData.playing = false;
-      wx.getBackgroundAudioPlayerState({
-        complete: function(res) {
-          // console.log(res.currentPosition)
-          that.globalData.currentPosition = res.currentPosition ? res.currentPosition : 0
-        }
-      })
-    });
+    // wx.onBackgroundAudioPause(function() {
+    //   // WxNotificationCenter.postNotificationName("music", {
+    //   //   playing: false,
+    //   //   curPlaying: that.globalData.curPlaying || {},
+    //   //   list_song: that.globalData.list_song || [],
+    //   // });
+    //   // that.globalData.playing = false;
+    //   console.log("检测到音乐暂停事件了！！！")
+    //   wx.getBackgroundAudioPlayerState({
+    //     complete: function(res) {
+    //       console.log("播放进度为："+res.currentPosition)
+    //       that.globalData.currentPosition = res.currentPosition ? res.currentPosition : 0
+    //     }
+    //   })
+    // });
   },
 
   // 背景音频播放
@@ -75,6 +77,8 @@ App({
         playing: true
       });
       // 发送通知（参数名:music、参数：playing，list_song）
+      console.log(this.globalData.list_song);
+      console.log(this.globalData.curPlaying);
       WxNotificationCenter.postNotificationName('music', {
         playing: true,
         list_song: this.globalData.list_song,
@@ -95,6 +99,18 @@ App({
         list_song: this.globalData.list_song,
         curPlaying: this.globalData.curPlaying,
       });
+
+      var thats = this;
+      console.log("暂停了")
+      // var now = that.globalData.currentPosition;
+      console.log(thats.globalData.currentPosition)
+
+      wx.getBackgroundAudioPlayerState({
+        complete: function(res) {
+          console.log("播放进度为：" + res.currentPosition)
+          thats.globalData.currentPosition = res.currentPosition ? res.currentPosition : 0
+        }
+      })
     });
 
     // 背景音频停止事件
@@ -244,12 +260,21 @@ App({
     wx.pauseBackgroundAudio();
   },
 
-  seekmusic: function (seek) {
+  seekmusic: function(seek) {
+    const {
+      backgroundAudioManager
+    } = this.globalData;
     var that = this
-    that.globalData.playing = true;
-    wx.seekBackgroundAudio({
-      position: seek
-    })
+    // that.globalData.playing = true;
+    backgroundAudioManager.seek(seek)
+
+    // wx.playBackgroundAudio({
+    //   dataUrl: that.globalData.curPlaying.url,
+    // })
+
+    // wx.seekBackgroundAudio({
+    //   position: seek
+    // })
     // WxNotificationCenter.postNotificationName("music", {
     //   playing: true,
     //   music: that.globalData.curPlaying,

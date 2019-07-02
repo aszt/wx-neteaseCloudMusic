@@ -22,13 +22,14 @@ function toggleplay(that, app, cb) {
     that.setData({
       playing: false
     });
+    console.log("暂停时进度：" + app.globalData.currentPosition)
     app.stopmusic();
   } else {
     console.log("继续播放")
     that.setData({
       playing: true
     });
-    // console.log("播放前进度：" + app.globalData.currentPosition)
+    console.log("继续时进度：" + app.globalData.currentPosition)
     app.seekmusic(app.globalData.currentPosition);
   }
 }

@@ -206,7 +206,7 @@ Page({
   },
 
   // 播放or暂停
-  toggleplay: function () {
+  toggleplay: function() {
     common.toggleplay(this, app);
   },
 
@@ -226,7 +226,11 @@ Page({
       this.setData({
         music: res.curPlaying,
         playing: res.playing,
-        isShow: res.list_song.length
+        // isShow: res.list_song.length
+        isShow: true
+        // music: app.globalData.curPlaying,
+        // playing: app.globalData.playing,
+        // isShow: app.globalData.list_song.length
       });
     }, this)
   },
