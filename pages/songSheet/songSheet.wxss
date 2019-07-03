@@ -1,3 +1,4 @@
+@import "../../template/pageplay.wxss";
 /* 背景处理 */
 
 .play-list-bg {
@@ -10,8 +11,7 @@
     transform: scale(1.5);
 }
 
-.play-list-bg,
-.play-list-bg::after {
+.play-list-bg, .play-list-bg::after {
     position: absolute;
     left: 0;
     top: 0;
@@ -27,7 +27,6 @@
     content: '';
     background-color: rgba(0, 0, 0, 0.25);
 }
-
 
 /* 内容 */
 
@@ -116,7 +115,6 @@
     /* padding-right: 0rpx; */
 }
 
-
 /* 列表 */
 
 .songList_wrap {
@@ -165,7 +163,6 @@
     font-size: 30rpx;
     line-height: 80rpx;
 }
-
 
 /* 歌曲内容 */
 

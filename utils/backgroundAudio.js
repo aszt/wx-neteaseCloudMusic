@@ -1,5 +1,5 @@
 const api = require('api.js');
-
+const util = require('util.js');
 /**
  * 获取歌曲url
  */
@@ -38,7 +38,30 @@ const getComments = (query, cb) => {
     })
 }
 
+/**
+ * 歌词接口有问题，调试时用本地的！！！
+ */
+const getLyric = (id, sueecss, fail, cb) => {
+    wx.request({
+        url: api + 'lyric',
+        // url: 'http://192.168.1.107:8088/lyric',
+        data: {
+            id,
+        },
+        success: (res) => {
+            if (res.data.code === 200) {
+                var lrc = util.parse_lrc(res.data.lrc && res.data.lrc.lyric ? res.data.lrc.lyric : '');
+                console.log(lrc);
+                res.data.lrc = lrc.now_lrc;
+                res.data.scroll = lrc.scroll ? 1 : 0
+                sueecss && sueecss(res.data);
+            }
+        }
+    })
+}
+
 module.exports = {
     getMusicUrl: getMusicUrl,
-    getComments: getComments
+    getComments: getComments,
+    getLyric: getLyric
 }

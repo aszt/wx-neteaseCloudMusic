@@ -114,7 +114,7 @@
             <text>更多新碟</text>
           </view>
         </view>
-        <view class="songSheet_wrap">
+        <view class="{{music.id == null?'songSheet_wrap':'songSheet_wrap_active' }}">
           <!-- 控制遍历数量3个 -->
           <view url="../detail/detail?id={{item.id}}" class="songSheet_item" wx:for="{{newest}}" wx:key wx:if="{{index<3}}">
             <!-- 图片容器 -->

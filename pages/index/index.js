@@ -1,5 +1,5 @@
 var baseUrl = require('../../utils/api.js');
-var common = require("../../utils/util.js")
+var common = require("../../utils/util.js");
 var WxNotificationCenter = require("../../utils/WxNotificationCenter.js")
 var app = getApp();
 Page({
@@ -21,17 +21,17 @@ Page({
     playing: false,
   },
 
-  music_next: function(r) {
-    this.setData({
-      music: r.music,
-      playtype: r.playtype
-    })
-  },
-  music_toggle: function(r) {
-    this.setData({
-      playing: r.playing
-    })
-  },
+  // music_next: function(r) {
+  //   this.setData({
+  //     music: r.music,
+  //     playtype: r.playtype
+  //   })
+  // },
+  // music_toggle: function(r) {
+  //   this.setData({
+  //     playing: r.playing
+  //   })
+  // },
 
   // tab切换处理
   swichNav: function(e) {
@@ -226,11 +226,7 @@ Page({
       this.setData({
         music: res.curPlaying,
         playing: res.playing,
-        // isShow: res.list_song.length
-        isShow: true
-        // music: app.globalData.curPlaying,
-        // playing: app.globalData.playing,
-        // isShow: app.globalData.list_song.length
+        isShow: res.list_song.length
       });
     }, this)
   },

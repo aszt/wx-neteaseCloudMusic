@@ -2,36 +2,34 @@
     <!-- 背景处理 -->
     <view class='song-bg' style='background-image: url("//music.163.com/api/img/blur/{{music.al.pic_str || music.al.pic}}"); opacity: 1'></view>
     <!-- 播放器 -->
-    <view bindtap="playerChange">
-        <view class='player' hidden='{{showLyric}}'>
-            <view class='player' hidden='{{showLyric}}'>
-                <view class='player-pointer'>
-                    <image class='{{ playing ? "playing" : "" }}' src='../../images/cm2_play_needle_play-ip6@2x.png' />
+    <view>
+        <view class='player' hidden='{{showLyric}}' bindtap="playerChange">
+            <view class='player-pointer'>
+                <image class='{{ playing ? "playing" : "" }}' src='../../images/cm2_play_needle_play-ip6@2x.png' />
+            </view>
+            <view class='player-disc {{ playing ? "running" : "paused" }}'>
+                <view class='song-disc'>
+                    <image src='../../images/disc.png' mode='widthFix' />
                 </view>
-                <view class='player-disc {{ playing ? "running" : "paused" }}'>
-                    <view class='song-disc'>
-                        <image src='../../images/disc.png' mode='widthFix' />
-                    </view>
-                    <view class='song-cover'>
-                        <image class='default-cover' src='../../images/cm2_default_cover_play-ip6@2x.jpg' mode='widthFix' hidden='{{music.al.picUrl}}' />
-                        <image src='{{music.al.picUrl}}'></image>
-                    </view>
-                    <view class='song-light'>
-                        <image src='../../images/disc_light-ip6.png' mode='widthFix' />
-                    </view>
+                <view class='song-cover'>
+                    <image class='default-cover' src='../../images/cm2_default_cover_play-ip6@2x.jpg' mode='widthFix' hidden='{{music.al.picUrl}}' />
+                    <image src='{{music.al.picUrl}}'></image>
+                </view>
+                <view class='song-light'>
+                    <image src='../../images/disc_light-ip6.png' mode='widthFix' />
                 </view>
             </view>
-            <view class='lyric' hidden='{{!showLyric}}'>
-                <view class='lyric-cont'>
-                    <view class='lyric-list' style='transform: translateY(-{{curLrcIndex*75}}rpx)'>
-                        <block wx:for="{{lyricsList}}" wx:key="{{index}}">
-                            <view class='{{curLrcIndex == index ? "current" : ""}}' style='{{index == curLrcIndex - 6 || index == curLrcIndex - (-6) ? " opacity: 0.2;" : ""}}'>
-                                {{item.lrc}}
-                            </view>
-                        </block>
-                        <view style='margin-top: 30rpx' wx:if="{{lyricsUser.nickname}}">
-                            歌词贡献者:{{lyricsUser.nickname}}
+        </view>
+        <view class='lyric' hidden='{{!showLyric}}' bindtap="playerChange">
+            <view class='lyric-cont'>
+                <view class='lyric-list' style='transform: translateY(-{{curLrcIndex*75}}rpx)'>
+                    <block wx:for="{{lyricsList.lrc}}" wx:key="{{index}}">
+                        <view class='{{curLrcIndex == index ? "current" : ""}}' style='{{index == curLrcIndex - 6 || index == curLrcIndex - (-6) ? " opacity: 0.2;" : ""}}'>
+                            {{item.lrc}}
                         </view>
+                    </block>
+                    <view style='margin-top: 30rpx' wx:if="{{lyricsUser.nickname}}">
+                        歌词贡献者:{{lyricsUser.nickname}}
                     </view>
                 </view>
             </view>

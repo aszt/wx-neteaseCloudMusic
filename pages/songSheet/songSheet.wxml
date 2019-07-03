@@ -1,4 +1,6 @@
 <!-- 背景设置 -->
+<import src="../../template/pageplay.wxml" />
+<template is="pp" data="{{music:music,playing:playing,playtype:playtype}}" />
 <view class='play-list-bg' style='background-image: url({{playInfo.coverImgUrl}})' />
 <view class="main">
     <!-- 头部 -->

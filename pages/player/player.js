@@ -21,32 +21,35 @@ Page({
     playMode: 1, // 循环类型
     playing: false, // 是否正在播放
     curPlayList: [], // 歌曲列表
+    lyricsList: [],
+    lyricsUser: {},
+    curLrcIndex: 0, // 当前播放的歌词index
     // 循环类型集合
     modeList: [{
-        id: 1,
-        name: '列表循环',
-        icon: '../../images/cm2_icn_loop@2x.png',
-        icon2: '../../images/cm2_playlist_icn_loop@2x.png'
-      },
-      {
-        id: 2,
-        name: '单曲循环',
-        icon: '../../images/cm2_icn_one@2x.png',
-        icon2: '../../images/cm2_playlist_icn_one@2x.png'
-      },
-      {
-        id: 3,
-        name: '随机播放',
-        icon: '../../images/cm2_icn_shuffle@2x.png',
-        icon2: '../../images/cm2_playlist_icn_shuffle@2x.png'
-      }
+      id: 1,
+      name: '列表循环',
+      icon: '../../images/cm2_icn_loop@2x.png',
+      icon2: '../../images/cm2_playlist_icn_loop@2x.png'
+    },
+    {
+      id: 2,
+      name: '单曲循环',
+      icon: '../../images/cm2_icn_one@2x.png',
+      icon2: '../../images/cm2_playlist_icn_one@2x.png'
+    },
+    {
+      id: 3,
+      name: '随机播放',
+      icon: '../../images/cm2_icn_shuffle@2x.png',
+      icon2: '../../images/cm2_playlist_icn_shuffle@2x.png'
+    }
     ],
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
-  onLoad: function(options) {
+  onLoad: function (options) {
     let id = options.id;
     console.log("音乐id:" + id);
 
@@ -80,6 +83,7 @@ Page({
         title: `${app.globalData.curPlaying.name}-${app.globalData.curPlaying.ar[0].name}`,
       });
       // 获取评论总数
+      // console.log("获取评论总数")
       audio.getComments({
         id: app.globalData.curPlaying.id,
         offset: 0,
@@ -89,17 +93,25 @@ Page({
           totalCountComments: data.total,
         })
       });
+      // 获取歌词
+      // console.log("获取歌词")
+      audio.getLyric(app.globalData.curPlaying.id, (data) => {
+        console.log("歌词：" + data)
+        this.setData({
+          lyricsList: data
+        })
+      });
     }
   },
 
-  playMusic: function(id) {
+  playMusic: function (id) {
     let that = this;
     wx.request({
       url: baseUrl + 'song/detail?ids=' + id,
       header: {
         'Content-Type': 'application/json'
       },
-      success: function(res) {
+      success: function (res) {
         // console.log(res)
         if (res.data.code === 200) {
           // 全局设置当前播放歌曲
@@ -134,13 +146,22 @@ Page({
               totalCountComments: data.total,
             })
           });
+          // 获取歌词
+          // console.log("获取歌词")
+          audio.getLyric(app.globalData.curPlaying.id, (data) => {
+            // console.log("歌词：" + data)
+            that.setData({
+              lyricsList: data
+            })
+          });
+
         }
       }
     });
   },
 
   // 切换播放类型
-  modeChange: function() {
+  modeChange: function () {
     let {
       playMode,
       modeList
@@ -159,7 +180,7 @@ Page({
   },
 
   // 暂停或播放
-  playStatusChange: function(e) {
+  playStatusChange: function (e) {
     // console.log(this.data.playing)
     let {
       playing
@@ -178,7 +199,7 @@ Page({
   },
 
   // 上、下一首
-  playMusicChange: function(event) {
+  playMusicChange: function (event) {
     const value = parseInt(event.currentTarget.id);
     app.nextAudio(value, this);
   },
@@ -186,88 +207,81 @@ Page({
 
 
   // 进度条
-  sliderChange: function(e) {
+  sliderChange: function (e) {
     const position = e.detail.value;
     app.seekAudio(position, this);
   },
-  sliderMoveStart: function() {
+  sliderMoveStart: function () {
     this.setData({
       isMovingSlider: true
     });
   },
-  sliderMoveEnd: function() {
+  sliderMoveEnd: function () {
     this.setData({
       isMovingSlider: false
     });
   },
 
-  /**
-   * 获取歌词
-   */
-  getSongLyric(id) {
-    let that = this;
-    wx.request({
-      url: baseUrl + 'lyric?id=' + id,
-      header: {
-        'Content-Type': 'application/json'
-      },
-      success: function(res) {
-        if (res.data.code === 200) {
-          let lyric = res.data.lrc.lyric;
-          let pattern = /\[\d{2}:\d{2}.\d{2}\]/g;
-          let arrLyric = lyric.split('\n');
-          let lyricsList = [];
-          while (!pattern.test(arrLyric[0])) {
-            arrLyric = arrLyric.slice(1);
-          }
-
-          for (let data of arrLyric) {
-            if (data) {
-              let index = data.indexOf(']');
-              let time = data.substring(0, index + 1);
-              let value = data.substring(index + 1);
-              let timeString = time.substring(1, time.length - 2);
-              let timeArr = timeString.split(':');
-              if (value) {
-                lyricsList.push({
-                  lrc: value,
-                  lrc_sec: parseInt(timeArr[0], 10) * 60 + parseFloat(timeArr[1])
-                })
-              }
-            }
-          }
-          this.setData({
-            lyricsList,
-            lyricsUser: res.data.lyricUser
-          });
-          console.log(lyricsList)
-        }
-      }
+  // 切换歌词页面
+  playerChange: function () {
+    let showLyric = this.data.showLyric;
+    console.log(showLyric)
+    this.setData({
+      showLyric: !showLyric
     })
   },
+
+
+  /**
+   * 获取歌词(远程调用有问题，只有用本地了)
+   */
+  // getSongLyric(id) {
+  //   let that = this;
+  //   wx.request({
+  //     url: 'http://192.168.1.107:8088/lyric?id=' + id,
+  //     // url: baseUrl + 'lyric?id=' + id,
+  //     header: {
+  //       'Content-Type': 'application/json'
+  //     },
+  //     success: function (res) {
+  //       // console.log(res);
+  //       if (res.data.code === 200) {
+  //         var lrc = util.parse_lrc(res.data.lrc && res.data.lrc.lyric ? res.data.lrc.lyric : '');
+  //         // console.log(lrc);
+  //         res.data.lrc = lrc.now_lrc;
+  //         res.data.scroll = lrc.scroll ? 1 : 0
+  //         that.setData({
+  //           lyricsList: res.data
+  //         });
+
+  //       }
+  //     }
+  //   })
+  // },
 
   /**
    * 生命周期函数--监听页面初次渲染完成
    */
-  onReady: function() {
+  onReady: function () {
 
   },
 
   /**
    * 生命周期函数--监听页面显示
    */
-  onShow: function() {
+  onShow: function () {
     // 背景音频播放进度更新事件
     backgroundAudioManager.onTimeUpdate(() => {
       let curLrcIndex = 0;
       if (this.data.showLyric) {
-        for (let i in this.data.lyricsList) {
-          const item = this.data.lyricsList[i];
+        for (let i in this.data.lyricsList.lrc) {
+          const item = this.data.lyricsList.lrc[i];
           if (item.lrc_sec <= backgroundAudioManager.currentTime) {
             curLrcIndex = i;
           }
         }
       }
+      console.log(curLrcIndex);
       this.setData({
         curLrcIndex,
         sliderValue: Math.floor(backgroundAudioManager.currentTime * 1000),
@@ -280,35 +294,35 @@ Page({
   /**
    * 生命周期函数--监听页面隐藏
    */
-  onHide: function() {
+  onHide: function () {
 
   },
 
   /**
    * 生命周期函数--监听页面卸载
    */
-  onUnload: function() {
+  onUnload: function () {
 
   },
 
   /**
    * 页面相关事件处理函数--监听用户下拉动作
    */
-  onPullDownRefresh: function() {
+  onPullDownRefresh: function () {
 
   },
 
   /**
    * 页面上拉触底事件的处理函数
    */
-  onReachBottom: function() {
+  onReachBottom: function () {
 
   },
 
   /**
    * 用户点击右上角分享
    */
-  onShareAppMessage: function() {
+  onShareAppMessage: function () {
 
   }
 })

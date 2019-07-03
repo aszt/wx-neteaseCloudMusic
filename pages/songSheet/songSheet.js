@@ -1,4 +1,6 @@
 var baseUrl = require('../../utils/api.js');
+var common = require("../../utils/util.js");
+var WxNotificationCenter = require("../../utils/WxNotificationCenter.js")
 const app = getApp();
 Page({
 
@@ -10,16 +12,44 @@ Page({
         playInfo: [],
         // 歌单中SQ音质数据
         privileges: [],
+        // 播放栏处理
+        music: {},
+        playing: false,
     },
 
     /**
      * 生命周期函数--监听页面加载
      */
-    onLoad: function(options) {
+    onLoad: function (options) {
         let id = options.id;
         // let id = 2853229030
         // console.log("歌单id:" + id);
         this.getPlaylistDetail(id);
+        this.setData({
+            music: app.globalData.curPlaying,
+            playing: app.globalData.playing,
+        })
+        // WxNotificationCenter.addNotification("music", (res) => {
+        //     this.setData({
+        //         music: res.curPlaying,
+        //         playing: res.playing,
+        //         isShow: res.list_song.length
+        //     });
+        // }, this)
+    },
+
+    // 去播放页面
+    toplayview: function (e) {
+        var that = this;
+        var id = e.currentTarget.dataset.id;
+        wx.navigateTo({
+            url: '../player/player?id=' + id,
+        })
+    },
+
+    // 播放or暂停
+    toggleplay: function () {
+        common.toggleplay(this, app);
     },
 
     /**
@@ -32,7 +62,7 @@ Page({
             header: {
                 'Content-Type': 'application/json'
             },
-            success: function(res) {
+            success: function (res) {
                 if (res.data.code === 200) {
                     that.setData({
                         playInfo: res.data.playlist,
@@ -46,7 +76,7 @@ Page({
     /**
      * 播放音乐
      */
-    playMusic: function(e) {
+    playMusic: function (e) {
         var that = this;
         // 获取音乐id 108245（爱笑的眼睛）
         var audioId = e.currentTarget.dataset.id;
@@ -64,49 +94,56 @@ Page({
     /**
      * 生命周期函数--监听页面初次渲染完成
      */
-    onReady: function() {
+    onReady: function () {
 
     },
 
     /**
      * 生命周期函数--监听页面显示
      */
-    onShow: function() {
-
+    onShow: function () {
+        // 处理播放栏
+        WxNotificationCenter.addNotification("music", (res) => {
+            this.setData({
+                music: res.curPlaying,
+                playing: res.playing,
+                isShow: res.list_song.length
+            });
+        }, this)
     },
 
     /**
      * 生命周期函数--监听页面隐藏
      */
-    onHide: function() {
+    onHide: function () {
 
     },
 
     /**
      * 生命周期函数--监听页面卸载
      */
-    onUnload: function() {
+    onUnload: function () {
 
     },
 
     /**
      * 页面相关事件处理函数--监听用户下拉动作
      */
-    onPullDownRefresh: function() {
+    onPullDownRefresh: function () {
 
     },
 
     /**
      * 页面上拉触底事件的处理函数
      */
-    onReachBottom: function() {
+    onReachBottom: function () {
 
     },
 
     /**
      * 用户点击右上角分享
      */
-    onShareAppMessage: function() {
+    onShareAppMessage: function () {
 
     }
 })
