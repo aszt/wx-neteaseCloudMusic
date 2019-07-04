@@ -1,0 +1,35 @@
+<!-- <video src="{{mvDetail.brs[1080]}}"></video> -->
+<!-- pages/mv/mv.wxml -->
+<view class="main">
+    <!-- 视频播放 -->
+    <view class="video_wrap">
+        <video class="video_play" src="{{mvUrl.url}}" objectFit='cover' poster="{{mvDetail.cover}}" title="{{mvDetail.name+'-'+mvDetail.artistName}}" enable-progress-gesture controls enable-play-gesture></video>
+    </view>
+    <!-- 视频名称 -->
+    <view class="video_info">
+        <view class="video_name">
+            <text>{{mvDetail.name}}</text>
+        </view>
+        <view class="video_desc">
+            <text>箭头</text>
+        </view>
+    </view>
+    <!-- 视频简介 -->
+    <!-- 观看次数 -->
+    <view class="video_watch_info">
+        <view class="video_playCount">
+            <text>{{mvDetail.playCount}}次观看</text>
+        </view>
+        <view class="video_Label">
+            <text>mv</text>
+        </view>
+        <view class="video_Label">
+            <text>流行</text>
+        </view>
+        <view class="video_Label">
+            <text>音乐</text>
+        </view>
+    </view>
+    <!-- 菜单栏 -->
+    <!-- 歌手信息 -->
+</view>

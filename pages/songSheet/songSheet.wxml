@@ -70,7 +70,7 @@
             </view>
             <!-- MV图标处理 -->
             <view wx:if="{{item.mv!==0}}">
-                <view id="songArray_mv" class="iconfont icon-Youtube"></view>
+                <view id="songArray_mv" class="iconfont icon-Youtube" bindtap="playMv" data-id="{{item.mv}}"></view>
             </view>
             <view wx:else>
                 <view id="songArray_mv" class="iconfont icon-Youtube" style="color:white;"></view>

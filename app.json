@@ -1,6 +1,7 @@
 {
   "pages": [
     "pages/index/index",
+    "pages/mv/mv",
     "pages/songSheet/songSheet",
     "pages/player/player",
     "pages/logs/logs"

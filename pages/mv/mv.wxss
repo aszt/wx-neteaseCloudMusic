@@ -1,0 +1,52 @@
+/* pages/mv/mv.wxss */
+
+.video_wrap {
+    width: 100%;
+}
+
+.video_wrap video {
+    width: 100%;
+    height: 400rpx;
+}
+
+.video_info {
+    display: flex;
+    justify-content: space-between;
+    /* border: 1px solid black; */
+    padding: 25rpx 40rpx;
+}
+
+.video_name text {
+    font-size: 35rpx;
+    font-weight: 600;
+}
+
+.video_watch_info {
+    display: flex;
+    justify-content: flex-start;
+    /* border: 1px solid black; */
+    padding: 0rpx 40rpx;
+}
+
+.video_playCount text {
+    font-size: 30rpx;
+    color: #868585;
+}
+
+.video_Label {
+    /* display: block; */
+    margin-left: 30rpx;
+    margin-top: 6rpx;
+    width: 90rpx;
+    height: 50rpx;
+    /* border: 1px solid #cccccc; */
+    background-color: #e0dddd;
+    text-align: center;
+    border-radius: 25rpx;
+    line-height: 40rpx;
+}
+
+.video_Label text {
+    font-size: 30rpx;
+    color: #242323;
+}

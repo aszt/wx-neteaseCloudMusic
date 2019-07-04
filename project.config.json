@@ -40,13 +40,20 @@
 			"list": []
 		},
 		"miniprogram": {
-			"current": 0,
+			"current": 1,
 			"list": [
 				{
 					"id": -1,
 					"name": "歌单",
 					"pathName": "pages/songSheet/songSheet",
 					"query": "id=2853229030",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "mv播放",
+					"pathName": "pages/mv/mv",
+					"query": "id=5911051",
 					"scene": null
 				}
 			]
