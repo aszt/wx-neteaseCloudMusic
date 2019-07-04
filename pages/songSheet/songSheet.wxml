@@ -17,7 +17,8 @@
                 <view class="content_headPortrait">
                     <image src='{{playInfo.creator.avatarUrl}}'></image>
                 </view>
-                <view class="content_nickname">{{playInfo.creator.nickname}} > </view>
+                <view class="content_nickname">{{playInfo.creator.nickname}}</view>
+                <view class="iconfont icon-jiankuohaoxiyou" style="color:#F5F5F5;line-height: 73rpx;font-size:35rpx;"></view>
             </view>
             <view class="content_description">{{playInfo.description}}</view>
         </view>

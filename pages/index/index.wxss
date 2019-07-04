@@ -12,8 +12,8 @@ page {
 }
 
 .nav_item {
-  padding: 20rpx 45rpx;
-  font-size: 30rpx;
+  padding: 20rpx 20rpx;
+  font-size: 32rpx;
   display: inline-block;
 }
 
@@ -23,6 +23,22 @@ page {
   font-weight: 600;
   color: black;
   display: inline-block;
+}
+
+/* 菜单栏处理 */
+
+#menu {
+  position: absolute;
+  left: 30rpx;
+  top: 35rpx;
+}
+
+/* 搜索栏处理 */
+
+#search {
+  position: absolute;
+  right: 30rpx;
+  top: 35rpx;
 }
 
 /* swiper高度问题解决 */
@@ -154,6 +170,7 @@ page {
   padding: 5rpx;
   justify-content: space-around;
 }
+
 .songSheet_wrap_active {
   display: flex;
   flex-wrap: wrap;
