@@ -29,13 +29,6 @@ Page({
             music: app.globalData.curPlaying,
             playing: app.globalData.playing,
         })
-        // WxNotificationCenter.addNotification("music", (res) => {
-        //     this.setData({
-        //         music: res.curPlaying,
-        //         playing: res.playing,
-        //         isShow: res.list_song.length
-        //     });
-        // }, this)
     },
 
     // 去播放页面

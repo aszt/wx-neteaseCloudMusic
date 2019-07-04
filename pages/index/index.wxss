@@ -210,3 +210,14 @@ page {
   font-size: 10003rps;
   color: #3c9;
 }
+
+.songSheet_titles1 {
+  font-size: 28rpx;
+  display: -webkit-box;
+  overflow: hidden;
+  white-space: normal;
+  text-overflow: ellipsis;
+  word-wrap: break-word;
+  -webkit-line-clamp: 1;
+  -webkit-box-orient: vertical;
+}

@@ -51,7 +51,7 @@ const getLyric = (id, sueecss, fail, cb) => {
         success: (res) => {
             if (res.data.code === 200) {
                 var lrc = util.parse_lrc(res.data.lrc && res.data.lrc.lyric ? res.data.lrc.lyric : '');
-                console.log(lrc);
+                // console.log(lrc);
                 res.data.lrc = lrc.now_lrc;
                 res.data.scroll = lrc.scroll ? 1 : 0
                 sueecss && sueecss(res.data);

@@ -2,6 +2,7 @@
 var baseUrl = require('../../utils/api.js');
 const util = require('../../utils/util.js');
 const audio = require('../../utils/backgroundAudio.js');
+var WxNotificationCenter = require("../../utils/WxNotificationCenter.js")
 const app = getApp();
 const backgroundAudioManager = app.globalData.backgroundAudioManager;
 Page({
@@ -51,7 +52,7 @@ Page({
    */
   onLoad: function (options) {
     let id = options.id;
-    console.log("音乐id:" + id);
+    // console.log("音乐id:" + id);
 
 
     // 一、获取歌词（接口问题待排查）
@@ -96,7 +97,7 @@ Page({
       // 获取歌词
       // console.log("获取歌词")
       audio.getLyric(app.globalData.curPlaying.id, (data) => {
-        console.log("歌词：" + data)
+        // console.log("歌词：" + data)
         this.setData({
           lyricsList: data
         })
@@ -225,45 +226,131 @@ Page({
   // 切换歌词页面
   playerChange: function () {
     let showLyric = this.data.showLyric;
-    console.log(showLyric)
+    // console.log(showLyric)
     this.setData({
       showLyric: !showLyric
     })
   },
 
+  // 选取播放
+  selectedMusic: function (event) {
+    const index = parseInt(event.currentTarget.dataset.index);
+    const id = parseInt(event.currentTarget.id);
+    let {
+      song_list,
+      curPlaying,
+      backgroundAudioManager
+    } = app.globalData;
+    if (id !== curPlaying.id) {
+      app.globalData.index_song = index;
+      this.playMusic(id);
+    } else {
+      const pauseStatus = backgroundAudioManager.paused; // 是否处于暂停状态
+      if (pauseStatus) {
+        backgroundAudioManager.play();
+      }
+    }
+    this.drawer.hideDrawer();
+
+  },
+
+  // 删除单曲(有点问题)
+  delMusicByIndex: function (event) {
+    const index = parseInt(event.currentTarget.dataset.index);
+    // console.log("选中：" + index)
+    var playIndex = app.globalData.index_song;
+    // console.log("当前播放：" + playIndex)
+    let {
+      list_song,
+      index_song
+    } = app.globalData;
+
+
+    list_song.splice(index, 1);
+    if (index_song === index) {
+      backgroundAudioManager.stop();
+    }
+    index_song = index_song > index ? index_song - 1 : index_song;
+    this.setData({
+      curPlayList: list_song
+    });
+
+    // 处理全清空的情况
+    if (list_song.length == 0) {
+      app.globalData.list_song = [];
+      app.globalData.index_song = 0;
+      app.globalData.curPlaying = {};
+      this.setData({
+        curPlayList: []
+      });
+      backgroundAudioManager.stop();
+
+      // 清空播放栏
+      WxNotificationCenter.postNotificationName('music', {
+        playing: false,
+        list_song: [],
+        curPlaying: {},
+      });
+
+      wx.navigateBack();
+    } else {
+      this.playMusic(list_song[index_song].id);
+      // 处理删除坐标问题（总坐标-1）
+      if (index < playIndex) {
+        app.globalData.index_song = playIndex - 1;
+      }
+    }
+  },
 
   /**
-   * 获取歌词(远程调用有问题，只有用本地了)
+   * 清空播放列表，完成后后退
    */
-  // getSongLyric(id) {
-  //   let that = this;
-  //   wx.request({
-  //     url: 'http://192.168.1.107:8088/lyric?id=' + id,
-  //     // url: baseUrl + 'lyric?id=' + id,
-  //     header: {
-  //       'Content-Type': 'application/json'
-  //     },
-  //     success: function (res) {
-  //       // console.log(res);
-  //       if (res.data.code === 200) {
-  //         var lrc = util.parse_lrc(res.data.lrc && res.data.lrc.lyric ? res.data.lrc.lyric : '');
-  //         // console.log(lrc);
-  //         res.data.lrc = lrc.now_lrc;
-  //         res.data.scroll = lrc.scroll ? 1 : 0
-  //         that.setData({
-  //           lyricsList: res.data
-  //         });
+  deleteAll: function () {
+    wx.showModal({
+      title: '',
+      content: '确定要清空播放列表？',
+      success: (res) => {
+        if (res.confirm) {
+          app.globalData.list_song = [];
+          app.globalData.index_song = 0;
+          app.globalData.curPlaying = {};
+          this.setData({
+            curPlayList: []
+          });
+          backgroundAudioManager.stop();
 
-  //       }
-  //     }
-  //   })
-  // },
+          // 清空播放栏
+          WxNotificationCenter.postNotificationName('music', {
+            playing: false,
+            list_song: [],
+            curPlaying: {},
+          });
+
+          wx.navigateBack();
+        } else if (res.cancel) {
+          console.log('用户点击取消')
+        }
+      }
+    })
+  },
+
+  // 播放列表操作
+  showPlayList: function () {
+    this.drawer.showDrawer();
+  },
+
+  _cancelDrawer: function () {
+    this.drawer.hideDrawer();
+  },
+  _confirmDrawer: function () {
+    this.drawer.hideDrawer();
+  },
 
   /**
    * 生命周期函数--监听页面初次渲染完成
    */
   onReady: function () {
-
+    this.drawer = this.selectComponent('#drawer');
   },
 
   /**
@@ -281,7 +368,7 @@ Page({
           }
         }
       }
-      console.log(curLrcIndex);
+      // console.log(curLrcIndex);
       this.setData({
         curLrcIndex,
         sliderValue: Math.floor(backgroundAudioManager.currentTime * 1000),

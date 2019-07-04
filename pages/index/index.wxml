@@ -123,8 +123,8 @@
               <image mode="widthFix" bindtap="openSongSheet" data-id="{{item.id}}" src="{{item.blurPicUrl}}" />
             </view>
             <!-- 标题 -->
-            <view class="songSheet_titles">{{item.name}}</view>
-            <view class="songSheet_titles">{{item.artist.name}}</view>
+            <view class="songSheet_titles1">{{item.name}}</view>
+            <view class="songSheet_titles1">{{item.artist.name}}</view>
           </view>
         </view>
       </view>

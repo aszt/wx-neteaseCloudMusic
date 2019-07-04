@@ -44,8 +44,8 @@
     <!-- 歌曲列表 -->
     <view class="songList_wrap">
         <view class="songList_wrap_title">
-            <view id="play" class="iconfont icon-zhibo" style="font-size:50rpx;color:#333333"></view>
-            <view class="paly2">
+            <view id="play" class="iconfont icon-bofang" style="font-size:50rpx;color:#333333"></view>
+            <view class="paly2" bindtap="playMusic" data-id="{{playInfo.tracks[0].id}}" data-index="0">
                 播放全部
                 <text class="songCount">(共{{playInfo.trackCount}}首)</text>
             </view>
@@ -74,7 +74,7 @@
             <view wx:else>
                 <view id="songArray_mv" class="iconfont icon-Youtube" style="color:white;"></view>
             </view>
-            <view class="songArray_other">：</view>
+            <view id="songArray_other" class="iconfont icon-caidan2" style="color:#CCCCCC;"></view>
         </view>
     </view>
 </view>

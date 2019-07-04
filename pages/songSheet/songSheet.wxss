@@ -211,8 +211,8 @@
     line-height: 70rpx;
 }
 
-.songArray_other {
-    color: #CCCCCC;
+#songArray_other {
+    /* color: #CCCCCC; */
     width: 10%;
     line-height: 70rpx;
 }

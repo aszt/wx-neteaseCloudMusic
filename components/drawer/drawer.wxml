@@ -1,0 +1,5 @@
+<!--components/drawer/drawer.wxml-->
+<view class='drawer-screen' hidden="{{!isShow}}" bindtap='_cancel'></view>
+<view animation="{{animationData}}" class='drawer' hidden="{{!isShow}}" style=" height: {{heightStr}}">
+  <slot></slot>
+</view>

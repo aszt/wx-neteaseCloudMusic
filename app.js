@@ -78,13 +78,13 @@ App({
       });
 
       var thats = this;
-      console.log("触发暂停事件并记录播放进度")
+      // console.log("触发暂停事件并记录播放进度")
 
       wx.getBackgroundAudioPlayerState({
         complete: function (res) {
-          console.log("暂停时进度：" + res.currentPosition)
+          // console.log("暂停时进度：" + res.currentPosition)
           thats.globalData.currentPosition = res.currentPosition ? res.currentPosition : 0
-          console.log("=======================================")
+          // console.log("=======================================")
         }
       })
     });

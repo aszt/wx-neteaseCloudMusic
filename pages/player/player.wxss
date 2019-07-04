@@ -248,3 +248,105 @@
 .lyric-list view.current {
     opacity: 1;
 }
+
+/* 播放列表 */
+
+.play-list-container {
+    margin-top: -20rpx;
+    border-radius: 30rpx 30rpx 0 0;
+    background-color: #fff;
+}
+
+.pl-action-panel, .pl-action-panel>view {
+    display: flex;
+    align-items: center;
+}
+
+.pl-action-panel {
+    height: 75rpx;
+    padding: 10rpx 15rpx;
+    border-bottom: 2rpx solid #eee;
+    font-size: 30rpx;
+}
+
+.panel-mode {
+    flex: 1;
+}
+
+.pl-action-panel>view>image {
+    margin-right: 10rpx;
+}
+
+.pl-content scroll-view {
+    height: 585rpx;
+}
+
+.pl-item, .pl-item>view {
+    display: flex;
+    align-items: center;
+}
+
+.pl-item {
+    justify-content: space-between;
+    height: 90rpx;
+    margin-left: 15rpx;
+    padding-right: 20rpx;
+    /* border-bottom: 2rpx solid #eee; */
+}
+
+.song-volume {
+    width: 32rpx;
+    height: 32rpx;
+    margin-right: 10rpx;
+}
+
+.song-info {
+    flex: 1;
+    overflow: hidden;
+}
+
+.song-info image {
+    margin-right: 10rpx;
+}
+
+.pl-item:last-child {
+    border-bottom-width: 0;
+}
+
+.ellipsis {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    white-space:nowrap; /*文本不换行*/
+	text-overflow:ellipsis;/*设置超出部分显示...*/
+	-o-text-overflow:ellipsis;
+	overflow: hidden;
+}
+
+.songname {
+    line-height: 0rpx;
+    font-size: 28rpx;
+    color: rgba(0, 0, 0, 1);
+}
+
+.singer {
+    font-size: 24rpx;
+    color: rgba(0, 0, 0, 0.7);
+}
+
+.pl-item.current .songname, .pl-item.current .singer {
+    color: #d33a31;
+}
+
+.song-del, .song-link {
+    width: 56rpx;
+    height: 56rpx;
+}
+
+.pl-close {
+    height: 75rpx;
+    line-height: 75rpx;
+    text-align: center;
+    font-size: 30rpx;
+    border-top: 2rpx solid #eee;
+}
