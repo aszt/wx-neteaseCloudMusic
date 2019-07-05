@@ -1,0 +1,31 @@
+// 处理页面数据格式化
+
+// 数量单位处理
+var formatPlayCount = function(count) {
+  var minNumber = 99999;
+  var maxNumber = 99999999
+  var formatCount = count;
+  if (count && count > minNumber) { // 10万或10万以上
+    formatCount = (count / 10000).toFixed(0) + '万';
+    if (count > maxNumber) {
+      formatCount = (count / 100000000).toFixed(0) + '亿';
+    }
+  }
+  return formatCount;
+}
+
+// 歌曲时间处理
+var formatTime = function(time) {
+  time = getDate(time);
+  return formatNumber(time.getMinutes()) + ':' + formatNumber(time.getSeconds());
+}
+
+var formatNumber = function(n) {
+  n = n.toString();
+  return n[1] ? n : '0' + n;
+}
+
+module.exports = {
+  formatPlayCount: formatPlayCount,
+  formatTime: formatTime
+}

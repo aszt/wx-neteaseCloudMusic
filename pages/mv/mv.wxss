@@ -1,6 +1,14 @@
 /* pages/mv/mv.wxss */
 
+.main {
+    width: 100%;
+}
+
 .video_wrap {
+    width: 100%;
+}
+
+.context {
     width: 100%;
 }
 
@@ -19,6 +27,20 @@
 .video_name text {
     font-size: 35rpx;
     font-weight: 600;
+}
+
+.video_desc {
+    width: 90%;
+    padding: 0rpx 40rpx;
+    padding-bottom: 25rpx;
+    /* border: 1px solid black; */
+}
+
+.video_desc text {
+    font-size: 30rpx;
+    color: #868585;
+    word-break: keep-all;
+    word-wrap: break-word;
 }
 
 .video_watch_info {
@@ -49,4 +71,137 @@
 .video_Label text {
     font-size: 30rpx;
     color: #242323;
+}
+
+.video_menu {
+    /* border: 1px solid #cccccc; */
+    /* width: 100%; */
+    display: flex;
+    justify-content: space-between;
+    text-align: center;
+    margin: 0rpx 60rpx;
+    margin-top: 60rpx;
+}
+
+.video_menu_text {
+    font-size: 25rpx;
+    color: #868585;
+}
+
+.relatedAllvideo_title {
+    margin-left: 40rpx;
+    margin-top: 40rpx;
+}
+
+.relatedAllvideo_title text {
+    font-size: 35rpx;
+    font-weight: 600;
+}
+
+.relatedAllvideo {
+    margin-top: 30rpx;
+    /* border: 1px solid #cccccc; */
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    margin-left: 40rpx;
+    margin-right: 40rpx;
+}
+
+.relatedAllvideo_img image {
+    width: 280rpx;
+    height: 160rpx;
+    border-radius: 5%;
+}
+
+.relatedAllvideo_desc {
+    margin-left: 20rpx;
+    line-height: 40rpx;
+}
+
+.relatedAllvideo_desc_title {
+    font-size: 30rpx;
+    /* 两行省略 */
+    display: -webkit-box;
+    overflow: hidden;
+    white-space: normal;
+    text-overflow: ellipsis;
+    word-wrap: break-word;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+}
+
+.relatedAllvideo_desc_creator {
+    font-size: 25rpx;
+    color: #a3a0a0;
+    text-align: justify;
+    margin-top: 10rpx;
+}
+
+.comment_wrap {
+    display: flex;
+    justify-content: space-between;
+    /* border: 1px solid #cccccc; */
+    margin-left: 40rpx;
+    margin-right: 40rpx;
+    margin-top: 40rpx;
+}
+
+.comment_info {
+    display: flex;
+    justify-content: space-between;
+}
+
+.comment_left {
+    width: 10%;
+    margin-right: 25rpx;
+}
+
+.comment_left image {
+    width: 70rpx;
+    height: 70rpx;
+    border-radius: 50%;
+}
+
+.comment_right {
+    width: 90%;
+}
+
+.comment_name {
+    font-size: 30rpx;
+    color: rgb(155, 153, 153);
+}
+
+.comment_time {
+    font-size: 22rpx;
+    color: #b6b3b3;
+}
+
+.comment_dianzan {
+    font-size: 30rpx;
+    color: #b6b3b3;
+    margin-right: 10rpx;
+}
+
+/* .comment_content {
+    padding-bottom: 30rpx;
+    border-bottom: 1rpx solid #ece8e8;
+} */
+
+.comment_content {
+    font-size: 30rpx;
+    padding-top: 30rpx;
+}
+
+.wxEmoji {
+    vertical-align: middle;
+    width: 42rpx;
+    height: 42rpx;
+    margin: 0 3rpx;
+}
+
+.xian {
+    width: 100%;
+    height: 30rpx;
+    border-bottom: 1rpx solid #ece8e8;
 }

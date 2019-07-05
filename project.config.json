@@ -50,7 +50,7 @@
 					"scene": null
 				},
 				{
-					"id": -1,
+					"id": 1,
 					"name": "mv播放",
 					"pathName": "pages/mv/mv",
 					"query": "id=5911051",
