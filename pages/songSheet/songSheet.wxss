@@ -1,5 +1,15 @@
 @import "../../template/pageplay.wxss";
-
+.main { 
+  width: 100vw;
+  height: 100vh;
+  overflow-x: hidden;
+  overflow-y: auto;
+  }
+.main::-webkit-scrollbar {
+  width: 0;
+  height: 0;
+  color: transparent;
+}
 /* 背景处理 */
 
 .play-list-bg {
@@ -20,7 +30,6 @@
   bottom: 0;
   z-index: 1;
   width: 100%;
-  /* height: 100%; */
   height: 420rpx;
 }
 
@@ -182,7 +191,7 @@
 }
 
 .songArray_content {
-  width: 50%;
+  width: 65%;
 }
 
 .content_1 {
@@ -206,6 +215,14 @@
   font-size: 25rpx;
   color: #ccc;
   margin-top: 10rpx;
+  /* 超过省略号 */
+  text-overflow: -o-ellipsis-lastline;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 1;
+  line-clamp: 1;
+  -webkit-box-orient: vertical;
 }
 
 .songArray_mv {
@@ -213,7 +230,7 @@
 }
 
 #songArray_mv {
-  /* width: 30%; */
+  width: 10%;
   line-height: 70rpx;
 }
 
