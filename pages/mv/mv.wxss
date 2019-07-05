@@ -93,7 +93,7 @@
     margin-top: 40rpx;
 }
 
-.relatedAllvideo_title text {
+.relatedAllvideo_title comment_title {
     font-size: 35rpx;
     font-weight: 600;
 }
@@ -108,10 +108,25 @@
     margin-right: 40rpx;
 }
 
+.relatedAllvideo_img {
+    position: relative;
+}
+
 .relatedAllvideo_img image {
     width: 280rpx;
     height: 160rpx;
     border-radius: 5%;
+}
+
+.relatedAllvideo_playCount {
+    position: absolute;
+    top: 5rpx;
+    right: 5rpx;
+    width: 100%;
+    display: flex;
+    justify-content: flex-end;
+    color: #fff;
+    font-size: 24rpx;
 }
 
 .relatedAllvideo_desc {
@@ -183,6 +198,7 @@
     margin-right: 10rpx;
 }
 
+
 /* .comment_content {
     padding-bottom: 30rpx;
     border-bottom: 1rpx solid #ece8e8;
@@ -204,4 +220,9 @@
     width: 100%;
     height: 30rpx;
     border-bottom: 1rpx solid #ece8e8;
+}
+
+.comment_total {
+    font-size: 30rpx;
+    color: #b6b3b3;
 }
