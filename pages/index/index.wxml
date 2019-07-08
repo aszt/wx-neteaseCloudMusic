@@ -19,7 +19,7 @@
     </scroll-view>
     <!-- 菜单及搜索 -->
     <view class="iconfont icon-caidan1" id="menu" style="color:black;font-size:45rpx;"></view>
-    <view class="iconfont icon-sousuo" id="search" style="color:black;font-size:45rpx;"></view>
+    <view class="iconfont icon-sousuo" id="search" style="color:black;font-size:45rpx;" bindtap="openSearch"></view>
   </view>
   <!-- 内容主体 -->
   <swiper class="swiper" current="{{currentTab}}" duration="200" bindchange="swiperChange">

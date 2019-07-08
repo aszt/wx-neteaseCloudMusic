@@ -1,0 +1,172 @@
+.search_wrap {
+    padding: 0 0 20rpx 20rpx;
+    height: 60rpx;
+    background-color: #33CC99;
+    overflow: hidden;
+    flex: 0 0 60rpx;
+    color: #fff;
+}
+
+.search_wrap .search {
+    display: flex;
+}
+
+.form_input {
+    flex: 1;
+    position: relative;
+    height: 60rpx;
+    overflow: hidden;
+    border-radius: 25rpx;
+}
+
+.form_input view {
+    position: absolute;
+    top: 0;
+    z-index: 10;
+    left: 0;
+    padding: 12rpx 15rpx;
+}
+
+.form_input .sf_clear {
+    right: 0;
+    left: auto;
+}
+
+.form_input input {
+    border: none;
+    color: #515151;
+    background-color: #ececec;
+    border-radius: 4rpx;
+    font-size: 28rpx;
+    padding: 0 60rpx;
+    box-sizing: border-box;
+    height: 60rpx;
+    line-height: 60rpx;
+    display: block;
+}
+
+.button button {
+    padding: 0 20rpx;
+    height: 60rpx;
+    border: none;
+    line-height: 60rpx;
+    display: block;
+    text-align: right;
+    font-size: 30rpx;
+    color: #fff;
+}
+
+/* 主体标签 */
+
+.history_title_wrap {
+    display: flex;
+    justify-content: space-between;
+    /* border: 1rpx solid red; */
+    align-items: center;
+    margin-top: 40rpx;
+    margin-left: 40rpx;
+    margin-right: 40rpx;
+}
+
+.history_title {
+    /* margin-left: 40rpx; */
+    /* margin-top: 40rpx; */
+    flex: 1;
+}
+
+.history_title text {
+    font-size: 35rpx;
+    font-weight: 600;
+}
+
+/* 历史 */
+
+.nav {
+    white-space: nowrap;
+    margin-top: 40rpx;
+    margin-left: 20rpx;
+    /* border: 1rpx solid red; */
+    height: 100rpx;
+    line-height: 50rpx;
+    width: 98%;
+}
+
+.nav_item {
+    padding: 20rpx 30rpx;
+    margin: 0rpx 15rpx;
+    font-size: 30rpx;
+    height: 40rpx;
+    line-height: 40rpx;
+    display: inline-block;
+    background-color: #f1eeee;
+    border-radius: 40rpx;
+}
+
+::-webkit-scrollbar {
+    width: 0;
+    height: 0;
+    color: transparent;
+}
+
+.hot_wrap {
+    margin-top: 80rpx;
+}
+
+.hot_content {
+    display: flex;
+    /* border: 1rpx solid red; */
+    justify-content: flex-start;
+    align-items: center;
+    margin-top: 60rpx;
+}
+
+.hot_content_left {
+    width: 10%;
+    padding-left: 45rpx;
+}
+
+.ranking {
+    color: black;
+    font-size: 40rpx;
+}
+
+.ranking_active {
+    color: red;
+    font-size: 40rpx;
+}
+
+.hot_content_right {
+    width: 80%;
+}
+
+.hot_content_title {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+}
+
+.hot_content_name {
+    font-size: 35rpx;
+    font-weight: 600;
+}
+
+.hot_content_count {
+    padding: 0rpx 20rpx;
+    color: #b3adad;
+    font-size: 30rpx;
+}
+
+.content_icon0, .content_icon1, .content_icon2 {
+    width: 60rpx;
+    height: 30rpx;
+}
+.content_icon5{
+    width: 35rpx;
+    height: 20rpx;
+}
+
+.hot_content_desc {
+    color: #b3adad;
+    margin-top: 10rpx;
+    font-size: 30rpx;
+}

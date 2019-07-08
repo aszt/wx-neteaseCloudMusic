@@ -1,0 +1,81 @@
+<view class="main">
+    <!-- 搜索部分 -->
+    <view class="search_wrap">
+        <form bindsubmit="searhFinput">
+            <view class="search">
+                <!-- input -->
+                <view class="form_input">
+                    <view>
+                        <icon type="search" size="16" color="#aaa" />
+                    </view>
+                    <input type="text" auto-focus maxlength="20" name="name" bindinput="inputext" placeholder="搜索单曲、歌手、专辑等" value="{{value}}" />
+                    <view class="sf_clear" hidden="{{!value}}" bindtap="clear_kw">
+                        <icon type="clear" size="16" color="#aaa" />
+                    </view>
+                </view>
+                <!-- 按钮 -->
+                <view class="button">
+                    <button form-type="submit" plain="true">搜索</button>
+                </view>
+            </view>
+        </form>
+    </view>
+    <view class="content_tag" hover-class="none" hover-stop-propagation="false">
+        <!-- 历史记录 -->
+        <view class="history_wrap">
+            <view class="history_title_wrap">
+                <view class="history_title">
+                    <text>历史记录</text>
+                </view>
+                <view class="history_icon">
+                    <view bindtap="deleHistory" class="iconfont icon-lajitong" style="font-size:40rpx;color:#b3adad"></view>
+                </view>
+            </view>
+            <!-- 历史列表 -->
+            <view class="history_item">
+                <scroll-view class="nav" scroll-x>
+                    <view class="nav_item">2002</view>
+                    <view class="nav_item">千与千寻</view>
+                    <view class="nav_item">愿我们都能成为可爱</view>
+                    <view class="nav_item">失眠飞行</view>
+                    <view class="nav_item">我的名字</view>
+                    <view class="nav_item">写了好多事都是关于你</view>
+                    <view class="nav_item">孤身</view>
+                    <view class="nav_item">孤单心事</view>
+                </scroll-view>
+            </view>
+        </view>
+        <!-- 热搜榜 -->
+        <view class="hot_wrap">
+            <view class="history_title_wrap">
+                <view class="history_title">
+                    <text>热搜榜</text>
+                </view>
+            </view>
+            <!-- 热搜item -->
+            <view class="hot_content" wx:for="{{searchHotDetail}}" wx:key="{{index}}">
+                <!-- 排行 -->
+                <view class="hot_content_left">
+                    <text class="ranking{{index<3?'_active':''}}">{{index+1}}</text>
+                </view>
+                <!-- 内容 -->
+                <view class="hot_content_right">
+                    <!-- 上 -->
+                    <view class="hot_content_title">
+                        <view class="hot_content_name">
+                            <text>{{item.searchWord}}</text>
+                        </view>
+                        <view class="hot_content_count">
+                            <text>{{item.score}}</text>
+                        </view>
+                        <view class="hot_content_icon">
+                            <image class="content_icon{{item.iconType}}" mode="widthFix" src="{{item.iconUrl}}" />
+                        </view>
+                    </view>
+                    <!-- 下 -->
+                    <view class="hot_content_desc">{{item.content}}</view>
+                </view>
+            </view>
+        </view>
+    </view>
+</view>

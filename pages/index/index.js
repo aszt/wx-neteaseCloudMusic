@@ -57,6 +57,13 @@ Page({
 
   },
 
+  // 去搜索页面
+  openSearch: function (e) {
+    wx.navigateTo({
+      url: '../search/search',
+    })
+  },
+
   // 去播放页面
   toplayview: function (e) {
     var that = this;

@@ -40,7 +40,7 @@
 			"list": []
 		},
 		"miniprogram": {
-			"current": 1,
+			"current": 2,
 			"list": [
 				{
 					"id": -1,
@@ -54,6 +54,13 @@
 					"name": "mv播放",
 					"pathName": "pages/mv/mv",
 					"query": "id=5911051&type=0",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "检索",
+					"pathName": "pages/search/search",
+					"query": "",
 					"scene": null
 				}
 			]
