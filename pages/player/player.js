@@ -254,7 +254,7 @@ Page({
 
     },
 
-    // 删除单曲(真机有重新播放问题，待查看)
+    // 删除单曲
     delMusicByIndex: function (event) {
         const index = parseInt(event.currentTarget.dataset.index);
         // console.log("选中：" + index)
