@@ -5,7 +5,7 @@
   <!-- 视频播放 -->
   <view class="video_wrap">
     <!-- 自动播放：autoplay -->
-    <video class="video_play" src="{{mvUrl.url}}" objectFit='cover' poster="{{mvDetail.cover}}" title="{{mvDetail.name+'-'+mvDetail.artistName}}" enable-progress-gesture controls enable-play-gesture></video>
+    <video class="video_play" src="{{mvUrl.url}}" objectFit='cover' poster="{{mvDetail.cover}}" title="{{mvDetail.name+'-'+mvDetail.artistName}}" enable-progress-gesture controls enable-play-gesture autoplay></video>
   </view>
   <view class="context">
     <!-- 视频名称 -->
@@ -23,7 +23,7 @@
         <text>{{mvDetail.publishTime}} 发布</text>
       </view>
       <view>
-        <text>{{mvDetail.desc}}</text>
+        <text>{{mvDetail.desc==null?"":mvDetail.desc}}</text>
       </view>
     </view>
     <!-- 观看次数 -->
@@ -82,7 +82,7 @@
     <view class="relatedAllvideo_title">
       <text class="">相关视频</text>
     </view>
-    <view class="relatedAllvideo" wx:for="{{relatedAllvideo}}" wx:key="{{index}}" bindtap="{{item.type==0?'openMv':'openVideo'}}" data-id="{{item.vid}}">
+    <view class="relatedAllvideo" wx:for="{{relatedAllvideo}}" wx:key="{{index}}" bindtap="{{item.type==0?'openMv':'openMv'}}" data-id="{{item.vid}}" data-type="{{item.type}}">
       <view class="relatedAllvideo_img">
         <image mode="aspectFill" src="{{item.coverUrl}}" />
         <view class="relatedAllvideo_playCount">
@@ -92,7 +92,7 @@
       </view>
       <view class="relatedAllvideo_desc">
         <view class="relatedAllvideo_desc_title">
-          <!-- <text wx:if="{{item.type==0}}" class="iconfont icon-MV" style="font-size:40rpx;color:red"></text> -->
+          <text id="mv" wx:if="{{item.type==0}}" class="iconfont icon-MV" style="font-size:40rpx;color:red"></text>
           <text>{{item.title}}</text>
         </view>
         <view class="relatedAllvideo_desc_creator">

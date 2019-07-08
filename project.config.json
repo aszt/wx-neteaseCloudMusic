@@ -53,7 +53,7 @@
 					"id": 1,
 					"name": "mv播放",
 					"pathName": "pages/mv/mv",
-					"query": "id=5911051",
+					"query": "id=5911051&type=0",
 					"scene": null
 				}
 			]

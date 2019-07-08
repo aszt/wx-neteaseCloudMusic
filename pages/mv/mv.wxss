@@ -130,8 +130,11 @@
 }
 
 .relatedAllvideo_desc {
+    width: 55%;
     margin-left: 20rpx;
+    /* margin-right: 20rpx; */
     line-height: 40rpx;
+    /* border: 1px solid #cccccc; */
 }
 
 .relatedAllvideo_desc_title {
@@ -144,6 +147,11 @@
     word-wrap: break-word;
     -webkit-line-clamp: 2;
     -webkit-box-orient: vertical;
+}
+
+#mv{
+    /* display: block; */
+    margin-right: 10rpx;
 }
 
 .relatedAllvideo_desc_creator {
