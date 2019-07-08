@@ -27,30 +27,30 @@ Page({
         curLrcIndex: 0, // 当前播放的歌词index
         // 循环类型集合
         modeList: [{
-                id: 1,
-                name: '列表循环',
-                icon: '../../images/cm2_icn_loop@2x.png',
-                icon2: '../../images/cm2_playlist_icn_loop@2x.png'
-            },
-            {
-                id: 2,
-                name: '单曲循环',
-                icon: '../../images/cm2_icn_one@2x.png',
-                icon2: '../../images/cm2_playlist_icn_one@2x.png'
-            },
-            {
-                id: 3,
-                name: '随机播放',
-                icon: '../../images/cm2_icn_shuffle@2x.png',
-                icon2: '../../images/cm2_playlist_icn_shuffle@2x.png'
-            }
+            id: 1,
+            name: '列表循环',
+            icon: '../../images/cm2_icn_loop@2x.png',
+            icon2: '../../images/cm2_playlist_icn_loop@2x.png'
+        },
+        {
+            id: 2,
+            name: '单曲循环',
+            icon: '../../images/cm2_icn_one@2x.png',
+            icon2: '../../images/cm2_playlist_icn_one@2x.png'
+        },
+        {
+            id: 3,
+            name: '随机播放',
+            icon: '../../images/cm2_icn_shuffle@2x.png',
+            icon2: '../../images/cm2_playlist_icn_shuffle@2x.png'
+        }
         ],
     },
 
     /**
      * 生命周期函数--监听页面加载
      */
-    onLoad: function(options) {
+    onLoad: function (options) {
         let id = options.id;
         // console.log("音乐id:" + id);
 
@@ -73,13 +73,13 @@ Page({
             this.playMusic(id)
         } else {
             console.log("播放状态:" + app.globalData.playing)
-                // 三、继续播放状态
+            // 三、继续播放状态
             this.setData({
-                    music: app.globalData.curPlaying,
-                    duration: util.formatTime(app.globalData.curPlaying.dt),
-                    sliderMax: Math.floor(app.globalData.curPlaying.dt),
-                })
-                // 设置标题
+                music: app.globalData.curPlaying,
+                duration: util.formatTime(app.globalData.curPlaying.dt),
+                sliderMax: Math.floor(app.globalData.curPlaying.dt),
+            })
+            // 设置标题
             wx.setNavigationBarTitle({
                 title: `${app.globalData.curPlaying.name}-${app.globalData.curPlaying.ar[0].name}`,
             });
@@ -105,14 +105,14 @@ Page({
         }
     },
 
-    playMusic: function(id) {
+    playMusic: function (id) {
         let that = this;
         wx.request({
             url: baseUrl + 'song/detail?ids=' + id,
             header: {
                 'Content-Type': 'application/json'
             },
-            success: function(res) {
+            success: function (res) {
                 // console.log(res)
                 if (res.data.code === 200) {
                     // 全局设置当前播放歌曲
@@ -122,11 +122,11 @@ Page({
                         app.globalData.list_song.push(res.data.songs[0]);
                     }
                     that.setData({
-                            music: res.data.songs[0],
-                            duration: util.formatTime(app.globalData.curPlaying.dt),
-                            sliderMax: Math.floor(app.globalData.curPlaying.dt),
-                        })
-                        // 获取歌曲url
+                        music: res.data.songs[0],
+                        duration: util.formatTime(app.globalData.curPlaying.dt),
+                        sliderMax: Math.floor(app.globalData.curPlaying.dt),
+                    })
+                    // 获取歌曲url
                     audio.getMusicUrl(app.globalData.curPlaying.id, (url) => {
                         app.globalData.curPlaying.url = url;
                         // 播放音乐
@@ -162,7 +162,7 @@ Page({
     },
 
     // 切换播放类型
-    modeChange: function() {
+    modeChange: function () {
         let {
             playMode,
             modeList
@@ -181,7 +181,7 @@ Page({
     },
 
     // 暂停或播放
-    playStatusChange: function(e) {
+    playStatusChange: function (e) {
         // console.log(this.data.playing)
         let {
             playing
@@ -200,7 +200,7 @@ Page({
     },
 
     // 上、下一首
-    playMusicChange: function(event) {
+    playMusicChange: function (event) {
         const value = parseInt(event.currentTarget.id);
         app.nextAudio(value, this);
     },
@@ -208,23 +208,23 @@ Page({
 
 
     // 进度条
-    sliderChange: function(e) {
+    sliderChange: function (e) {
         const position = e.detail.value;
         app.seekAudio(position, this);
     },
-    sliderMoveStart: function() {
+    sliderMoveStart: function () {
         this.setData({
             isMovingSlider: true
         });
     },
-    sliderMoveEnd: function() {
+    sliderMoveEnd: function () {
         this.setData({
             isMovingSlider: false
         });
     },
 
     // 切换歌词页面
-    playerChange: function() {
+    playerChange: function () {
         let showLyric = this.data.showLyric;
         // console.log(showLyric)
         this.setData({
@@ -233,7 +233,7 @@ Page({
     },
 
     // 选取播放
-    selectedMusic: function(event) {
+    selectedMusic: function (event) {
         const index = parseInt(event.currentTarget.dataset.index);
         const id = parseInt(event.currentTarget.id);
         let {
@@ -255,7 +255,7 @@ Page({
     },
 
     // 删除单曲(真机有重新播放问题，待查看)
-    delMusicByIndex: function(event) {
+    delMusicByIndex: function (event) {
         const index = parseInt(event.currentTarget.dataset.index);
         // console.log("选中：" + index)
         var playIndex = app.globalData.index_song;
@@ -265,7 +265,7 @@ Page({
             index_song
         } = app.globalData;
 
-
+        // 返回删除选中下标为数组
         list_song.splice(index, 1);
         if (index_song === index) {
             backgroundAudioManager.stop();
@@ -294,7 +294,10 @@ Page({
 
             wx.navigateBack();
         } else {
-            this.playMusic(list_song[index_song].id);
+            if (index == playIndex) {
+                this.playMusic(list_song[index_song].id);
+            }
+
             // 处理删除坐标问题（总坐标-1）
             if (index < playIndex) {
                 app.globalData.index_song = playIndex - 1;
@@ -305,7 +308,7 @@ Page({
     /**
      * 清空播放列表，完成后后退
      */
-    deleteAll: function() {
+    deleteAll: function () {
         wx.showModal({
             title: '',
             content: '确定要清空播放列表？',
@@ -335,28 +338,28 @@ Page({
     },
 
     // 播放列表操作
-    showPlayList: function() {
+    showPlayList: function () {
         this.drawer.showDrawer();
     },
 
-    _cancelDrawer: function() {
+    _cancelDrawer: function () {
         this.drawer.hideDrawer();
     },
-    _confirmDrawer: function() {
+    _confirmDrawer: function () {
         this.drawer.hideDrawer();
     },
 
     /**
      * 生命周期函数--监听页面初次渲染完成
      */
-    onReady: function() {
+    onReady: function () {
         this.drawer = this.selectComponent('#drawer');
     },
 
     /**
      * 生命周期函数--监听页面显示
      */
-    onShow: function() {
+    onShow: function () {
         // 背景音频播放进度更新事件
         backgroundAudioManager.onTimeUpdate(() => {
             let curLrcIndex = 0;
@@ -381,35 +384,35 @@ Page({
     /**
      * 生命周期函数--监听页面隐藏
      */
-    onHide: function() {
+    onHide: function () {
 
     },
 
     /**
      * 生命周期函数--监听页面卸载
      */
-    onUnload: function() {
+    onUnload: function () {
 
     },
 
     /**
      * 页面相关事件处理函数--监听用户下拉动作
      */
-    onPullDownRefresh: function() {
+    onPullDownRefresh: function () {
 
     },
 
     /**
      * 页面上拉触底事件的处理函数
      */
-    onReachBottom: function() {
+    onReachBottom: function () {
 
     },
 
     /**
      * 用户点击右上角分享
      */
-    onShareAppMessage: function() {
+    onShareAppMessage: function () {
 
     }
 })
