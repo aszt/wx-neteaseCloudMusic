@@ -1,3 +1,13 @@
+.search_title {
+    animation: searchTop .5s ease-in-out;
+    width: 100%;
+    position: fixed;
+    margin-top: 0;
+    z-index: 100;
+    top: 0;
+    /* box-shadow: 0px 2px 1px rgba(0, 0, 0, .2); */
+}
+
 .search_wrap {
     padding: 0 0 20rpx 20rpx;
     height: 60rpx;
@@ -57,6 +67,10 @@
 }
 
 /* 主体标签 */
+
+.content_tag {
+    margin-top: 120rpx;
+}
 
 .history_title_wrap {
     display: flex;
@@ -160,7 +174,8 @@
     width: 60rpx;
     height: 30rpx;
 }
-.content_icon5{
+
+.content_icon5 {
     width: 35rpx;
     height: 20rpx;
 }
@@ -169,4 +184,134 @@
     color: #b3adad;
     margin-top: 10rpx;
     font-size: 30rpx;
+}
+
+.suggest {
+    animation: searchTop .5s ease-in-out;
+    width: 75%;
+    position: fixed;
+    z-index: 100;
+    left: 70rpx;
+    top: 61rpx;
+    background-color: white;
+    box-shadow: 0px 2px 1px rgba(0, 0, 0, .3);
+}
+
+.suggest_item {
+    padding: 20rpx;
+    border-bottom: 1rpx solid #d4d0d0;
+}
+
+.suggest_item_key {
+    font-size: 30rpx;
+    color: #969393;
+}
+
+.search_result_wrap {
+    border-bottom: 1px solid #e2dcdc;
+    margin-top: 78rpx;
+    /* animation: searchTop .5s ease-in-out;
+    position: fixed;
+    z-index: 100;
+    background-color: white; */
+}
+
+.searchResult {
+    white-space: nowrap;
+    /* height: 100rpx; */
+    line-height: 50rpx;
+    width: 98%;
+}
+
+.search_result_item {
+    padding: 20rpx 45rpx;
+    font-size: 30rpx;
+    display: inline-block;
+}
+
+.search_result_item_active {
+    padding: 20rpx 45rpx;
+    font-size: 30rpx;
+    display: inline-block;
+    color: #33CC99;
+    border-bottom: 1px solid #33CC99;
+}
+
+/* swiper处理 */
+
+swiper {
+    width: 100%;
+    height: 100vh;
+    /* height: calc(100vh - 170rpx); */
+    padding: 0;
+}
+
+swiper-item {
+    /* line-height: 350px; */
+    /* overflow: scroll; */
+    overflow: auto;
+}
+
+swiper-item::-webkit-scrollbar {
+    display: none;
+}
+
+/* 分类型处理，单曲 */
+
+.songArray_wrap {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    padding: 20rpx 0;
+}
+
+.songArray_inex {
+    padding-left: 40rpx;
+    color: #ccc;
+    line-height: 70rpx;
+    width: 10%;
+}
+
+.songArray_content {
+    width: 65%;
+}
+
+.content_1 {
+    font-size: 32rpx;
+    /* 超过省略号 */
+    text-overflow: -o-ellipsis-lastline;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 1;
+    line-clamp: 1;
+    -webkit-box-orient: vertical;
+}
+
+.songArray_content .content_3 {
+    font-size: 25rpx;
+    color: rgb(190, 189, 189);
+    margin-top: 10rpx;
+    /* 超过省略号 */
+    text-overflow: -o-ellipsis-lastline;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 1;
+    line-clamp: 1;
+    -webkit-box-orient: vertical;
+}
+
+.songArray_mv {
+    width: 10%;
+}
+
+#songArray_mv {
+    width: 10%;
+    line-height: 70rpx;
+}
+
+#songArray_other {
+    width: 10%;
+    line-height: 70rpx;
 }

@@ -1,26 +1,29 @@
 <view class="main">
     <!-- 搜索部分 -->
-    <view class="search_wrap">
-        <form bindsubmit="searhFinput">
-            <view class="search">
-                <!-- input -->
-                <view class="form_input">
-                    <view>
-                        <icon type="search" size="16" color="#aaa" />
+    <view class="search_title">
+        <view class="search_wrap">
+            <form bindsubmit="searhFinput">
+                <view class="search">
+                    <!-- input -->
+                    <view class="form_input">
+                        <view>
+                            <icon type="search" size="16" color="#aaa" />
+                        </view>
+                        <input type="text" auto-focus maxlength="20" name="name" bindinput="inputext" bindblur="routeSearchResPage" placeholder="搜索单曲、歌手、专辑等" value="{{searchKey}}" />
+                        <view class="sf_clear" hidden="{{!searchKey}}" bindtap="clear_kw">
+                            <icon type="clear" size="16" color="#aaa" />
+                        </view>
                     </view>
-                    <input type="text" auto-focus maxlength="20" name="name" bindinput="inputext" placeholder="搜索单曲、歌手、专辑等" value="{{value}}" />
-                    <view class="sf_clear" hidden="{{!value}}" bindtap="clear_kw">
-                        <icon type="clear" size="16" color="#aaa" />
+                    <!-- 按钮 -->
+                    <view class="button">
+                        <button form-type="submit" plain="true">搜索</button>
                     </view>
                 </view>
-                <!-- 按钮 -->
-                <view class="button">
-                    <button form-type="submit" plain="true">搜索</button>
-                </view>
-            </view>
-        </form>
+            </form>
+        </view>
     </view>
-    <view class="content_tag" hover-class="none" hover-stop-propagation="false">
+    <!-- 历史及热搜 -->
+    <view class="content_tag" wx:if="{{showView}}">
         <!-- 历史记录 -->
         <view class="history_wrap">
             <view class="history_title_wrap">
@@ -34,14 +37,9 @@
             <!-- 历史列表 -->
             <view class="history_item">
                 <scroll-view class="nav" scroll-x>
-                    <view class="nav_item">2002</view>
-                    <view class="nav_item">千与千寻</view>
-                    <view class="nav_item">愿我们都能成为可爱</view>
-                    <view class="nav_item">失眠飞行</view>
-                    <view class="nav_item">我的名字</view>
-                    <view class="nav_item">写了好多事都是关于你</view>
-                    <view class="nav_item">孤身</view>
-                    <view class="nav_item">孤单心事</view>
+                    <view class="nav_item" wx:for="{{history}}" wx:key="{{index}}" data-key="{{item}}" bindtap="chooseKey">
+                        {{item}}
+                    </view>
                 </scroll-view>
             </view>
         </view>
@@ -53,7 +51,7 @@
                 </view>
             </view>
             <!-- 热搜item -->
-            <view class="hot_content" wx:for="{{searchHotDetail}}" wx:key="{{index}}">
+            <view class="hot_content" wx:for="{{searchHotDetail}}" wx:key="{{index}}" data-key="{{item.searchWord}}" bindtap="chooseKey">
                 <!-- 排行 -->
                 <view class="hot_content_left">
                     <text class="ranking{{index<3?'_active':''}}">{{index+1}}</text>
@@ -76,6 +74,70 @@
                     <view class="hot_content_desc">{{item.content}}</view>
                 </view>
             </view>
+        </view>
+    </view>
+    <!-- 搜索建议 -->
+    <view class="suggest" wx:if="{{showSuggest}}">
+        <view class="suggest_item" wx:for="{{searchsuggest}}" wx:key="{{index}}" data-key="{{item.keyword}}" bindtap="chooseKey">
+            <text class="suggest_item_key">{{item.keyword}}</text>
+        </view>
+    </view>
+    <!-- 搜索结果 -->
+    <view class="searchAll" wx:if="{{showResult}}">
+        <view class="search_result_wrap">
+            <view class="searchResult">
+                <scroll-view class="searchResult_scroll" scroll-x="{{true}}">
+                    <view bindtap="activeNav" data-id="{{item.id}}" data-current="{{index}}" class="search_result_item{{currentTab===index?'_active':''}}" wx:for="{{searchType}}" wx:key="{{index}}">
+                        {{item.name}}
+                    </view>
+                </scroll-view>
+            </view>
+        </view>
+        <!-- 搜索结果 -->
+        <view class="search_content_wrap">
+            <swiper class="swiper" current="{{currentTab}}" duration="200" bindchange="swiperChange">
+                <swiper-item class="swiper-item">
+                    <!-- 单曲处理 -->
+                    <view class="songArray_wrap" wx:for="{{singleList}}" wx:key="{{index}}">
+                        <view class="songArray_inex">{{index+1}}</view>
+                        <view class="songArray_content" bindtap="playMusic" data-id="{{item.id}}" data-index="{{index}}">
+                            <view class="content_1">{{item.name}}</view>
+                            <view class="content_3">
+                                {{item.ar[0].name}}-{{item.al.name}}
+                            </view>
+                        </view>
+                        <!-- MV图标处理 -->
+                        <view class='songArray_mv'>
+                            <view wx:if="{{item.mvid!==0}}">
+                                <view id="songArray_mv" class="iconfont icon-Youtube" bindtap="playMv" data-id="{{item.mvid}}"></view>
+                            </view>
+                            <view wx:else>
+                                <view id="songArray_mv" class="iconfont icon-Youtube" style="color:white;"></view>
+                            </view>
+                        </view>
+                        <view id="songArray_other" class="iconfont icon-caidan2" style="color:#CCCCCC;"></view>
+                    </view>
+                    <!-- 单曲处理结束 -->
+                </swiper-item>
+                <swiper-item class="swiper-item">
+                    <view>视频（待完善）</view>
+                </swiper-item>
+                <swiper-item class="swiper-item">
+                    <view>歌手（待完善）</view>
+                </swiper-item>
+                <swiper-item class="swiper-item">
+                    <view>专辑（待完善）</view>
+                </swiper-item>
+                <swiper-item class="swiper-item">
+                    <view>歌单（待完善）</view>
+                </swiper-item>
+                <swiper-item class="swiper-item">
+                    <view>主播电台（待完善）</view>
+                </swiper-item>
+                <swiper-item class="swiper-item">
+                    <view>用户（待完善）</view>
+                </swiper-item>
+            </swiper>
         </view>
     </view>
 </view>
