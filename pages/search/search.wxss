@@ -315,3 +315,68 @@ swiper-item::-webkit-scrollbar {
     width: 10%;
     line-height: 70rpx;
 }
+
+/* 分类型处理，视频 */
+
+.relatedAllvideo {
+    margin-top: 30rpx;
+    /* border: 1px solid #cccccc; */
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    margin-left: 40rpx;
+    margin-right: 40rpx;
+}
+
+.relatedAllvideo_img {
+    position: relative;
+}
+
+.relatedAllvideo_img image {
+    width: 280rpx;
+    height: 160rpx;
+    border-radius: 5%;
+}
+
+.relatedAllvideo_playCount {
+    position: absolute;
+    top: 5rpx;
+    right: 5rpx;
+    width: 100%;
+    display: flex;
+    justify-content: flex-end;
+    color: #fff;
+    font-size: 24rpx;
+}
+
+.relatedAllvideo_desc {
+    width: 55%;
+    margin-left: 20rpx;
+    /* margin-right: 20rpx; */
+    line-height: 40rpx;
+    /* border: 1px solid #cccccc; */
+}
+
+.relatedAllvideo_desc_title {
+    font-size: 30rpx;
+    /* 两行省略 */
+    display: -webkit-box;
+    overflow: hidden;
+    white-space: normal;
+    text-overflow: ellipsis;
+    word-wrap: break-word;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+}
+
+#mv {
+    /* display: block; */
+    margin-right: 10rpx;
+}
+
+.relatedAllvideo_desc_creator {
+    font-size: 25rpx;
+    color: #a3a0a0;
+    text-align: justify;
+    margin-top: 10rpx;
+}

@@ -1,3 +1,4 @@
+<wxs src="../../utils/util.wxs" module="util"></wxs>
 <view class="main">
     <!-- 搜索部分 -->
     <view class="search_title">
@@ -102,9 +103,7 @@
                         <view class="songArray_inex">{{index+1}}</view>
                         <view class="songArray_content" bindtap="playMusic" data-id="{{item.id}}" data-index="{{index}}">
                             <view class="content_1">{{item.name}}</view>
-                            <view class="content_3">
-                                {{item.ar[0].name}}-{{item.al.name}}
-                            </view>
+                            <view class="content_3">{{item.ar[0].name}}-{{item.al.name}}</view>
                         </view>
                         <!-- MV图标处理 -->
                         <view class='songArray_mv'>
@@ -120,7 +119,28 @@
                     <!-- 单曲处理结束 -->
                 </swiper-item>
                 <swiper-item class="swiper-item">
-                    <view>视频（待完善）</view>
+                    <!-- 视频处理开始 -->
+                    <view class="relatedAllvideo" wx:for="{{videoList}}" wx:key="{{index}}" bindtap="openMv" data-id="{{item.vid}}" data-type="{{item.type}}">
+                        <view class="relatedAllvideo_img">
+                            <image mode="aspectFill" src="{{item.coverUrl}}" />
+                            <view class="relatedAllvideo_playCount">
+                                <text class="iconfont icon-play" style="font-size:30rpx;"></text>
+                                <text>{{util.formatPlayCount(item.playTime)}}</text>
+                            </view>
+                        </view>
+                        <view class="relatedAllvideo_desc">
+                            <view class="relatedAllvideo_desc_title">
+                                <text id="mv" wx:if="{{item.type==0}}" class="iconfont icon-MV" style="font-size:40rpx;color:red"></text>
+                                <text>{{item.title}}</text>
+                            </view>
+                            <view class="relatedAllvideo_desc_creator">
+                                {{util.formatTime(item.durationms)}}
+                                <text wx:if="{{item.type==1}}">by</text>
+                                <text decode="true">&nbsp;{{item.creator[0].userName}}</text>
+                            </view>
+                        </view>
+                    </view>
+                    <!-- 视频处理 -->
                 </swiper-item>
                 <swiper-item class="swiper-item">
                     <view>歌手（待完善）</view>

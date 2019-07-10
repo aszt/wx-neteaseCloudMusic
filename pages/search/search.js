@@ -58,22 +58,11 @@ Page({
     ],
     // 单曲列表(数据格式不同，我擦咧)
     singleList: [],
-    js:
-    {
-      "id": null,
-      "name": null,
-      "al": {
-        "name": null,
-      },
-      "ar": [],
-      "mvid": null
-    },
-    js2:
-    {
-      "name": null,
-    },
     // 单曲页数(加载更多使用参数)
     singlePage: 2,
+    // 视频列表
+    videoList: [],
+    videoPage: 2,
   },
 
   // tab切换处理
@@ -90,9 +79,79 @@ Page({
   },
 
   swiperChange: function (e) {
+    const that = this;
+    // 开始处理其它选项
+    var current = e.detail.current;
+    var videoList = that.data.videoList
+    // console.log("滑动了" + current);
+    if (current == 0) {
+      // 单曲
+      console.log("加载单曲")
+    } else if (current == 1) {
+      // 视频
+      if (videoList.length == 0) {
+        console.log("加载视频")
+        this.loadvideo(that);
+      }
+
+    } else if (current == 2) {
+      // 歌手
+      console.log("加载歌手")
+    } else if (current == 3) {
+      // 专辑
+      console.log("加载专辑")
+    } else if (current == 4) {
+      // 歌单
+      console.log("加载歌单")
+    } else if (current == 5) {
+      // 主播电台
+      console.log("加载主播电台")
+    } else if (current == 6) {
+      // 用户
+      console.log("加载用户")
+    } else {
+      console.log("未知")
+    }
     // console.log(e);
     this.setData({
       currentTab: e.detail.current,
+    })
+  },
+
+  /**
+   * 加载视频
+   */
+  loadvideo(that) {
+    // 输入框值
+    var searchValue = that.data.searchKey;
+    if (searchValue != '') {
+      console.log(searchValue)
+      wx.request({
+        url: baseUrl + 'search?keywords=' + searchValue + "&type=1014",
+        header: {
+          'Content-Type': 'application/json'
+        },
+        success: function (res) {
+          console.log(res)
+          if (res.data.code == 200) {
+            console.log(res.data.result.videos)
+            that.setData({
+              videoList: res.data.result.videos
+            })
+          }
+        }
+      })
+    }
+  },
+
+  // 播放视频
+  openMv: function (e) {
+    var id = e.currentTarget.dataset.id;
+    var type = e.currentTarget.dataset.type;
+    // 0-MV、1-用户上传视频
+    // console.log("视频id为：" + id + "，类型为：" + type)
+    wx.navigateTo({
+      url: '../mv/mv?id=' + id + "&type=" + type,
     })
   },
 
@@ -196,37 +255,23 @@ Page({
         'Content-Type': 'application/json'
       },
       success: function (res) {
-        // console.log(res);
         if (res.data.code == 200) {
-          var js = that.data.js
-          var js2 = that.data.js2
-          var singleList = that.data.singleList
           var songs = res.data.result.songs;
-          // 数据一致性处理
+          // 数据一致性处理（播放项）
           for (var index in songs) {
-            // var ab = "songs[" + index + "].ar[0].name";
-            // var ac = "songs[" + index + "].al.name";
-            // console.log(ab);
-            // console.log(ac);
-
-            // [ab]= songs[index].artists[0].name
-            // songs[" + index + "].al.name= songs[index].name
-            // songs[index].ar[0].name = songs[index].artists[0].name;
-            // songs[index].al.name = songs[index].name;
-            js.name = songs[index].name
-            js2.name = songs[index].artists[0].name
-            js.ar.push(js2)
-            singleList.push(js)
-
+            // 专辑
+            var name = songs[index].album.name
+            // 歌手
+            var singerName = songs[index].artists[0].name
+            songs[index].al = { name }
+            songs[index].ar = [{ name: singerName }]
           };
-          console.log(js);
-          console.log(singleList);
-
+          // console.log(songs);
           that.setData({
             showView: false,
             showSuggest: false,
             showResult: true,
-            singleList,
+            singleList: songs,
           })
         }
       }
@@ -303,12 +348,60 @@ Page({
       success: function (res) {
         console.log(res)
         if (res.data.code == 200) {
+          var songs = res.data.result.songs;
+          // 数据一致性处理（播放项）
+          for (var index in songs) {
+            // 专辑
+            var name = songs[index].album.name
+            // 歌手
+            var singerName = songs[index].artists[0].name
+            songs[index].al = { name }
+            songs[index].ar = [{ name: singerName }]
+          };
           // 旧数据
           const oldSingleList = that.data.singleList;
           that.setData({
             // 数据写入
-            singleList: oldSingleList.concat(res.data.result.songs),
+            singleList: oldSingleList.concat(songs),
             singlePage: page + 1,
+          })
+        }
+      },
+      complete: function () {
+        // 隐藏加载框
+        wx.hideLoading();
+      }
+    })
+  },
+
+  /**
+   * 加载更多视频
+   */
+  loadMoreVideo() {
+    console.log("加载更多视频")
+    var that = this;
+    var page = that.data.videoPage;
+    var searchKey = that.data.searchKey;
+    // 显示加载图标
+    wx.showLoading({
+      title: '加载中',
+    })
+    // 偏移数量 , 用于分页 , 如 :( 页数 -1)*30, 其中 30 为 limit 的值
+    var offset = (page - 1) * 30;
+    wx.request({
+      url: baseUrl + 'search?keywords=' + searchKey + "&type=1014&offset=" + offset,
+      header: {
+        'Content-Type': 'application/json'
+      },
+      success: function (res) {
+        if (res.data.code == 200) {
+          // 旧数据
+          const oldVideoList = that.data.videoList;
+          var videos = res.data.result.videos
+          that.setData({
+            // 数据写入
+            videoList: oldVideoList.concat(videos),
+            videoPage: page + 1,
           })
         }
       },
@@ -372,13 +465,19 @@ Page({
    * 页面上拉触底事件的处理函数
    */
   onReachBottom: function () {
-    console.log("到底了：" + this.data.currentTab)
-    var currentTab = this.data.currentTab;
-    if (currentTab == 0) {
-      // 单曲到底了
-      console.log("单曲到底了！")
-      this.loadMoreSingle();
+    if (this.data.showResult) {
+      console.log("到底了：" + this.data.currentTab)
+      var currentTab = this.data.currentTab;
+      if (currentTab == 0) {
+        // 单曲到底了
+        console.log("单曲到底了！")
+        this.loadMoreSingle();
+      } else if (currentTab == 1) {
+        console.log("视频到底了！")
+        this.loadMoreVideo();
+      }
     }
+
   },
 
   /**
