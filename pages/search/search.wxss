@@ -40,6 +40,7 @@
 .form_input .sf_clear {
     right: 0;
     left: auto;
+    margin-right: 30rpx;
 }
 
 .form_input input {
@@ -241,8 +242,8 @@
 
 swiper {
     width: 100%;
-    height: 100vh;
-    /* height: calc(100vh - 170rpx); */
+    /* height: 100vh; */
+    height: calc(100vh - 168.5rpx);
     padding: 0;
 }
 
@@ -379,4 +380,34 @@ swiper-item::-webkit-scrollbar {
     color: #a3a0a0;
     text-align: justify;
     margin-top: 10rpx;
+}
+
+/* 歌手 */
+
+.artists_wrap {
+    display: flex;
+    /* flex-direction: row; */
+    justify-content: flex-start;
+    align-items: center;
+    margin-top: 40rpx;
+    margin-left: 40rpx;
+}
+
+.touxiang {
+    width: 20%;
+}
+
+.touxiang image {
+    width: 100rpx;
+    height: 100rpx;
+    border-radius: 50%;
+}
+
+.mingzi {
+    width: 80%;
+    padding-bottom:30rpx;
+}
+
+.mingzi text {
+    font-size: 30rpx;
 }

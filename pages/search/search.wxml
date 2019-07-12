@@ -8,11 +8,13 @@
                     <!-- input -->
                     <view class="form_input">
                         <view>
-                            <icon type="search" size="16" color="#aaa" />
+                            <!-- <icon type="search" size="16" color="#aaa" /> -->
+                            <view class="iconfont icon-sousuo" style="color:#aaa;line-height: 40rpx;font-size:35rpx;"></view>
                         </view>
                         <input type="text" auto-focus maxlength="20" name="name" bindinput="inputext" bindblur="routeSearchResPage" placeholder="搜索单曲、歌手、专辑等" value="{{searchKey}}" />
                         <view class="sf_clear" hidden="{{!searchKey}}" bindtap="clear_kw">
-                            <icon type="clear" size="16" color="#aaa" />
+                            <!-- <icon type="clear" size="16" color="#aaa" /> -->
+                            <view class="iconfont icon-menu_reject2Submitor" style="color:#aaa;line-height: 40rpx;font-size:35rpx;"></view>
                         </view>
                     </view>
                     <!-- 按钮 -->
@@ -98,52 +100,65 @@
         <view class="search_content_wrap">
             <swiper class="swiper" current="{{currentTab}}" duration="200" bindchange="swiperChange">
                 <swiper-item class="swiper-item">
-                    <!-- 单曲处理 -->
-                    <view class="songArray_wrap" wx:for="{{singleList}}" wx:key="{{index}}">
-                        <view class="songArray_inex">{{index+1}}</view>
-                        <view class="songArray_content" bindtap="playMusic" data-id="{{item.id}}" data-index="{{index}}">
-                            <view class="content_1">{{item.name}}</view>
-                            <view class="content_3">{{item.ar[0].name}}-{{item.al.name}}</view>
-                        </view>
-                        <!-- MV图标处理 -->
-                        <view class='songArray_mv'>
-                            <view wx:if="{{item.mvid!==0}}">
-                                <view id="songArray_mv" class="iconfont icon-Youtube" bindtap="playMv" data-id="{{item.mvid}}"></view>
+                    <scroll-view scroll-y="{{true}}" bindscrolltolower="loadMore" style='height:100%'>
+                        <!-- 单曲处理 -->
+                        <view class="songArray_wrap" wx:for="{{singleList}}" wx:key="{{index}}">
+                            <view class="songArray_inex">{{index+1}}</view>
+                            <view class="songArray_content" bindtap="playMusic" data-id="{{item.id}}" data-index="{{index}}">
+                                <view class="content_1">{{item.name}}</view>
+                                <view class="content_3">{{item.ar[0].name}}-{{item.al.name}}</view>
                             </view>
-                            <view wx:else>
-                                <view id="songArray_mv" class="iconfont icon-Youtube" style="color:white;"></view>
+                            <!-- MV图标处理 -->
+                            <view class='songArray_mv'>
+                                <view wx:if="{{item.mvid!==0}}">
+                                    <view id="songArray_mv" class="iconfont icon-Youtube" bindtap="playMv" data-id="{{item.mvid}}"></view>
+                                </view>
+                                <view wx:else>
+                                    <view id="songArray_mv" class="iconfont icon-Youtube" style="color:white;"></view>
+                                </view>
                             </view>
+                            <view id="songArray_other" class="iconfont icon-caidan2" style="color:#CCCCCC;"></view>
                         </view>
-                        <view id="songArray_other" class="iconfont icon-caidan2" style="color:#CCCCCC;"></view>
-                    </view>
-                    <!-- 单曲处理结束 -->
+                        <!-- 单曲处理结束 -->
+                    </scroll-view>
                 </swiper-item>
                 <swiper-item class="swiper-item">
-                    <!-- 视频处理开始 -->
-                    <view class="relatedAllvideo" wx:for="{{videoList}}" wx:key="{{index}}" bindtap="openMv" data-id="{{item.vid}}" data-type="{{item.type}}">
-                        <view class="relatedAllvideo_img">
-                            <image mode="aspectFill" src="{{item.coverUrl}}" />
-                            <view class="relatedAllvideo_playCount">
-                                <text class="iconfont icon-play" style="font-size:30rpx;"></text>
-                                <text>{{util.formatPlayCount(item.playTime)}}</text>
+                    <scroll-view scroll-y="{{true}}" bindscrolltolower="loadMore" style='height:100%'>
+                        <!-- 视频处理开始 -->
+                        <view class="relatedAllvideo" wx:for="{{videoList}}" wx:key="{{index}}" bindtap="openMv" data-id="{{item.vid}}" data-type="{{item.type}}">
+                            <view class="relatedAllvideo_img">
+                                <image mode="aspectFill" src="{{item.coverUrl}}" />
+                                <view class="relatedAllvideo_playCount">
+                                    <text class="iconfont icon-play" style="font-size:30rpx;"></text>
+                                    <text>{{util.formatPlayCount(item.playTime)}}</text>
+                                </view>
+                            </view>
+                            <view class="relatedAllvideo_desc">
+                                <view class="relatedAllvideo_desc_title">
+                                    <text id="mv" wx:if="{{item.type==0}}" class="iconfont icon-MV" style="font-size:40rpx;color:red"></text>
+                                    <text>{{item.title}}</text>
+                                </view>
+                                <view class="relatedAllvideo_desc_creator">
+                                    {{util.formatTime(item.durationms)}}
+                                    <text wx:if="{{item.type==1}}">by</text>
+                                    <text decode="true">&nbsp;{{item.creator[0].userName}}</text>
+                                </view>
                             </view>
                         </view>
-                        <view class="relatedAllvideo_desc">
-                            <view class="relatedAllvideo_desc_title">
-                                <text id="mv" wx:if="{{item.type==0}}" class="iconfont icon-MV" style="font-size:40rpx;color:red"></text>
-                                <text>{{item.title}}</text>
-                            </view>
-                            <view class="relatedAllvideo_desc_creator">
-                                {{util.formatTime(item.durationms)}}
-                                <text wx:if="{{item.type==1}}">by</text>
-                                <text decode="true">&nbsp;{{item.creator[0].userName}}</text>
-                            </view>
-                        </view>
-                    </view>
-                    <!-- 视频处理 -->
+                        <!-- 视频处理 -->
+                    </scroll-view>
                 </swiper-item>
                 <swiper-item class="swiper-item">
-                    <view>歌手（待完善）</view>
+                    <scroll-view scroll-y="{{true}}" bindscrolltolower="loadMore" style='height:100%'>
+                        <view class="artists_wrap" wx:for="{{artistsList}}" wx:key="{{index}}">
+                            <view class="touxiang">
+                                <image src='{{item.img1v1Url}}'></image>
+                            </view>
+                            <view class="mingzi">
+                                <text>{{item.name}}</text>
+                            </view>
+                        </view>
+                    </scroll-view>
                 </swiper-item>
                 <swiper-item class="swiper-item">
                     <view>专辑（待完善）</view>

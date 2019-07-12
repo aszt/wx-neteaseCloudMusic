@@ -63,6 +63,9 @@ Page({
     // 视频列表
     videoList: [],
     videoPage: 2,
+    // 歌手列表
+    artistsList: [],
+    artistsPage: 2,
   },
 
   // tab切换处理
@@ -83,6 +86,7 @@ Page({
     // 开始处理其它选项
     var current = e.detail.current;
     var videoList = that.data.videoList
+    var artistsList = that.data.artistsList
     // console.log("滑动了" + current);
     if (current == 0) {
       // 单曲
@@ -93,10 +97,12 @@ Page({
         console.log("加载视频")
         this.loadvideo(that);
       }
-
     } else if (current == 2) {
       // 歌手
-      console.log("加载歌手")
+      if (artistsList.length == 0) {
+        console.log("加载歌手")
+        this.loadartists(that);
+      }
     } else if (current == 3) {
       // 专辑
       console.log("加载专辑")
@@ -125,18 +131,41 @@ Page({
     // 输入框值
     var searchValue = that.data.searchKey;
     if (searchValue != '') {
-      console.log(searchValue)
+      // console.log(searchValue)
       wx.request({
         url: baseUrl + 'search?keywords=' + searchValue + "&type=1014",
         header: {
           'Content-Type': 'application/json'
         },
         success: function (res) {
-          console.log(res)
+          // console.log(res)
           if (res.data.code == 200) {
-            console.log(res.data.result.videos)
+            // console.log(res.data.result.videos)
             that.setData({
               videoList: res.data.result.videos
+            })
+          }
+        }
+      })
+    }
+  },
+
+  loadartists(that) {
+    // 输入框值
+    var searchValue = that.data.searchKey;
+    if (searchValue != '') {
+      // console.log(searchValue)
+      wx.request({
+        url: baseUrl + 'search?keywords=' + searchValue + "&type=100",
+        header: {
+          'Content-Type': 'application/json'
+        },
+        success: function (res) {
+          // console.log(res)
+          if (res.data.code == 200) {
+            // console.log(res.data.result.videos)
+            that.setData({
+              artistsList: res.data.result.artists
             })
           }
         }
@@ -196,7 +225,11 @@ Page({
       // 发送搜索建议
       that.searchSuggest();
     } else {
-
+      that.setData({
+        showView: true,
+        showSuggest: false,
+        showResult: false,
+      })
     }
   },
 
@@ -221,12 +254,12 @@ Page({
 
   // input失去焦点(待改)
   routeSearchResPage: function (e) {
-    var value = e.detail.value
-    if (value != '') {
-      let history = wx.getStorageSync("history") || [];
-      history.push(this.data.searchKey)
-      wx.setStorageSync("history", history);
-    }
+    // var value = e.detail.value
+    // if (value != '') {
+    //   let history = wx.getStorageSync("history") || [];
+    //   history.push(this.data.searchKey)
+    //   wx.setStorageSync("history", history);
+    // }
     this.setData({
       showSuggest: false
     })
@@ -272,16 +305,28 @@ Page({
             showSuggest: false,
             showResult: true,
             singleList: songs,
+            // 数据重置
+            videoList: [],
+            artistsList: []
           })
         }
       }
     })
+
+    if (searchValue != '') {
+      let history = wx.getStorageSync("history") || [];
+      history.push(that.data.searchKey)
+      wx.setStorageSync("history", history);
+    }
   },
 
   // 输入框删除事件
   clear_kw: function () {
     this.setData({
       searchKey: "",
+      showView: true,
+      showSuggest: false,
+      showResult: false,
     })
   },
 
@@ -330,7 +375,7 @@ Page({
    * 加载更多单曲
    */
   loadMoreSingle() {
-    console.log("加载更多单曲")
+    // console.log("加载更多单曲")
     var that = this;
     var page = that.data.singlePage;
     var searchKey = that.data.searchKey;
@@ -346,7 +391,7 @@ Page({
         'Content-Type': 'application/json'
       },
       success: function (res) {
-        console.log(res)
+        // console.log(res)
         if (res.data.code == 200) {
           var songs = res.data.result.songs;
           // 数据一致性处理（播放项）
@@ -378,7 +423,7 @@ Page({
    * 加载更多视频
    */
   loadMoreVideo() {
-    console.log("加载更多视频")
+    // console.log("加载更多视频")
     var that = this;
     var page = that.data.videoPage;
     var searchKey = that.data.searchKey;
@@ -402,6 +447,41 @@ Page({
             // 数据写入
             videoList: oldVideoList.concat(videos),
             videoPage: page + 1,
+          })
+        }
+      },
+      complete: function () {
+        // 隐藏加载框
+        wx.hideLoading();
+      }
+    })
+  },
+
+  // 加载更多歌手
+  loadMoreArtists() {
+    var that = this;
+    var page = that.data.artistsPage;
+    var searchKey = that.data.searchKey;
+    // 显示加载图标
+    wx.showLoading({
+      title: '加载中',
+    })
+    // 偏移数量 , 用于分页 , 如 :( 页数 -1)*30, 其中 30 为 limit 的值
+    var offset = (page - 1) * 30;
+    wx.request({
+      url: baseUrl + 'search?keywords=' + searchKey + "&type=100&offset=" + offset,
+      header: {
+        'Content-Type': 'application/json'
+      },
+      success: function (res) {
+        if (res.data.code == 200) {
+          // 旧数据
+          const oldArtistsList = that.data.artistsList;
+          var artists = res.data.result.artists
+          that.setData({
+            // 数据写入
+            artistsList: oldArtistsList.concat(artists),
+            artistsPage: page + 1,
           })
         }
       },
@@ -436,7 +516,7 @@ Page({
   onShow: function () {
     // 每次页面改变去拿搜索历史
     this.setData({
-      history: wx.getStorageSync("history") || []
+      history: (wx.getStorageSync("history") || []).reverse()
     })
   },
 
@@ -465,8 +545,25 @@ Page({
    * 页面上拉触底事件的处理函数
    */
   onReachBottom: function () {
+    // 因为swiper高度问题，弃用此方案（没办法，搞大半天没弄好，偷个鸡）
+    // if (this.data.showResult) {
+    //   console.log("到底了：" + this.data.currentTab)
+    //   var currentTab = this.data.currentTab;
+    //   if (currentTab == 0) {
+    //     // 单曲到底了
+    //     console.log("单曲到底了！")
+    //     this.loadMoreSingle();
+    //   } else if (currentTab == 1) {
+    //     console.log("视频到底了！")
+    //     this.loadMoreVideo();
+    //   }
+    // }
+
+  },
+
+  loadMore: function (e) {
     if (this.data.showResult) {
-      console.log("到底了：" + this.data.currentTab)
+      // console.log("到底了：" + this.data.currentTab)
       var currentTab = this.data.currentTab;
       if (currentTab == 0) {
         // 单曲到底了
@@ -475,9 +572,11 @@ Page({
       } else if (currentTab == 1) {
         console.log("视频到底了！")
         this.loadMoreVideo();
+      } else if (currentTab == 2) {
+        console.log("歌手到底了！")
+        this.loadMoreArtists();
       }
     }
-
   },
 
   /**
