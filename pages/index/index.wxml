@@ -87,7 +87,7 @@
         </view>
         <view class="songSheet_wrap">
           <!-- 控制遍历数量6个 -->
-          <view class="songSheet_item" wx:for="{{personalized}}" wx:key wx:if="{{index<6}}">
+          <view class="songSheet_item" wx:for="{{personalized}}" wx:key="{{index}}">
             <!-- 图片容器 -->
             <view class="songSheet_img">
               <!-- 图片 -->

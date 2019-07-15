@@ -11,7 +11,7 @@
                             <!-- <icon type="search" size="16" color="#aaa" /> -->
                             <view class="iconfont icon-sousuo" style="color:#aaa;line-height: 40rpx;font-size:35rpx;"></view>
                         </view>
-                        <input type="text" auto-focus maxlength="20" name="name" bindinput="inputext" bindblur="routeSearchResPage" placeholder="搜索单曲、歌手、专辑等" value="{{searchKey}}" />
+                        <input type="text" auto-focus maxlength="20" name="name" bindinput="inputext" bindblur="routeSearchResPage" placeholder="搜索单曲、歌手、专辑等" value="{{searchKey}}" focus="{{true}}" />
                         <view class="sf_clear" hidden="{{!searchKey}}" bindtap="clear_kw">
                             <!-- <icon type="clear" size="16" color="#aaa" /> -->
                             <view class="iconfont icon-menu_reject2Submitor" style="color:#aaa;line-height: 40rpx;font-size:35rpx;"></view>
@@ -89,7 +89,7 @@
     <view class="searchAll" wx:if="{{showResult}}">
         <view class="search_result_wrap">
             <view class="searchResult">
-                <scroll-view class="searchResult_scroll" scroll-x="{{true}}" scroll-left="{{scroll_left}}">
+                <scroll-view class="searchResult_scroll" scroll-x scroll-left="{{scroll_left}}">
                     <view bindtap="activeNav" data-id="{{item.id}}" data-current="{{index}}" class="search_result_item{{currentTab===index?'_active':''}}" wx:for="{{searchType}}" wx:key="{{index}}">
                         {{item.name}}
                     </view>
@@ -172,7 +172,8 @@
                             <view class="album_desc">
                                 <view class=" album_name">
                                     <text>{{item.name}}</text>
-                                    <text class="album_alias" decode="true">{{item.alias[0]==null?"":'&nbsp;('+item.alias[0]+')'}}</text>
+                                    <!-- 此处格式化有样式问题,干脆不要 -->
+                                    <!-- <text class="album_alias" decode="true">{{item.alias[0]==null?"":'&nbsp;('+item.alias[0]+')'}}</text> -->
                                 </view>
                                 <view class="album_artists">
                                     <text>{{item.artist.name}} {{item.publishTime}}</text>
@@ -185,7 +186,7 @@
                 <swiper-item class="swiper-item">
                     <scroll-view scroll-y="{{true}}" bindscrolltolower="loadMore" style='height:100%'>
                         <!-- 歌单处理开始 -->
-                        <view class="playlists_wrap" wx:for="{{playlistsList}}" wx:key="{{index}}">
+                        <view class="playlists_wrap" wx:for="{{playlistsList}}" wx:key="{{index}}" data-id="{{item.id}}" bindtap="openSongSheet">
                             <view class="playlists_pic">
                                 <image src='{{item.coverImgUrl}}'></image>
                             </view>

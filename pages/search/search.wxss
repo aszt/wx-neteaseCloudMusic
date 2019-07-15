@@ -218,24 +218,40 @@
 }
 
 .searchResult {
-    white-space: nowrap;
-    /* height: 100rpx; */
+    /* white-space: nowrap;
     line-height: 50rpx;
-    width: 98%;
+    width: 98%; */
+}
+
+.searchResult_scroll {
+    height: 100rpx;
+    width: 750rpx;
+    overflow: scroll;
+    white-space: nowrap;
 }
 
 .search_result_item {
-    padding: 20rpx 45rpx;
+    width: 150rpx;
+    height: 100rpx;
+    /* padding: 20rpx 45rpx; */
     font-size: 30rpx;
     display: inline-block;
+    /* border: 1px solid red; */
+    text-align: center;
+    line-height: 100rpx;
 }
 
 .search_result_item_active {
-    padding: 20rpx 45rpx;
+    width: 150rpx;
+    height: 100rpx;
+    text-align: center;
+    line-height: 100rpx;
+    /* padding: 20rpx 45rpx; */
     font-size: 30rpx;
     display: inline-block;
     color: #33CC99;
-    border-bottom: 1px solid #33CC99;
+    /* border: 1px solid red; */
+    border-bottom: 2px solid #33CC99;
 }
 
 /* swiper处理 */
@@ -563,7 +579,7 @@ swiper-item::-webkit-scrollbar {
 }
 
 .userprofiles_desc {
-    width: 60%;
+    width: 55%;
 }
 
 .userprofiles_desc_wrap {

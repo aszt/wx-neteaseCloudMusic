@@ -10,6 +10,10 @@ Page({
   data: {
     //上方滚动的位置
     scroll_left: 0,
+    //上方每个tab的大小
+    t_width: 150,
+    // 滑动参数
+    s3_width: 0,
     // 搜索值
     searchKey: "",
     // 热搜榜
@@ -83,15 +87,22 @@ Page({
     userprofilesPage: 2,
   },
 
+  getwidth: function () {
+    var that = this;
+    wx.getSystemInfo({
+      success: function (res) {
+        that.setData(that.data.s3_width = res.windowWidth / 3);
+      },
+    })
+  },
   // tab切换处理
   activeNav(e) {
-    // console.log(e);
-    var crash_current = e.detail.current;
+    // 滑动处理
+    var crash_current = e.target.dataset.current;
     var s = 0;
-    if (crash_current != 0 && crash_current != 1) {
+    if (crash_current != 0 && crash_current != 1 && crash_current != 2 && crash_current != 3 && crash_current != 4) {
       s = parseInt(crash_current - 1) * this.data.s3_width;
     }
-    console.log("tab的位置："+s)
     var that = this;
     if (this.data.currentTab === e.target.dataset.current) {
       return false;
@@ -104,20 +115,29 @@ Page({
   },
 
   swiperChange: function (e) {
-    var crash_current = e.currentTarget.dataset.current;
+    // 滑动处理
+    var crash_current = e.detail.current;
     var s = 0;
-    if (crash_current != 0 && crash_current != 1) {
+    if (crash_current != 0 && crash_current != 1 && crash_current != 2 && crash_current != 3 && crash_current != 4) {
       s = parseInt(crash_current - 1) * this.data.s3_width;
     }
     const that = this;
     // 开始处理其它选项
     var current = e.detail.current;
+    var singleList = that.data.singleList
     var videoList = that.data.videoList
     var artistsList = that.data.artistsList
-    // console.log("滑动了" + current);
+    var albumsList = that.data.albumsList
+    var playlistsList = that.data.playlistsList
+    var djRadiosList = that.data.djRadiosList
+    var userprofilesList = that.data.userprofilesList
+
     if (current == 0) {
       // 单曲
-      console.log("加载单曲")
+      if (singleList.length == 0) {
+        console.log("加载单曲")
+        this.loadsingle(that);
+      }
     } else if (current == 1) {
       // 视频
       if (videoList.length == 0) {
@@ -132,20 +152,28 @@ Page({
       }
     } else if (current == 3) {
       // 专辑
-      console.log("加载专辑")
-      this.loadalbums(that);
+      if (albumsList.length == 0) {
+        console.log("加载专辑")
+        this.loadalbums(that);
+      }
     } else if (current == 4) {
       // 歌单
-      console.log("加载歌单")
-      this.loadplaylists(that);
+      if (playlistsList.length == 0) {
+        console.log("加载歌单")
+        this.loadplaylists(that);
+      }
     } else if (current == 5) {
       // 主播电台
-      console.log("加载主播电台")
-      this.loaddjRadios(that);
+      if (djRadiosList.length == 0) {
+        console.log("加载主播电台")
+        this.loaddjRadios(that);
+      }
     } else if (current == 6) {
       // 用户
-      console.log("加载用户")
-      this.loaduserprofiles(that);
+      if (userprofilesList.length == 0) {
+        console.log("加载用户")
+        this.loaduserprofiles(that);
+      }
     } else {
       console.log("未知")
     }
@@ -154,6 +182,48 @@ Page({
       currentTab: e.detail.current,
       scroll_left: s
     })
+  },
+
+  // 打开歌单详情页面
+  openSongSheet: function (e) {
+    var that = this;
+    var id = e.currentTarget.dataset.id;
+    // console.log("歌单id:" + id);
+    wx.navigateTo({
+      url: '../songSheet/songSheet?id=' + id,
+    })
+  },
+
+  /**
+   * 加载单曲
+   */
+  loadsingle(that) {
+    var searchValue = that.data.searchKey;
+    if (searchValue != '') {
+      wx.request({
+        url: baseUrl + 'search?keywords=' + searchValue + "&type=1",
+        header: {
+          'Content-Type': 'application/json'
+        },
+        success: function (res) {
+          if (res.data.code == 200) {
+            var songs = res.data.result.songs;
+            // 数据一致性处理（播放项）
+            for (var index in songs) {
+              // 专辑
+              var name = songs[index].album.name
+              // 歌手
+              var singerName = songs[index].artists[0].name
+              songs[index].al = { name }
+              songs[index].ar = [{ name: singerName }]
+            };
+            that.setData({
+              singleList: songs
+            })
+          }
+        }
+      })
+    }
   },
 
   /**
@@ -378,26 +448,54 @@ Page({
 
   // input失去焦点(待改)
   routeSearchResPage: function (e) {
-    // var value = e.detail.value
-    // if (value != '') {
-    //   let history = wx.getStorageSync("history") || [];
-    //   history.push(this.data.searchKey)
-    //   wx.setStorageSync("history", history);
-    // }
     this.setData({
-      showSuggest: false
+      // showSuggest: false,
+
     })
 
   },
 
   // 选中搜索建议
   chooseKey: function (e) {
+    // console.log("触发了")
+    const that = this;
     var key = e.currentTarget.dataset.key;
-    this.setData({
+    that.setData({
       showSuggest: false,
-      searchKey: key
+      searchKey: key,
+      showView: false,
+      showResult: true,
+      // 数据重置(页数待改)
+      singlePage: 2,
+      videoList: [],
+      videoPage: 2,
+      artistsList: [],
+      artistsPage: 2,
+      albumsList: [],
+      albumsPage: 2,
+      playlistsList: [],
+      playlistsPage: 2,
+      djRadiosList: [],
+      djRadiosPage: 2,
+      userprofilesList: [],
+      userprofilesPage: 2,
+      currentTab: 0,
     })
     // 去搜索
+    that.loadsingle(that);
+    // 搜索历史处理
+    if (key != '') {
+      let history = wx.getStorageSync("history") || [];
+      if (history.includes(key)) {
+        for (var i = 0; i < history.length; i++) {
+          if (key == history[i]) {
+            history.splice(i, 1);
+          }
+        }
+      }
+      history.push(key)
+      wx.setStorageSync("history", history);
+    }
   },
 
   // 搜索事件
@@ -806,6 +904,7 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
+    this.getwidth();
     // 每次页面改变去拿搜索历史
     this.setData({
       history: (wx.getStorageSync("history") || []).reverse()
