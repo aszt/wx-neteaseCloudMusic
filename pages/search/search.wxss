@@ -405,9 +405,205 @@ swiper-item::-webkit-scrollbar {
 
 .mingzi {
     width: 80%;
-    padding-bottom:30rpx;
+    padding-bottom: 30rpx;
 }
 
 .mingzi text {
     font-size: 30rpx;
+}
+
+/* 专辑 */
+
+.album_wrap {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    margin-top: 40rpx;
+    margin-left: 40rpx;
+}
+
+.album_pic image {
+    width: 120rpx;
+    height: 120rpx;
+    border-radius: 10rpx;
+}
+
+.album_desc {
+    margin-left: 40rpx;
+}
+
+.album_name {
+    /* 一行省略 */
+    display: -webkit-box;
+    overflow: hidden;
+    white-space: normal;
+    text-overflow: ellipsis;
+    word-wrap: break-word;
+    -webkit-line-clamp: 1;
+    -webkit-box-orient: vertical;
+}
+
+.album_name text {
+    font-size: 35rpx;
+    /* line-height: 60rpx; */
+}
+
+.album_alias {
+    color: rgb(175, 171, 171);
+}
+
+.album_artists text {
+    font-size: 28rpx;
+}
+
+/* 歌单 */
+
+.playlists_wrap {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    margin-top: 5rpx;
+    margin-left: 40rpx;
+}
+
+.playlists_pic image {
+    width: 120rpx;
+    height: 120rpx;
+    border-radius: 10rpx;
+}
+
+.playlists_desc {
+    margin-left: 25rpx;
+}
+
+.playlists_name {
+    /* 一行省略 */
+    display: -webkit-box;
+    overflow: hidden;
+    white-space: normal;
+    text-overflow: ellipsis;
+    word-wrap: break-word;
+    -webkit-line-clamp: 1;
+    -webkit-box-orient: vertical;
+}
+
+.playlists_name text {
+    font-size: 30rpx;
+}
+
+.playlists_artists {
+    line-height: 18rpx;
+    margin-bottom: 30rpx;
+}
+
+.playlists_artists text {
+    font-size: 28rpx;
+    color: #b3adad;
+}
+
+/* 电台 */
+
+.djRadios_wrap {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    margin-top: 20rpx;
+    margin-left: 40rpx;
+}
+
+.djRadios_pic image {
+    width: 120rpx;
+    height: 120rpx;
+    border-radius: 10rpx;
+}
+
+.djRadios_desc {
+    margin-left: 25rpx;
+}
+
+.djRadios_name {
+    /* 一行省略 */
+    display: -webkit-box;
+    overflow: hidden;
+    white-space: normal;
+    text-overflow: ellipsis;
+    word-wrap: break-word;
+    -webkit-line-clamp: 1;
+    -webkit-box-orient: vertical;
+}
+
+.djRadios_name text {
+    font-size: 30rpx;
+}
+
+.djRadios_artists text {
+    font-size: 28rpx;
+    color: #b3adad;
+}
+
+/* 用户 */
+
+.userprofiles_wrap {
+    display: flex;
+    /* flex-direction: row; */
+    justify-content: flex-start;
+    align-items: center;
+    margin-top: 40rpx;
+    margin-left: 40rpx;
+}
+
+.userprofiles_touxiang {
+    width: 20%;
+}
+
+.userprofiles_touxiang image {
+    width: 100rpx;
+    height: 100rpx;
+    border-radius: 50%;
+}
+
+.userprofiles_desc {
+    width: 60%;
+}
+
+.userprofiles_desc_wrap {
+    display: flex;
+    justify-content: flex-start;
+}
+
+.userprofiles_gender {
+    margin-left: 10rpx;
+    padding-bottom: 10rpx;
+}
+
+.nickname {
+    font-size: 33rpx;
+    margin-bottom: 10rpx;
+}
+
+.signature {
+    font-size: 25rpx;
+    color: rgb(141, 139, 139);
+    /* 一行省略 */
+    display: -webkit-box;
+    overflow: hidden;
+    white-space: normal;
+    text-overflow: ellipsis;
+    word-wrap: break-word;
+    -webkit-line-clamp: 1;
+    -webkit-box-orient: vertical;
+}
+
+.userprofiles_follow {
+    width: 120rpx;
+    height: 50rpx;
+    border: 1rpx solid red;
+    border-radius: 50rpx;
+    text-align: center;
+    line-height: 45rpx;
+}
+
+.userprofiles_follow text {
+    font-size: 30rpx;
+    color: red;
 }

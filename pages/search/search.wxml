@@ -89,7 +89,7 @@
     <view class="searchAll" wx:if="{{showResult}}">
         <view class="search_result_wrap">
             <view class="searchResult">
-                <scroll-view class="searchResult_scroll" scroll-x="{{true}}">
+                <scroll-view class="searchResult_scroll" scroll-x="{{true}}" scroll-left="{{scroll_left}}">
                     <view bindtap="activeNav" data-id="{{item.id}}" data-current="{{index}}" class="search_result_item{{currentTab===index?'_active':''}}" wx:for="{{searchType}}" wx:key="{{index}}">
                         {{item.name}}
                     </view>
@@ -101,7 +101,7 @@
             <swiper class="swiper" current="{{currentTab}}" duration="200" bindchange="swiperChange">
                 <swiper-item class="swiper-item">
                     <scroll-view scroll-y="{{true}}" bindscrolltolower="loadMore" style='height:100%'>
-                        <!-- 单曲处理 -->
+                        <!-- 单曲处理开始 -->
                         <view class="songArray_wrap" wx:for="{{singleList}}" wx:key="{{index}}">
                             <view class="songArray_inex">{{index+1}}</view>
                             <view class="songArray_content" bindtap="playMusic" data-id="{{item.id}}" data-index="{{index}}">
@@ -145,11 +145,12 @@
                                 </view>
                             </view>
                         </view>
-                        <!-- 视频处理 -->
+                        <!-- 视频处理结束 -->
                     </scroll-view>
                 </swiper-item>
                 <swiper-item class="swiper-item">
                     <scroll-view scroll-y="{{true}}" bindscrolltolower="loadMore" style='height:100%'>
+                        <!-- 歌手处理开始 -->
                         <view class="artists_wrap" wx:for="{{artistsList}}" wx:key="{{index}}">
                             <view class="touxiang">
                                 <image src='{{item.img1v1Url}}'></image>
@@ -158,19 +159,96 @@
                                 <text>{{item.name}}</text>
                             </view>
                         </view>
+                        <!-- 歌手处理结束 -->
                     </scroll-view>
                 </swiper-item>
                 <swiper-item class="swiper-item">
-                    <view>专辑（待完善）</view>
+                    <scroll-view scroll-y="{{true}}" bindscrolltolower="loadMore" style='height:100%'>
+                        <!-- 专辑处理开始 -->
+                        <view class="album_wrap" wx:for="{{albumsList}}" wx:key="{{index}}">
+                            <view class="album_pic">
+                                <image src='{{item.picUrl}}'></image>
+                            </view>
+                            <view class="album_desc">
+                                <view class=" album_name">
+                                    <text>{{item.name}}</text>
+                                    <text class="album_alias" decode="true">{{item.alias[0]==null?"":'&nbsp;('+item.alias[0]+')'}}</text>
+                                </view>
+                                <view class="album_artists">
+                                    <text>{{item.artist.name}} {{item.publishTime}}</text>
+                                </view>
+                            </view>
+                        </view>
+                        <!-- 专辑处理结束 -->
+                    </scroll-view>
                 </swiper-item>
                 <swiper-item class="swiper-item">
-                    <view>歌单（待完善）</view>
+                    <scroll-view scroll-y="{{true}}" bindscrolltolower="loadMore" style='height:100%'>
+                        <!-- 歌单处理开始 -->
+                        <view class="playlists_wrap" wx:for="{{playlistsList}}" wx:key="{{index}}">
+                            <view class="playlists_pic">
+                                <image src='{{item.coverImgUrl}}'></image>
+                            </view>
+                            <view class="playlists_desc">
+                                <view class=" playlists_name">
+                                    <text>{{item.name}}</text>
+                                </view>
+                                <view class="playlists_artists">
+                                    <text decode="true">
+                                        {{item.trackCount}}首&nbsp;by&nbsp;{{item.creator.nickname}}，播放{{util.formatPlayCount(item.playCount)}}次
+                                    </text>
+                                </view>
+                            </view>
+                        </view>
+                        <!-- 歌单处理结束 -->
+                    </scroll-view>
                 </swiper-item>
                 <swiper-item class="swiper-item">
-                    <view>主播电台（待完善）</view>
+                    <scroll-view scroll-y="{{true}}" bindscrolltolower="loadMore" style='height:100%'>
+                        <!-- 电台处理开始 -->
+                        <view class="djRadios_wrap" wx:for="{{djRadiosList}}" wx:key="{{index}}">
+                            <view class="djRadios_pic">
+                                <image src='{{item.picUrl}}'></image>
+                            </view>
+                            <view class="djRadios_desc">
+                                <view class=" djRadios_name">
+                                    <text>{{item.name}}</text>
+                                </view>
+                                <view class="djRadios_artists">
+                                    <text decode="true">{{item.dj.nickname}}</text>
+                                </view>
+                            </view>
+                        </view>
+                        <!-- 电台处理结束 -->
+                    </scroll-view>
                 </swiper-item>
                 <swiper-item class="swiper-item">
-                    <view>用户（待完善）</view>
+                    <scroll-view scroll-y="{{true}}" bindscrolltolower="loadMore" style='height:100%'>
+                        <!-- 用户处理开始 -->
+                        <view class="userprofiles_wrap" wx:for="{{userprofilesList}}" wx:key="{{index}}">
+                            <view class="userprofiles_touxiang">
+                                <image src='{{item.avatarUrl}}'></image>
+                            </view>
+                            <view class="userprofiles_desc">
+                                <view class="userprofiles_desc_wrap">
+                                    <view class="nickname">
+                                        <text>{{item.nickname}}</text>
+                                    </view>
+                                    <view class="userprofiles_gender">
+                                        <view wx:if="{{item.gender==1}}" class="iconfont icon-nan" style="color:#6699FF;line-height: 50rpx;font-size:35rpx;"></view>
+                                        <view wx:if="{{item.gender==2}}" class="iconfont icon-nv" style="color:#FF6699;line-height: 50rpx;font-size:30rpx;"></view>
+                                    </view>
+                                </view>
+                                <view class="signature">
+                                    <text>{{item.signature}}</text>
+                                </view>
+                            </view>
+                            <view class="userprofiles_follow">
+                                <text>+关注</text>
+                            </view>
+                        </view>
+                        <!-- 用户处理结束 -->
+                    </scroll-view>
                 </swiper-item>
             </swiper>
         </view>
