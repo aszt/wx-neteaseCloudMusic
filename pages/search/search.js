@@ -212,10 +212,14 @@ Page({
             for (var index in songs) {
               // 专辑
               var name = songs[index].album.name
+              // 封面拿不到啊！！！
+              var picUrl = songs[index].album.artist.img1v1Url
               // 歌手
               var singerName = songs[index].artists[0].name
-              songs[index].al = { name }
+              songs[index].al = { name, picUrl }
               songs[index].ar = [{ name: singerName }]
+              songs[index].dt = songs[index].duration
+
             };
             that.setData({
               singleList: songs
@@ -516,10 +520,12 @@ Page({
           for (var index in songs) {
             // 专辑
             var name = songs[index].album.name
+            var picUrl = songs[index].album.artist.img1v1Url
             // 歌手
             var singerName = songs[index].artists[0].name
-            songs[index].al = { name }
+            songs[index].al = { name, picUrl }
             songs[index].ar = [{ name: singerName }]
+            songs[index].dt = songs[index].duration
           };
           // console.log(songs);
           that.setData({

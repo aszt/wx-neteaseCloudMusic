@@ -93,7 +93,7 @@ Page({
     if (id == 2) {
       // 排行榜
       wx.navigateTo({
-        url: '../logs/logs',
+        url: '../rankingList/rankingList',
       })
     }
     if (id == 3) {

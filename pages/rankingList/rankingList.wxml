@@ -1,0 +1,86 @@
+<view class="main">
+    <!-- 官方榜 -->
+    <view class="officialList">
+        <view class="officialList_title">
+            <text>官方榜</text>
+        </view>
+        <view class="officialList_wrap" wx:for="{{officialList}}" wx:key="{{index}}">
+            <view class="officialList_img">
+                <image mode="widthFix" src="{{item.coverImgUrl}}" />
+                <view class="officialList_info">
+                    <view class="officialList_wrap">
+                        <text>{{item.updateFrequency}}</text>
+                    </view>
+                </view>
+            </view>
+            <view class="officialList_desc">
+                <view class="" wx:for="{{item.tracks}}" wx:for-item="item2" wx:for-index="index2" wx:key="{{index2}}">
+                    <text>{{index2+1}}.{{item2.first}}-{{item2.second}}</text>
+                </view>
+            </view>
+        </view>
+    </view>
+    <!-- 推荐榜 -->
+    <view class="officialList">
+        <view class="officialList_title">
+            <text>推荐榜</text>
+        </view>
+        <view class="recommendationList_wrap">
+            <view class="recommendationList_item" wx:for="{{recommendationList}}" wx:key="{{index}}">
+                <view class="recommendationList_img">
+                    <image mode="widthFix" src="{{item.coverImgUrl}}" />
+                    <view class="recommendationList_info">
+                        <!-- 播放量 -->
+                        <view>
+                            <text>{{item.updateFrequency}}</text>
+                        </view>
+                    </view>
+                </view>
+                <!-- 标题 -->
+                <view class="recommendationList_titles">{{item.name}}</view>
+            </view>
+        </view>
+    </view>
+    <!-- 全球榜 -->
+    <view class="officialList">
+        <view class="officialList_title">
+            <text>全球榜</text>
+        </view>
+        <view class="recommendationList_wrap">
+            <view class="recommendationList_item" wx:for="{{globalList}}" wx:key="{{index}}">
+                <view class="recommendationList_img">
+                    <image mode="widthFix" src="{{item.coverImgUrl}}" />
+                    <view class="recommendationList_info">
+                        <!-- 播放量 -->
+                        <view>
+                            <text>{{item.updateFrequency}}</text>
+                        </view>
+                    </view>
+                </view>
+                <!-- 标题 -->
+                <view class="recommendationList_titles">{{item.name}}</view>
+            </view>
+        </view>
+    </view>
+    <!-- 更多榜单 -->
+    <view class="officialList">
+        <view class="officialList_title">
+            <text>更多榜单</text>
+        </view>
+        <view class="recommendationList_wrap">
+            <view class="recommendationList_item" wx:for="{{moreList}}" wx:key="{{index}}">
+                <view class="recommendationList_img">
+                    <image mode="widthFix" src="{{item.coverImgUrl}}" />
+                    <view class="recommendationList_info">
+                        <!-- 播放量 -->
+                        <view>
+                            <text>{{item.updateFrequency}}</text>
+                        </view>
+                    </view>
+                </view>
+                <!-- 标题 -->
+                <view class="recommendationList_titles">{{item.name}}</view>
+            </view>
+        </view>
+    </view>
+</view>
