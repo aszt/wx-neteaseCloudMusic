@@ -27,3 +27,17 @@
     /* border: 1px solid red; */
     border-bottom: 2px solid #33CC99;
 }
+
+.topSong_content{
+  height: 6000rpx;
+}
+.swiper-item{
+  height: 6000rpx;
+}
+.topSong_img{
+height: 1000rpx;
+}
+.topSong_img image{
+  width: 100%;
+  
+}
