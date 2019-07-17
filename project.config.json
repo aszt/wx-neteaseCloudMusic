@@ -40,7 +40,7 @@
 			"list": []
 		},
 		"miniprogram": {
-			"current": 3,
+			"current": 4,
 			"list": [
 				{
 					"id": -1,
@@ -67,6 +67,13 @@
 					"id": -1,
 					"name": "排行榜",
 					"pathName": "pages/rankingList/rankingList",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "新歌速递",
+					"pathName": "pages/newsong/newsong",
 					"scene": null
 				}
 			]

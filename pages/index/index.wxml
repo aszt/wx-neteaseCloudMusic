@@ -81,7 +81,7 @@
           <view class="songSheet_title">
             <text>推荐歌单</text>
           </view>
-          <view class="songSheet_square">
+          <view class="songSheet_square" bindtap="openGedanSquare">
             <text>歌单广场</text>
           </view>
         </view>
@@ -107,6 +107,31 @@
             <view class="songSheet_titles">{{item.name}}</view>
           </view>
         </view>
+
+        <!-- 新歌 -->
+        <view class="songSheet_title_wrap">
+          <view class="newest_title">
+            <text class="choose">新歌</text>
+            <!-- <text class="notchoose">| 新歌</text> -->
+          </view>
+          <view class="songSheet_square" bindtap="openNewsong">
+            <text>新歌推荐</text>
+          </view>
+        </view>
+        <view class="{{music.id == null?'songSheet_wrap':'songSheet_wrap_active' }}">
+          <!-- 控制遍历数量3个 -->
+          <view url="../detail/detail?id={{item.id}}" class="songSheet_item" wx:for="{{newsong}}" wx:key wx:if="{{index<3}}">
+            <!-- 图片容器 -->
+            <view class="songSheet_img">
+              <!-- 图片 -->
+              <image mode="widthFix" bindtap="openSongSheet" data-id="{{item.id}}" src="{{item.song.album.picUrl}}" />
+            </view>
+            <!-- 标题 -->
+            <view class="songSheet_titles1">{{item.name}}</view>
+            <view class="songSheet_titles1">{{item.song.artists[0].name}}</view>
+          </view>
+        </view>
+
         <!-- 新碟 -->
         <view class="songSheet_title_wrap">
           <view class="newest_title">

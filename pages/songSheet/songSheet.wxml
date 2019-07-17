@@ -1,3 +1,4 @@
+<wxs src="../../utils/util.wxs" module="util"></wxs>
 <!-- 背景设置 -->
 <import src="../../template/pageplay.wxml" />
 <template is="pp" data="{{music:music,playing:playing,playtype:playtype}}" />
@@ -26,8 +27,8 @@
   <!-- 图标菜单 -->
   <view class="iconMenu_wrap">
     <view class="menu_item">
-      <view class="iconfont icon-pinglun" style="font-size:60rpx;color:white"></view>
-      <view class="menu_title">{{playInfo.commentCount}}</view>
+      <view class="iconfont icon-pinglun" style="font-size:60rpx;color:white;margin-left: 10rpx;"></view>
+      <view class="menu_title">{{util.formatPlayCount(playInfo.commentCount)}}</view>
     </view>
     <view class="menu_item">
       <view class="iconfont icon-fenxiang" style="font-size:60rpx;color:white"></view>
@@ -51,7 +52,7 @@
         <text class="songCount">(共{{playInfo.trackCount}}首)</text>
       </view>
       <view class="play3_border">
-        <view class="paly3">+ 收藏({{playInfo.subscribedCount}})</view>
+        <view class="paly3">+ 收藏({{util.formatPlayCount(playInfo.subscribedCount)}})</view>
       </view>
     </view>
     <view class="songArray_wrap" wx:for="{{playInfo.tracks}}" wx:key="{{index}}">
@@ -64,7 +65,8 @@
         </view>
         <view class="content_3">
           <!-- SQ音质图标处理 -->
-          <text wx:if="{{privileges[index].maxbr === 999000}}" class="iconfont icon-sq" style="color:red;" /> {{item.ar[0].name}}-{{item.al.name}}
+          <text wx:if="{{privileges[index].maxbr === 999000}}" class="iconfont icon-sq" style="color:red;" />
+          {{item.ar[0].name}}-{{item.al.name}}
         </view>
       </view>
       <!-- MV图标处理 -->

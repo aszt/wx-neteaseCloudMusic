@@ -1,6 +1,8 @@
 {
   "pages": [
     "pages/index/index",
+    "pages/newsong/newsong",
+    "pages/gedanSquare/gedanSquare",
     "pages/rankingList/rankingList",
     "pages/search/search",
     "pages/mv/mv",

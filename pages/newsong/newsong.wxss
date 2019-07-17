@@ -1,0 +1,29 @@
+.searchResult_scroll {
+    height: 100rpx;
+    width: 750rpx;
+    overflow: scroll;
+    white-space: nowrap;
+}
+
+.search_result_item {
+    width: 150rpx;
+    height: 100rpx;
+    /* padding: 20rpx 45rpx; */
+    font-size: 30rpx;
+    display: inline-block;
+    /* border: 1px solid red; */
+    text-align: center;
+    line-height: 100rpx;
+}
+.search_result_item_active {
+    width: 150rpx;
+    height: 100rpx;
+    text-align: center;
+    line-height: 100rpx;
+    /* padding: 20rpx 45rpx; */
+    font-size: 30rpx;
+    display: inline-block;
+    color: #33CC99;
+    /* border: 1px solid red; */
+    border-bottom: 2px solid #33CC99;
+}

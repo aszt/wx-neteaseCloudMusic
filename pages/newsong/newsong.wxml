@@ -1,0 +1,28 @@
+<view class="main">
+    <view class="topSong_title">
+        <scroll-view class="searchResult_scroll" scroll-x scroll-left="{{scroll_left}}">
+            <view bindtap="activeNav" data-id="{{item.id}}" data-current="{{index}}" class="search_result_item{{currentTab===index?'_active':''}}" wx:for="{{searchType}}" wx:key="{{index}}">
+                {{item.name}}
+            </view>
+        </scroll-view>
+    </view>
+    <view class="topSong_content">
+        <swiper class="swiper" current="{{currentTab}}" duration="200" bindchange="swiperChange">
+            <swiper-item class="swiper-item">
+                <text class="">1</text>
+            </swiper-item>
+            <swiper-item class="swiper-item">
+                <text class="">2</text>
+            </swiper-item>
+            <swiper-item class="swiper-item">
+                <text class="">3</text>
+            </swiper-item>
+            <swiper-item class="swiper-item">
+                <text class="">4</text>
+            </swiper-item>
+            <swiper-item class="swiper-item">
+                <text class="">5</text>
+            </swiper-item>
+        </swiper>
+    </view>
+</view>
