@@ -40,13 +40,13 @@
 			"list": []
 		},
 		"miniprogram": {
-			"current": 4,
+			"current": 0,
 			"list": [
 				{
-					"id": -1,
+					"id": 0,
 					"name": "歌单",
 					"pathName": "pages/songSheet/songSheet",
-					"query": "id=2853229030",
+					"query": "id=2853229030&type=0",
 					"scene": null
 				},
 				{
@@ -74,6 +74,7 @@
 					"id": -1,
 					"name": "新歌速递",
 					"pathName": "pages/newsong/newsong",
+					"query": "",
 					"scene": null
 				}
 			]

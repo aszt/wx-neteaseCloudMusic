@@ -192,7 +192,7 @@ Page({
                 'Content-Type': 'application/json'
             },
             success: function (res) {
-                console.log(res.data.result);
+                // console.log(res.data.result);
                 if (res.data.code == 200) {
                     that.setData({
                         newsong: res.data.result

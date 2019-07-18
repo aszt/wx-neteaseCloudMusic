@@ -61,7 +61,7 @@
         <view class="content_1">
           {{item.name}}
           <!-- undefined处理 -->
-          <text class="content_2">{{item.tns==null?"":'('+item.tns+')'}}</text>
+          <text class="content_2">{{item.alia[0]==null?"":'('+item.alia[0]+')'}}</text>
         </view>
         <view class="content_3">
           <!-- SQ音质图标处理 -->

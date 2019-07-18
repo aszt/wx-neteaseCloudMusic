@@ -8,38 +8,243 @@
   </view>
   <view class="topSong_content">
     <swiper class="swiper" current="{{currentTab}}" duration="200" bindchange="swiperChange">
-      <swiper-item class="swiper-item">
+      <!-- 推荐音乐 -->
+      <swiper-item class="swiper-item" id="tuijian">
         <view class='topSong_wrap'>
           <view class='topSong_img'>
             <image mode='widthFix' src='../../images/tuijian.png' />
           </view>
+          <view class="songList_wrap">
+            <view class="songList_wrap_title">
+              <view id="play" class="iconfont icon-bofang" style="font-size:50rpx;color:#333333"></view>
+              <view class="paly2" bindtap="playMusic" data-type="0" data-id="{{newsong[0].id}}" data-index="0">
+                播放全部
+                <text class="songCount">(共{{newsong.length}}首)</text>
+              </view>
+              <view class="play3_border">
+                <view class="iconfont icon-caidan1" style="font-size:40rpx;color:black"></view>
+              </view>
+              <view class="paly3">多选</view>
+            </view>
+            <view class="songArray_wrap" wx:for="{{newsong}}" wx:key="{{index}}">
+              <view class="songArray_inex">
+                <image src="{{item.song.album.picUrl}}" />
+              </view>
+              <view class="songArray_content" bindtap="playMusic" data-type="0" data-id="{{item.id}}" data-index="{{index}}">
+                <view class="content_1">
+                  {{item.name}}
+                  <!-- undefined处理 -->
+                  <text class="content_2">{{item.tns==null?"":'('+item.tns+')'}}</text>
+                </view>
+                <view class="content_3">
+                  <!-- SQ音质图标处理 -->
+                  <text wx:if="{{item.song.privilege.maxbr === 999000}}" class="iconfont icon-sq" style="color:red;" />
+                  {{item.song.artists[0].name}}-{{item.song.album.name}}
+                </view>
+              </view>
+              <!-- MV图标处理 -->
+              <view class='songArray_mv'>
+                <view wx:if="{{item.song.mvid!==0}}">
+                  <view id="songArray_mv" class="iconfont icon-Youtube" style="font-size:40rpx" bindtap="playMv" data-id="{{item.song.mvid}}"></view>
+                </view>
+                <view wx:else>
+                  <view id="songArray_mv" class="iconfont icon-Youtube" style="color:white;"></view>
+                </view>
+              </view>
+              <view id="songArray_other" class="iconfont icon-caidan2" style="color:#CCCCCC;font-size:40rpx"></view>
+            </view>
+          </view>
         </view>
       </swiper-item>
+      <!-- 华语音乐 -->
       <swiper-item class="swiper-item">
         <view class='topSong_wrap'>
           <view class='topSong_img'>
             <image mode='widthFix' src='../../images/huayu.png' />
           </view>
+          <view class="songList_wrap">
+            <view class="songList_wrap_title">
+              <view id="play" class="iconfont icon-bofang" style="font-size:50rpx;color:#333333"></view>
+              <view class="paly2" bindtap="playMusic" data-type="1" data-id="{{huayusong[0].id}}" data-index="0">
+                播放全部
+                <text class="songCount">(共{{huayusong.length}}首)</text>
+              </view>
+              <view class="play3_border">
+                <view class="iconfont icon-caidan1" style="font-size:40rpx;color:black"></view>
+              </view>
+              <view class="paly3">多选</view>
+            </view>
+            <view class="songArray_wrap" wx:for="{{huayusong}}" wx:key="{{index}}">
+              <view class="songArray_inex">
+                <image src="{{item.album.picUrl}}" />
+              </view>
+              <view class="songArray_content" bindtap="playMusic" data-type="1" data-id="{{item.id}}" data-index="{{index}}">
+                <view class="content_1">
+                  {{item.name}}
+                  <!-- undefined处理 -->
+                  <text class="content_2">{{item.alias[0]==null?"":'('+item.alias[0]+')'}}</text>
+                </view>
+                <view class="content_3">
+                  <!-- SQ音质图标处理 -->
+                  <text wx:if="{{item.privilege.maxbr === 999000}}" class="iconfont icon-sq" style="color:red;" />
+                  {{item.artists[0].name}}-{{item.album.name}}
+                </view>
+              </view>
+              <!-- MV图标处理 -->
+              <view class='songArray_mv'>
+                <view wx:if="{{item.mvid!==0}}">
+                  <view id="songArray_mv" class="iconfont icon-Youtube" style="font-size:40rpx" bindtap="playMv" data-id="{{item.mvid}}"></view>
+                </view>
+                <view wx:else>
+                  <view id="songArray_mv" class="iconfont icon-Youtube" style="color:white;"></view>
+                </view>
+              </view>
+              <view id="songArray_other" class="iconfont icon-caidan2" style="color:#CCCCCC;font-size:40rpx"></view>
+            </view>
+          </view>
         </view>
       </swiper-item>
+      <!-- 欧美音乐 -->
       <swiper-item class="swiper-item">
         <view class='topSong_wrap'>
           <view class='topSong_img'>
             <image mode='widthFix' src='../../images/oumei.png' />
           </view>
+          <view class="songList_wrap">
+            <view class="songList_wrap_title">
+              <view id="play" class="iconfont icon-bofang" style="font-size:50rpx;color:#333333"></view>
+              <view class="paly2" bindtap="playMusic" data-type="2" data-id="{{oumeisong[0].id}}" data-index="0">
+                播放全部
+                <text class="songCount">(共{{oumeisong.length}}首)</text>
+              </view>
+              <view class="play3_border">
+                <view class="iconfont icon-caidan1" style="font-size:40rpx;color:black"></view>
+              </view>
+              <view class="paly3">多选</view>
+            </view>
+            <view class="songArray_wrap" wx:for="{{oumeisong}}" wx:key="{{index}}">
+              <view class="songArray_inex">
+                <image src="{{item.album.picUrl}}" />
+              </view>
+              <view class="songArray_content" bindtap="playMusic" data-type="2" data-id="{{item.id}}" data-index="{{index}}">
+                <view class="content_1">
+                  {{item.name}}
+                  <!-- undefined处理 -->
+                  <text class="content_2">{{item.alias[0]==null?"":'('+item.alias[0]+')'}}</text>
+                </view>
+                <view class="content_3">
+                  <!-- SQ音质图标处理 -->
+                  <text wx:if="{{item.privilege.maxbr === 999000}}" class="iconfont icon-sq" style="color:red;" />
+                  {{item.artists[0].name}}-{{item.album.name}}
+                </view>
+              </view>
+              <!-- MV图标处理 -->
+              <view class='songArray_mv'>
+                <view wx:if="{{item.mvid!==0}}">
+                  <view id="songArray_mv" class="iconfont icon-Youtube" style="font-size:40rpx" bindtap="playMv" data-id="{{item.mvid}}"></view>
+                </view>
+                <view wx:else>
+                  <view id="songArray_mv" class="iconfont icon-Youtube" style="color:white;"></view>
+                </view>
+              </view>
+              <view id="songArray_other" class="iconfont icon-caidan2" style="color:#CCCCCC;font-size:40rpx"></view>
+            </view>
+          </view>
         </view>
       </swiper-item>
+      <!-- 韩国音乐 -->
       <swiper-item class="swiper-item">
         <view class='topSong_wrap'>
           <view class='topSong_img'>
             <image mode='widthFix' src='../../images/hanguo.png' />
           </view>
+          <view class="songList_wrap">
+            <view class="songList_wrap_title">
+              <view id="play" class="iconfont icon-bofang" style="font-size:50rpx;color:#333333"></view>
+              <view class="paly2" bindtap="playMusic" data-type="3" data-id="{{hanguosong[0].id}}" data-index="0">
+                播放全部
+                <text class="songCount">(共{{hanguosong.length}}首)</text>
+              </view>
+              <view class="play3_border">
+                <view class="iconfont icon-caidan1" style="font-size:40rpx;color:black"></view>
+              </view>
+              <view class="paly3">多选</view>
+            </view>
+            <view class="songArray_wrap" wx:for="{{hanguosong}}" wx:key="{{index}}">
+              <view class="songArray_inex">
+                <image src="{{item.album.picUrl}}" />
+              </view>
+              <view class="songArray_content" bindtap="playMusic" data-type="3" data-id="{{item.id}}" data-index="{{index}}">
+                <view class="content_1">
+                  {{item.name}}
+                  <!-- undefined处理 -->
+                  <text class="content_2">{{item.alias[0]==null?"":'('+item.alias[0]+')'}}</text>
+                </view>
+                <view class="content_3">
+                  <!-- SQ音质图标处理 -->
+                  <text wx:if="{{item.privilege.maxbr === 999000}}" class="iconfont icon-sq" style="color:red;" />
+                  {{item.artists[0].name}}-{{item.album.name}}
+                </view>
+              </view>
+              <!-- MV图标处理 -->
+              <view class='songArray_mv'>
+                <view wx:if="{{item.mvid!==0}}">
+                  <view id="songArray_mv" class="iconfont icon-Youtube" style="font-size:40rpx" bindtap="playMv" data-id="{{item.mvid}}"></view>
+                </view>
+                <view wx:else>
+                  <view id="songArray_mv" class="iconfont icon-Youtube" style="color:white;"></view>
+                </view>
+              </view>
+              <view id="songArray_other" class="iconfont icon-caidan2" style="color:#CCCCCC;font-size:40rpx"></view>
+            </view>
+          </view>
         </view>
       </swiper-item>
+      <!-- 日本音乐 -->
       <swiper-item class="swiper-item">
         <view class='topSong_wrap'>
           <view class='topSong_img'>
             <image mode='widthFix' src='../../images/riben.png' />
+          </view>
+          <view class="songList_wrap">
+            <view class="songList_wrap_title">
+              <view id="play" class="iconfont icon-bofang" style="font-size:50rpx;color:#333333"></view>
+              <view class="paly2" bindtap="playMusic" data-type="4" data-id="{{ribensong[0].id}}" data-index="0">
+                播放全部
+                <text class="songCount">(共{{ribensong.length}}首)</text>
+              </view>
+              <view class="play3_border">
+                <view class="iconfont icon-caidan1" style="font-size:40rpx;color:black"></view>
+              </view>
+              <view class="paly3">多选</view>
+            </view>
+            <view class="songArray_wrap" wx:for="{{ribensong}}" wx:key="{{index}}">
+              <view class="songArray_inex">
+                <image src="{{item.album.picUrl}}" />
+              </view>
+              <view class="songArray_content" bindtap="playMusic" data-type="4" data-id="{{item.id}}" data-index="{{index}}">
+                <view class="content_1">
+                  {{item.name}}
+                  <!-- undefined处理 -->
+                  <text class="content_2">{{item.alias[0]==null?"":'('+item.alias[0]+')'}}</text>
+                </view>
+                <view class="content_3">
+                  <!-- SQ音质图标处理 -->
+                  <text wx:if="{{item.privilege.maxbr === 999000}}" class="iconfont icon-sq" style="color:red;" />
+                  {{item.artists[0].name}}-{{item.album.name}}
+                </view>
+              </view>
+              <!-- MV图标处理 -->
+              <view class='songArray_mv'>
+                <view wx:if="{{item.mvid!==0}}">
+                  <view id="songArray_mv" class="iconfont icon-Youtube" style="font-size:40rpx" bindtap="playMv" data-id="{{item.mvid}}"></view>
+                </view>
+                <view wx:else>
+                  <view id="songArray_mv" class="iconfont icon-Youtube" style="color:white;"></view>
+                </view>
+              </view>
+              <view id="songArray_other" class="iconfont icon-caidan2" style="color:#CCCCCC;font-size:40rpx"></view>
+            </view>
           </view>
         </view>
       </swiper-item>
