@@ -44,7 +44,7 @@
             <view class='action-item'>
                 <image src='../../images/cm2_play_icn_dld@2x.png' />
             </view>
-            <navigator class='action-item' url='/pages/comments/index'>
+            <navigator class='action-item' url='../comment/comment?id={{music.id}}+&type=1'>
                 <image src='../../images/cm2_play_icn_cmt_num@2x.png' />
                 <text>{{totalCountComments > 999 ? '999+': totalCountComments}}</text>
             </navigator>

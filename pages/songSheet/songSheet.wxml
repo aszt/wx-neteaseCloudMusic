@@ -22,12 +22,14 @@
         <view class="content_nickname">{{playInfo.creator.nickname}}</view>
         <view class="iconfont icon-jiankuohaoxiyou" style="color:#F5F5F5;line-height: 73rpx;font-size:35rpx;"></view>
       </view>
-      <view class="content_description">{{playInfo.description}}</view>
+      <view class="content_description">
+        {{playInfo.description==null?"":playInfo.description}}
+      </view>
     </view>
   </view>
   <!-- 图标菜单 -->
   <view class="iconMenu_wrap">
-    <view class="menu_item">
+    <view class="menu_item" bindtap="getComment" data-id="{{playInfo.id}}">
       <view class="iconfont icon-pinglun" style="font-size:60rpx;color:white;margin-left: 10rpx;"></view>
       <view class="menu_title">{{util.formatPlayCount(playInfo.commentCount)}}</view>
     </view>

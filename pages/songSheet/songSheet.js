@@ -125,6 +125,14 @@ Page({
         })
     },
 
+    // 歌单评论
+    getComment: function (e) {
+        var id = e.currentTarget.dataset.id;
+        wx.navigateTo({
+            url: '../comment/comment?id=' + id + "&type=" + 0
+        })
+    },
+
     /**
      * 生命周期函数--监听页面初次渲染完成
      */

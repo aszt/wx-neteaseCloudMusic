@@ -1,0 +1,85 @@
+<import src="../../template/loading/loading.wxml" />
+<template wx:if="{{loading}}" is="loading" />
+<view class="context" wx:if="{{!loading}}">
+    <!-- 精彩评论 -->
+    <view class="relatedAllvideo_title">
+        <text class="comment_title">精彩评论</text>
+    </view>
+    <!-- 评论主体 -->
+    <view class='comment_wrap' wx:for="{{hotComments}}" wx:key="{{index}}">
+        <!-- 左边头像 -->
+        <view class="comment_left">
+            <image src="{{item.user.avatarUrl}}" />
+        </view>
+        <!-- 右边内容 -->
+        <view class="comment_right">
+            <!-- 名称及点赞 -->
+            <view class="comment_info">
+                <view class="comment_info_left">
+                    <view class="comment_name">{{item.user.nickname}}</view>
+                    <view class="comment_time">{{item.time}}</view>
+                </view>
+                <view class="comment_info_right">
+                    <text class="comment_dianzan">{{item.likedCount}}</text>
+                    <text class="iconfont icon-dianzan1" style="font-size:48rpx;color:#b6b3b3"></text>
+                </view>
+            </view>
+            <!-- 内容 -->
+            <view class="comment_content">
+                <!-- <text> -->
+                <block wx:for="{{item.content}}" wx:for-item="re" wx:key="">
+                    <block wx:if="{{re.node == 'text'}}">{{re.text}}</block>
+                    <block wx:elif="{{re.node == 'element'}}">
+                        <image class="wxEmoji" src="http://s1.music.126.net/style/web2/emt//emoji_{{re.text}}.png" />
+                    </block>
+                </block>
+                <!-- </text> -->
+            </view>
+            <!-- 回复无 -->
+            <view></view>
+            <!-- 分割线 -->
+            <view class="xian"></view>
+        </view>
+    </view>
+    <!-- 最新评论 -->
+    <view class="relatedAllvideo_title">
+        <text class="comment_title">最新评论</text>
+        <text class="comment_total" decode="true">&nbsp;{{total}}</text>
+    </view>
+    <view class='comment_wrap' wx:for="{{comments}}" wx:key="{{index}}">
+        <!-- 左边头像 -->
+        <view class="comment_left">
+            <image src="{{item.user.avatarUrl}}" />
+        </view>
+        <!-- 右边内容 -->
+        <view class="comment_right">
+            <!-- 名称及点赞 -->
+            <view class="comment_info">
+                <view class="comment_info_left">
+                    <view class="comment_name">{{item.user.nickname}}</view>
+                    <view class="comment_time">{{item.time}}</view>
+                </view>
+                <view class="comment_info_right">
+                    <text class="comment_dianzan">{{item.likedCount}}</text>
+                    <text class="iconfont icon-dianzan1" style="font-size:48rpx;color:#b6b3b3"></text>
+                </view>
+            </view>
+            <!-- 内容 -->
+            <view class="comment_content">
+                <!-- <text> -->
+                <block wx:for="{{item.content}}" wx:for-item="re" wx:key="">
+                    <block wx:if="{{re.node == 'text'}}">{{re.text}}</block>
+                    <block wx:elif="{{re.node == 'element'}}">
+                        <image class="wxEmoji" src="http://s1.music.126.net/style/web2/emt//emoji_{{re.text}}.png" />
+                    </block>
+                </block>
+                <!-- </text> -->
+            </view>
+            <!-- 回复 -->
+            <view></view>
+            <!-- 分割线 -->
+            <view class="xian"></view>
+        </view>
+    </view>
+    <template wx:if="{{loadingMore}}" is="loading" />
+</view>

@@ -1,0 +1,87 @@
+.context {
+    width: 100%;
+}
+
+.relatedAllvideo_title {
+    margin-left: 40rpx;
+    margin-top: 40rpx;
+}
+
+.relatedAllvideo_title comment_title {
+    font-size: 35rpx;
+    font-weight: 600;
+}
+
+.comment_wrap {
+    display: flex;
+    justify-content: space-between;
+    /* border: 1px solid #cccccc; */
+    margin-left: 40rpx;
+    margin-right: 40rpx;
+    margin-top: 40rpx;
+}
+
+.comment_info {
+    display: flex;
+    justify-content: space-between;
+}
+
+.comment_left {
+    width: 10%;
+    margin-right: 25rpx;
+}
+
+.comment_left image {
+    width: 70rpx;
+    height: 70rpx;
+    border-radius: 50%;
+}
+
+.comment_right {
+    width: 90%;
+}
+
+@import "../../template/loading/loading.wxss";
+.comment_name {
+    font-size: 30rpx;
+    color: rgb(155, 153, 153);
+}
+
+.comment_time {
+    font-size: 22rpx;
+    color: #b6b3b3;
+}
+
+.comment_dianzan {
+    font-size: 30rpx;
+    color: #b6b3b3;
+    margin-right: 10rpx;
+}
+
+/* .comment_content {
+    padding-bottom: 30rpx;
+    border-bottom: 1rpx solid #ece8e8;
+} */
+
+.comment_content {
+    font-size: 30rpx;
+    padding-top: 30rpx;
+}
+
+.wxEmoji {
+    vertical-align: middle;
+    width: 42rpx;
+    height: 42rpx;
+    margin: 0 3rpx;
+}
+
+.xian {
+    width: 100%;
+    height: 30rpx;
+    border-bottom: 1rpx solid #ece8e8;
+}
+
+.comment_total {
+    font-size: 30rpx;
+    color: #b6b3b3;
+}
