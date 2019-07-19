@@ -1,4 +1,4 @@
-@import "../../template/pageplay.wxss";
+@import "../../template/pageplay/pageplay.wxss";
 page {
   color: #666;
 }

@@ -1,4 +1,4 @@
-<import src="../../template/pageplay.wxml" />
+<import src="../../template/pageplay/pageplay.wxml" />
 <template is="pp" data="{{music:music,playing:playing,playtype:playtype}}" />
 <view class="main">
   <!-- 头部 -->

@@ -1,6 +1,7 @@
 <wxs src="../../utils/util.wxs" module="util"></wxs>
 <!-- 背景设置 -->
-<import src="../../template/pageplay.wxml" />
+<import src="../../template/pageplay/pageplay.wxml" />
+<import src="../../template/loading/loading.wxml" />
 <template is="pp" data="{{music:music,playing:playing,playtype:playtype}}" />
 <view class='play-list-bg' style='background-image: url({{playInfo.coverImgUrl}})' />
 <view class="main">
@@ -55,6 +56,7 @@
         <view class="paly3">+ 收藏({{util.formatPlayCount(playInfo.subscribedCount)}})</view>
       </view>
     </view>
+    <template wx:if="{{loading}}" is="loading" />
     <view class="songArray_wrap" wx:for="{{playInfo.tracks}}" wx:key="{{index}}">
       <view class="songArray_inex">{{index+1}}</view>
       <view class="songArray_content" bindtap="playMusic" data-id="{{item.id}}" data-index="{{index}}">

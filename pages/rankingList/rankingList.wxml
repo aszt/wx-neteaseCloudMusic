@@ -1,4 +1,8 @@
-<view class="main">
+<import src="../../template/loading/loading.wxml" />
+<view hidden="{{!loading}}" style="height: 100%">
+    <template is="loading" />
+</view>
+<view class="main" hidden="{{loading}}">
     <!-- 官方榜 -->
     <view class="officialList">
         <view class="officialList_title">

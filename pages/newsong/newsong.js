@@ -31,10 +31,15 @@ Page({
     ],
     // 推荐新音乐
     newsong: [],
+    newsongloading: true,
     huayusong: [],
+    huayusongloading: true,
     oumeisong: [],
+    oumeisongloading: true,
     hanguosong: [],
+    hanguosongloading: true,
     ribensong: [],
+    ribensongloading: true,
   },
 
   activeNav: function (e) {
@@ -106,7 +111,8 @@ Page({
             result[index].dt = result[index].song.duration
           }
           that.setData({
-            newsong: result
+            newsong: result,
+            newsongloading: false
           })
         }
       }
@@ -133,7 +139,8 @@ Page({
             result[index].dt = result[index].duration
           }
           that.setData({
-            huayusong: result
+            huayusong: result,
+            huayusongloading: false
           })
         }
       }
@@ -187,7 +194,8 @@ Page({
             result[index].dt = result[index].duration
           }
           that.setData({
-            oumeisong: result
+            oumeisong: result,
+            oumeisongloading: false
           })
         }
       }
@@ -214,7 +222,8 @@ Page({
             result[index].dt = result[index].duration
           }
           that.setData({
-            hanguosong: result
+            hanguosong: result,
+            hanguosongloading: false
           })
         }
       }
@@ -241,7 +250,8 @@ Page({
             result[index].dt = result[index].duration
           }
           that.setData({
-            ribensong: result
+            ribensong: result,
+            ribensongloading: false
           })
         }
       }

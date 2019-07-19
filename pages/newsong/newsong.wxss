@@ -1,3 +1,4 @@
+@import "../../template/loading/loading.wxss";
 .searchResult_scroll {
   height: 100rpx;
   width: 750rpx;

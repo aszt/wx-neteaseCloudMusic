@@ -1,0 +1,40 @@
+@keyframes cnloading{
+	0%{ transform: translateY(0rpx)}
+	50%{ transform: translateY(20rpx)}
+	100%{ transform: translateY(0rpx)}
+}
+.cntloading {
+    padding: 30rpx 0;
+    text-align: center;
+    color: #888;
+    font-size: 26rpx;
+}
+
+.cntloading view {
+    display: inline-block;
+    vertical-align: baseline;
+    height: 30rpx;
+    overflow: hidden;
+    margin-left: 10rpx;
+}
+
+.cntloading text {
+    width: 5rpx;
+    height: 30rpx;
+    /* background-color: #d33a31; */
+    background-color: #3c9;
+    position: relative;
+    display: inline-block;
+    margin-right: 6rpx;
+    border-radius: 3rpx;
+    animation: cnloading .9s linear infinite;
+    transform-origin: center bottom;
+}
+
+.cntloading .cl2 {
+    animation-delay: -.6s
+}
+
+.cntloading .cl3 {
+    animation-delay: -.3s
+}

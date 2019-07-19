@@ -1,5 +1,5 @@
 /* 官方榜 */
-
+@import "../../template/loading/loading.wxss";
 .officialList {
     margin-left: 30rpx;
 }

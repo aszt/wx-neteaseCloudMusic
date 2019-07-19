@@ -1,2 +1,60 @@
-<!--pages/gedanSquare/gedanSquare.wxml-->
-<text>pages/gedanSquare/gedanSquare.wxml</text>
+<import src="../../template/loading/loading.wxml" />
+<!-- 歌单 -->
+<view class="main">
+    <view class="gedan_tab">
+        <view class="gedan_select">
+            <text class="">{{catelist.checked.name}}</text>
+        </view>
+        <view>
+            <text bindtap="togglePtype" class="catselectbtn">选择分类</text>
+        </view>
+    </view>
+    <view class="gedan_content">
+        <view hidden="{{!loading}}" style="height: 100%">
+            <template is="loading" />
+        </view>
+        <block wx:if="{{playlist.loading}}">
+            <view class="songSheet_wrap">
+                <!-- 控制遍历数量6个 -->
+                <view class="songSheet_item" wx:for="{{playlist.list.playlists}}" wx:key="{{item.id}}">
+                    <!-- 图片容器 -->
+                    <view class="songSheet_img">
+                        <!-- 图片 -->
+                        <image bindtap="openSongSheet" data-id="{{item.id}}" src="{{item.coverImgUrl}}" />
+                        <!-- 播放量。。。 -->
+                        <view class="songSheet_info">
+                            <!-- 播放量 -->
+                            <view class="play_count_wrap">
+                                <!-- 图标 -->
+                                <text class="iconfont icon-play" style="font-size:30rpx;"></text>
+                                <!-- 数值 -->
+                                <text class="play_count">{{item.playCount}}万</text>
+                            </view>
+                        </view>
+                    </view>
+                    <!-- 标题 -->
+                    <view class="songSheet_titles">{{item.name}}</view>
+                </view>
+                <template wx:if="{{!playlist.loading||playlist.list.more}}" is="loading" />
+            </view>
+        </block>
+    </view>
+    <scroll-view style="height:100%" id="catewrap" scroll-into-view="c2" scroll-y="true" hidden="{{!cateisShow}}">
+        <view class="close" bindtap="togglePtype" id="closecatelist"></view>
+        <view id="cateall" data-catype="{{catelist.res.all}}" bindtap="cateselect" class="cl_list {{catelist.checked.name==catelist.res.all.name?'checked':''}}">
+            <text class="cl_ico_checked cl_ico" wx:if="{{catelist.checked.name==catelist.res.all.name}}"></text>
+            {{catelist.res.all.name}}
+        </view>
+        <view class="catelist" id="c{{idx}}" wx:key="{{item}}" wx:for-items="{{catelist.res.categories}}" wx:for-index="idx">
+            <view class="cl_list cl_ico">
+                <image src="../../images/cm2_discover_icn_{{idx}}@2x.png"></image>
+                <text>{{item}}</text>
+            </view>
+            <view class="cl_list {{catelist.checked.name==re.name?'checked':''}} " wx:if="{{re.category==idx}}" bindtap="cateselect" data-catype="{{re}}" data-catname="{{re.name}}" wx:for-items="{{catelist.res.sub}}" wx:key="{{item.name}}" wx:for-item="re">
+                <text class="cl_ico_hot cl_ico" wx:if="{{re.hot}}"></text>
+                <text class="cl_ico_checked cl_ico" wx:if="{{catelist.checked.name==re.name}}"></text>
+                {{re.name}}
+            </view>
+        </view>
+    </scroll-view>
+</view>

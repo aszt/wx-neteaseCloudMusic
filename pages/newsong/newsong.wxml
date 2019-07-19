@@ -1,3 +1,4 @@
+<import src="../../template/loading/loading.wxml" />
 <view class="main">
   <view class="topSong_title">
     <scroll-view class="searchResult_scroll" scroll-x scroll-left="{{scroll_left}}">
@@ -26,6 +27,7 @@
               </view>
               <view class="paly3">多选</view>
             </view>
+            <template wx:if="{{newsongloading}}" is="loading" />
             <view class="songArray_wrap" wx:for="{{newsong}}" wx:key="{{index}}">
               <view class="songArray_inex">
                 <image src="{{item.song.album.picUrl}}" />
@@ -74,6 +76,7 @@
               </view>
               <view class="paly3">多选</view>
             </view>
+            <template wx:if="{{huayusongloading}}" is="loading" />
             <view class="songArray_wrap" wx:for="{{huayusong}}" wx:key="{{index}}">
               <view class="songArray_inex">
                 <image src="{{item.album.picUrl}}" />
@@ -122,6 +125,7 @@
               </view>
               <view class="paly3">多选</view>
             </view>
+            <template wx:if="{{oumeisongloading}}" is="loading" />
             <view class="songArray_wrap" wx:for="{{oumeisong}}" wx:key="{{index}}">
               <view class="songArray_inex">
                 <image src="{{item.album.picUrl}}" />
@@ -170,6 +174,7 @@
               </view>
               <view class="paly3">多选</view>
             </view>
+            <template wx:if="{{hanguosongloading}}" is="loading" />
             <view class="songArray_wrap" wx:for="{{hanguosong}}" wx:key="{{index}}">
               <view class="songArray_inex">
                 <image src="{{item.album.picUrl}}" />
@@ -218,6 +223,7 @@
               </view>
               <view class="paly3">多选</view>
             </view>
+            <template wx:if="{{ribensongloading}}" is="loading" />
             <view class="songArray_wrap" wx:for="{{ribensong}}" wx:key="{{index}}">
               <view class="songArray_inex">
                 <image src="{{item.album.picUrl}}" />
