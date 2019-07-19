@@ -1,4 +1,5 @@
 <wxs src="../../utils/util.wxs" module="util"></wxs>
+<import src="../../template/loading/loading.wxml" />
 <view class="main">
     <!-- 搜索部分 -->
     <view class="search_title">
@@ -101,6 +102,7 @@
             <swiper class="swiper" current="{{currentTab}}" duration="200" bindchange="swiperChange">
                 <swiper-item class="swiper-item">
                     <scroll-view scroll-y="{{true}}" bindscrolltolower="loadMore" style='height:100%'>
+                        <template wx:if="{{singleloading}}" is="loading" />
                         <!-- 单曲处理开始 -->
                         <view class="songArray_wrap" wx:for="{{singleList}}" wx:key="{{index}}">
                             <view class="songArray_inex">{{index+1}}</view>
@@ -120,10 +122,12 @@
                             <view id="songArray_other" class="iconfont icon-caidan2" style="color:#CCCCCC;"></view>
                         </view>
                         <!-- 单曲处理结束 -->
+                        <template wx:if="{{singleloadingmore}}" is="loading" />
                     </scroll-view>
                 </swiper-item>
                 <swiper-item class="swiper-item">
                     <scroll-view scroll-y="{{true}}" bindscrolltolower="loadMore" style='height:100%'>
+                        <template wx:if="{{videoloading}}" is="loading" />
                         <!-- 视频处理开始 -->
                         <view class="relatedAllvideo" wx:for="{{videoList}}" wx:key="{{index}}" bindtap="openMv" data-id="{{item.vid}}" data-type="{{item.type}}">
                             <view class="relatedAllvideo_img">
@@ -146,10 +150,12 @@
                             </view>
                         </view>
                         <!-- 视频处理结束 -->
+                        <template wx:if="{{videoloadingmore}}" is="loading" />
                     </scroll-view>
                 </swiper-item>
                 <swiper-item class="swiper-item">
                     <scroll-view scroll-y="{{true}}" bindscrolltolower="loadMore" style='height:100%'>
+                        <template wx:if="{{artistsloading}}" is="loading" />
                         <!-- 歌手处理开始 -->
                         <view class="artists_wrap" wx:for="{{artistsList}}" wx:key="{{index}}">
                             <view class="touxiang">
@@ -160,10 +166,12 @@
                             </view>
                         </view>
                         <!-- 歌手处理结束 -->
+                        <template wx:if="{{artistsloadingmore}}" is="loading" />
                     </scroll-view>
                 </swiper-item>
                 <swiper-item class="swiper-item">
                     <scroll-view scroll-y="{{true}}" bindscrolltolower="loadMore" style='height:100%'>
+                        <template wx:if="{{albumsloading}}" is="loading" />
                         <!-- 专辑处理开始 -->
                         <view class="album_wrap" wx:for="{{albumsList}}" wx:key="{{index}}">
                             <view class="album_pic">
@@ -181,10 +189,12 @@
                             </view>
                         </view>
                         <!-- 专辑处理结束 -->
+                        <template wx:if="{{albumsloadingmore}}" is="loading" />
                     </scroll-view>
                 </swiper-item>
                 <swiper-item class="swiper-item">
                     <scroll-view scroll-y="{{true}}" bindscrolltolower="loadMore" style='height:100%'>
+                        <template wx:if="{{playlistsloading}}" is="loading" />
                         <!-- 歌单处理开始 -->
                         <view class="playlists_wrap" wx:for="{{playlistsList}}" wx:key="{{index}}" data-id="{{item.id}}" bindtap="openSongSheet">
                             <view class="playlists_pic">
@@ -202,10 +212,12 @@
                             </view>
                         </view>
                         <!-- 歌单处理结束 -->
+                        <template wx:if="{{playlistsloadingmore}}" is="loading" />
                     </scroll-view>
                 </swiper-item>
                 <swiper-item class="swiper-item">
                     <scroll-view scroll-y="{{true}}" bindscrolltolower="loadMore" style='height:100%'>
+                        <template wx:if="{{djRadiosloading}}" is="loading" />
                         <!-- 电台处理开始 -->
                         <view class="djRadios_wrap" wx:for="{{djRadiosList}}" wx:key="{{index}}">
                             <view class="djRadios_pic">
@@ -221,10 +233,12 @@
                             </view>
                         </view>
                         <!-- 电台处理结束 -->
+                        <template wx:if="{{djRadiosloadingmore}}" is="loading" />
                     </scroll-view>
                 </swiper-item>
                 <swiper-item class="swiper-item">
                     <scroll-view scroll-y="{{true}}" bindscrolltolower="loadMore" style='height:100%'>
+                        <template wx:if="{{userprofilesloading}}" is="loading" />
                         <!-- 用户处理开始 -->
                         <view class="userprofiles_wrap" wx:for="{{userprofilesList}}" wx:key="{{index}}">
                             <view class="userprofiles_touxiang">
@@ -249,6 +263,7 @@
                             </view>
                         </view>
                         <!-- 用户处理结束 -->
+                        <template wx:if="{{userprofilesloadingmore}}" is="loading" />
                     </scroll-view>
                 </swiper-item>
             </swiper>
