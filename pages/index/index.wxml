@@ -124,7 +124,7 @@
             <!-- 图片容器 -->
             <view class="songSheet_img">
               <!-- 图片 -->
-              <image mode="widthFix" bindtap="openSongSheet" data-id="{{item.id}}" src="{{item.song.album.picUrl}}" />
+              <image mode="widthFix" bindtap="xxx" data-id="{{item.id}}" src="{{item.song.album.picUrl}}" />
             </view>
             <!-- 标题 -->
             <view class="songSheet_titles1">{{item.name}}</view>
@@ -148,7 +148,7 @@
             <!-- 图片容器 -->
             <view class="songSheet_img">
               <!-- 图片 -->
-              <image mode="widthFix" bindtap="openSongSheet" data-id="{{item.id}}" src="{{item.blurPicUrl}}" />
+              <image mode="widthFix" bindtap="xxx" data-id="{{item.id}}" src="{{item.blurPicUrl}}" />
             </view>
             <!-- 标题 -->
             <view class="songSheet_titles1">{{item.name}}</view>

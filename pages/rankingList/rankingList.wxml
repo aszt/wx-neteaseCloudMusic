@@ -8,7 +8,7 @@
         <view class="officialList_title">
             <text>官方榜</text>
         </view>
-        <view class="officialList_wrap" wx:for="{{officialList}}" wx:key="{{index}}" data-name="{{item.name}}" bindtap="openRankingList">
+        <view class="officialList_wrap" wx:for="{{officialList}}" wx:key="{{index}}" data-name="{{item.name}}" data-id="{{item.id}}" bindtap="openRankingList">
             <view class="officialList_img">
                 <image mode="widthFix" src="{{item.coverImgUrl}}" />
                 <view class="officialList_info">
@@ -30,7 +30,7 @@
             <text>推荐榜</text>
         </view>
         <view class="recommendationList_wrap">
-            <view class="recommendationList_item" wx:for="{{recommendationList}}" wx:key="{{index}}" data-name="{{item.name}}" bindtap="openRankingList">
+            <view class="recommendationList_item" wx:for="{{recommendationList}}" wx:key="{{index}}" data-name="{{item.name}}" data-id="{{item.id}}" bindtap="openRankingList">
                 <view class="recommendationList_img">
                     <image mode="widthFix" src="{{item.coverImgUrl}}" />
                     <view class="recommendationList_info">
@@ -51,7 +51,7 @@
             <text>全球榜</text>
         </view>
         <view class="recommendationList_wrap">
-            <view class="recommendationList_item" wx:for="{{globalList}}" wx:key="{{index}}" data-name="{{item.name}}" bindtap="openRankingList">
+            <view class="recommendationList_item" wx:for="{{globalList}}" wx:key="{{index}}" data-name="{{item.name}}" data-id="{{item.id}}" bindtap="openRankingList">
                 <view class="recommendationList_img">
                     <image mode="widthFix" src="{{item.coverImgUrl}}" />
                     <view class="recommendationList_info">
@@ -72,7 +72,7 @@
             <text>更多榜单</text>
         </view>
         <view class="recommendationList_wrap">
-            <view class="recommendationList_item" wx:for="{{moreList}}" wx:key="{{index}}" data-name="{{item.name}}" bindtap="openRankingList">
+            <view class="recommendationList_item" wx:for="{{moreList}}" wx:key="{{index}}" data-name="{{item.name}}" data-id="{{item.id}}" bindtap="openRankingList">
                 <view class="recommendationList_img">
                     <image mode="widthFix" src="{{item.coverImgUrl}}" />
                     <view class="recommendationList_info">
